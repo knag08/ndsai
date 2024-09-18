@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sai Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="https://ndsai.sailabs.us/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+	    <div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sai Center</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+
+    <!-- Desktop Navigation Bar -->
+    <nav class="desktop-menu bg-blue-500 p-4">
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Fullscreen Overlay Menu -->
+    <div id="overlay" class="overlay">
+        <span class="close-btn" onclick="closeMenu()">&times;</span>
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </div>
+
+
+<div class="container mx-auto my-8 p-4">
+    <h1 class="text-3xl font-bold text-center mb-6">Balvikas Calendar (2023-24)</h1>
+
+
+    <!-- Unit 1 -->
+    <div class="bg-white shadow-md rounded p-6 mb-4">   
+    <div class="unit-title">Unit 1</div>
+    <div class="week-entry">Week 1: August 6</div>
+    <div class="week-entry">Week 2: August 13</div>
+    <div class="week-entry">Week 3: August 20</div>
+    <div class="week-entry">Week 4: August 27 (Parent participation)</div>
+    <div class="week-entry"><em>(Sep 3rd Labor Day Holiday)</em></div>
+    <div class="week-entry">Week 5: Sep 10 (Presentations) <span>**Parent commitment form to be signed</span></div>
+    <div class="week-entry">Week 6: Sep 17 (Seva)</div>
+    </div>
+
+    <!-- Unit 2 -->
+    <div class="bg-white shadow-md rounded p-6 mb-4">   
+    <div class="unit-title">Unit 2</div>
+    <div class="week-entry">Week 1: Sept 24</div>
+    <div class="week-entry">Week 2: Oct 1</div>
+    <div class="week-entry">Week 3: Oct 8 (Nature Activities/Parent participation)</div>
+    <div class="week-entry">Week 4: Oct 15</div>
+    <div class="week-entry">Week 5: Oct 22 (Presentations)</div>
+    <div class="week-entry">Week 6: Oct 29 (Seva)</div>
+    </div>
+
+    <!-- Unit 3 -->
+    <div class="bg-white shadow-md rounded p-6 mb-4">   
+    <div class="unit-title">Unit 3</div>
+    <div class="week-entry">Week 1: Nov 5</div>
+    <div class="week-entry">Week 2: Nov 12 (Akhanda Bhajans Global prayers for World Peace. Pre-assigned BV students to lead bhajans)</div>
+    <div class="week-entry">Week 3: Nov 19 (Nature Activities/Field trip/Parent participation)</div>
+    <div class="week-entry"><em>Nov 23rd Sri Sathya Sai Baba Janma Din Utsavam *Students, BV Alumni, parents & devotees can sign up by Oct 1st for Music program</em></div>
+    <div class="week-entry"><em>(Nov 26 Thanksgiving holiday)</em></div>
+    <div class="week-entry">Week 4: Dec 3</div>
+    <div class="week-entry">Week 5: Dec 10 (Presentations)</div>
+    <div class="week-entry">Week 6: Dec 17 (Christmas Seva)</div>
+    </div>
+
+    <!-- Unit 4 -->
+    <div class="bg-white shadow-md rounded p-6 mb-4">   
+    <div class="unit-title">Unit 4</div>
+    <div class="week-entry"><em>(Dec 24, 31 Holidays)</em></div>
+    <div class="week-entry">Week 1: Jan 7 (Nature Activities/Parent participation)</div>
+    <div class="week-entry">Week 2: Jan 14</div>
+    <div class="week-entry">Week 3: Jan 21</div>
+    <div class="week-entry">Week 4: Jan 28</div>
+    <div class="week-entry">Week 5: Feb 4 (Presentations)</div>
+    <div class="week-entry">Week 6: Feb 11 (Valentine's Day Seva)</div>
+    </div>
+
+    <!-- Unit 5 -->
+    <div class="bg-white shadow-md rounded p-6 mb-4">   
+    <div class="unit-title">Unit 5</div>
+    <div class="week-entry">Week 1: Feb 18</div>
+    <div class="week-entry">Week 2: Feb 25</div>
+    <div class="week-entry">Week 3: March 3</div>
+    <div class="week-entry"><em>(March 10 Spring Break)</em></div>
+    <div class="week-entry">Week 4: March 17 (Nature Activities/Parent participation)</div>
+    <div class="week-entry">Week 5: March 24 (Presentations)</div>
+    <div class="week-entry">Week 6: March 31 (Seva)</div>
+    </div>
+
+    <!-- Additional Notes -->
+    <div class="bg-white shadow-md rounded p-6 mb-4">   
+    <div class="unit-title">Additional Notes</div>
+    <div class="week-entry">Keep your Saturdays free: BV Contests April 6, 13, 20</div>
+    <div class="week-entry">Easwaramma Day Rehearsals: April 6, 7, 13, 14, 20, 21, 27, 28 (Parent commitment required)</div>
+    <div class="week-entry">May 5: Easwaramma Day Celebrations</div>
+    <div class="week-entry">May 6th: Special Easwaramma Day Student Bhajans, Venue: TBA</div>
+    
+    <div class="week-entry">
+        <strong>Presentations will be in the classrooms for KG-4th grade at 9:30 AM. Respective student volunteers will conduct these sessions.</strong>
+    </div>
+    <div class="week-entry">
+        <strong>AMH Bhajan Room from 5th-10th grade at 9:30 AM.</strong>
+    </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2024 North Dallas Sai Center. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

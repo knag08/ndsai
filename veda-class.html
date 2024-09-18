@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sai Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="https://ndsai.sailabs.us/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+	    <div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sai Center</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+    
+
+    <!-- Desktop Navigation Bar -->
+    <nav class="desktop-menu bg-blue-500 p-4">
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Fullscreen Overlay Menu -->
+    <div id="overlay" class="overlay">
+        <span class="close-btn" onclick="closeMenu()">&times;</span>
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Content Section -->
+    <div class="bg-white p-8 shadow-lg rounded-lg max-w-4xl mx-auto border border-black mt-8">
+        <!-- Title -->
+        <h1 class="text-4xl font-bold text-gray-800 mb-6">Veda Classes</h1>
+
+        <!-- Image Section -->
+        <div class="flex justify-center items-center mb-6">
+            <!-- Update image to be more responsive -->
+            <img src="https://ndsai.sailabs.us/downloaded_images/swamy_veda_class.jpg" alt="Children with Bhagawan Sri Sathya Sai Baba during Veda classes" class="w-full max-w-md rounded-lg border-4 border-gray-300 shadow-md">
+        </div>
+
+        <!-- Class Info and Quote Section -->
+        <div class="flex flex-col md:flex-row justify-between">
+            <!-- Left Info Section -->
+            <div class="text-left mb-4 md:mb-0">
+                <p class="text-xl"><strong>Veda classes:</strong></p>
+                <p class="text-lg">Time: 11:15am - 12:15pm</p>
+                <p class="text-lg">Who: Boys 5th grade & Above</p>
+            </div>
+
+            <!-- Right Quote Section -->
+            <div class="text-right">
+                <p class="italic text-lg">"The Vedas are for all mankind; they have prayers for peace subjugating the anger of the elements and of human communities."</p>
+                <p class="text-lg font-bold mt-4">- Bhagawan Sri Sathya Sai Baba</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+    <footer class="bg-blue-500 p-4 text-white text-center mt-8">
+        <p>&copy; 2024 North Dallas Sai Center. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sai Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="https://ndsai.sailabs.us/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+	    <div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sai Center</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+    
+
+    <!-- Desktop Navigation Bar -->
+    <nav class="desktop-menu bg-blue-500 p-4">
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Fullscreen Overlay Menu -->
+    <div id="overlay" class="overlay">
+        <span class="close-btn" onclick="closeMenu()">&times;</span>
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto my-8 p-4 bg-white shadow-md rounded">
+        <h1 class="text-3xl font-bold text-center mb-6">Narayana Seva</h1>
+            <section class="mb-8">
+            <p>We serve a home-cooked vegetarian meal at Austin Street Centre for the homeless near downtown on the first Friday of the month. With Swami's grace, we have been doing this since 1985. It is NOT charity... but "Narayan Seva" service to God in the form of man. It is a spiritual practice to learn to share what God has given us. It's a good opportunity for us to teach our children "by example" to be grateful for all we have been blessed with & to instill the value of service from a young age.</p>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Where?</h2>
+            <p>Website: <a href="https://www.austinstreet.org/" class="text-blue-500 underline">Austin Street Shelter</a></p>
+            <p>Address: <a href="https://www.google.com/maps?q=2929+Hickory+St,+Dallas,+TX+75226" class="text-blue-500 underline">2929 Hickory St, Dallas, TX 75226</a></p>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">How You Can Help</h2>
+            <p>We have a restricted number of volunteers who can physically come & serve, hence volunteers need to sign up. If you would like to participate, please email us: <a href="mailto:narayanseva@ndsai.org" class="text-red-500 underline">narayanseva@ndsai.org</a></p>
+            <p>Volunteers may either cook the food and drop it off at the locations mentioned OR Volunteers may cook and come to the shelter to serve the food OR Volunteers may come and serve the food at the shelter.</p>
+            <p>Since this is a regular project, if you can't make it this month, you could always participate next month. Sign-up sheets for cooking, buying food, and serving in person will be available at the Balvikas front desk the previous Sunday. If you would like to be added to the NDSAI Seva Yahoo group to receive regular communications about this seva, please email: <a href="mailto:narayanseva@ndsai.org" class="text-red-500 underline">narayanseva@ndsai.org</a></p>
+
+            <ul class="list-disc ml-6">
+                <li>Main Dish: 7 volunteers (Dish varies each month <em>*check for details*</em>)
+                    <ul class="list-disc ml-6">
+                        <li>Main dishes: <a href="#" class="text-blue-500 underline">Spaghetti & Sauce</a>, <a href="#" class="text-blue-500 underline">Cheesy Garden Casserole</a>, <a href="#" class="text-blue-500 underline">Macaroni Bean Bake</a>, <a href="#" class="text-blue-500 underline">Rice & Vegetarian Chilli</a></li>
+                    </ul>
+                </li>
+                <li>Salad & Dressing: 6 volunteers <em>*check for details*</em></li>
+                <li>Bread: 2 volunteers: 15 sticks of French bread each</li>
+                <li>Spread: 1 volunteer: 1 large tub</li>
+                <li>Milk: 7 volunteers (2 Gallons of milk each)</li>
+                <li>Serving: Volunteers who wish to serve in person need to sign up the previous week.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold mb-4">Cut Salad Pictures</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <img src="https://ndsai.sailabs.us/downloaded_images/IMG_0207_JPG.jpg" alt="Lettuce" class="w-full h-auto rounded shadow">
+                <img src="https://ndsai.sailabs.us/downloaded_images/IMG_0208_edited.jpg" alt="Cabbage" class="w-full h-auto rounded shadow">
+                <img src="https://ndsai.sailabs.us/downloaded_images/IMG_0219_JPG.jpg" alt="Cucumber" class="w-full h-auto rounded shadow">
+                <img src="https://ndsai.sailabs.us/downloaded_images/IMG_0216_JPG.jpg" alt="Carrot" class="w-full h-auto rounded shadow">
+                <img src="https://ndsai.sailabs.us/downloaded_images/IMG_0212_JPG.jpg" alt="Green Pepper" class="w-full h-auto rounded shadow">
+                <img src="https://ndsai.sailabs.us/downloaded_images/IMG_0225_JPG.jpg" alt="Tomatoes" class="w-full h-auto rounded shadow">
+            </div>
+        </section>
+    </div>
+
+       <footer class="bg-blue-500 p-4 text-white text-center">
+        <p>&copy; 2024 North Dallas Sai Center. All Rights Reserved.</p>
+    </footer>
+
+</body>
+<script src="script.js"></script>
+
+</html>

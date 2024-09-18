@@ -1,0 +1,262 @@
+
+/* General Styles */
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-title {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+}
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.carousel-title {
+    text-align: center;
+    color: #FF4500; /* Thick orange color */
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Carousel Container with Fixed Height */
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* Adjust as needed */
+    height: 300px; /* Set a fixed height */
+    margin: auto;
+    overflow: hidden;
+    margin-bottom: 32px; /* Added margin-bottom for spacing */
+}
+
+/* Carousel Images */
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.42, 0, 0.58, 1); /* Smooth, natural transition */
+    justify-content: center; /* Center images horizontally */
+    height: 100%; /* Ensure images fill the height of the container */
+}
+
+/* Individual Carousel Image */
+.carousel-image {
+    min-width: 100%;
+    height: 100%; /* Maintain height of the container */
+    object-fit: contain; /* Ensures the image covers the container while maintaining aspect ratio */
+}
+
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.arrow-left {
+    left: 10px;
+}
+
+.arrow-right {
+    right: 10px;
+}
+
+/* Overlay Menu */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.overlay.active {
+    display: flex;
+}
+
+.overlay .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 32px; /* Increased size */
+    cursor: pointer;
+    padding: 10px; /* Adds space around the button */
+    background-color: transparent; /* Optional: Keep background transparent */
+    border: none; /* Optional: No border */
+    color: white; /* Ensure the text color is visible */
+}
+
+.overlay .nav-list {
+    list-style: none;
+    padding: 0;
+}
+
+.overlay .nav-list li {
+    margin: 20px 0;
+}
+
+.overlay .nav-list a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.overlay .nav-list a:hover {
+    color: #FF4500; /* Highlight color on hover */
+}
+
+/* Burger Menu */
+.burger-menu {
+    display: none; /* Hidden by default */
+    font-size: 35px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Desktop Menu */
+.desktop-menu {
+    display: flex;
+    justify-content: center;
+    background-color: #1E3A8A; /* Adjust as needed */
+    padding: 10px;
+}
+
+.desktop-menu .nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.desktop-menu .nav-list li {
+    margin: 0 15px;
+}
+
+.desktop-menu .nav-list a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.desktop-menu .nav-list a:hover {
+    color: #FF4500; /* Highlight color on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .desktop-menu {
+        display: none; /* Hide the desktop menu on mobile */
+    }
+
+    .burger-menu {
+        display: block; /* Show burger menu on mobile */
+    }
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+
+.calendar-section {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.calendar-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.unit-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.week-entry {
+    margin: 5px 0;
+}
+.important-note {
+    color: red;
+    font-weight: bold;
+}
+
+
+.header-font {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px #ccc;
+}
+
+.bg-marble {
+    background-image: url('https://images.unsplash.com/photo-1584212316070-3f1c340885e3'); /* Marble background image */
+    background-size: cover;
+    background-position: center;
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.image-gallery img {
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.grade-section {
+    margin-bottom: 2rem;
+}

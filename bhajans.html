@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sai Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="https://ndsai.sailabs.us/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+	    <div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sai Center</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+
+    <!-- Desktop Navigation Bar -->
+    <nav class="desktop-menu bg-blue-500 p-4">
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Fullscreen Overlay Menu -->
+    <div id="overlay" class="overlay">
+        <span class="close-btn" onclick="closeMenu()">&times;</span>
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </div>
+
+
+
+<!-- Swami Says Section -->
+<div class="container mx-auto my-8 p-4 bg-white shadow-md rounded">
+    <h1 class="text-3xl font-bold text-center mb-6">Bhajans</h1>
+
+    <h2 class="text-2xl font-bold mb-4">Swami Says...</h2>
+    <blockquote class="text-gray-700 mb-4">
+        <p>"Life is a song sing it... you too must pass your days in song. Let your whole life be a spiritual song. Believe that God is everywhere at all times, and derive strength, comfort, and joy by singing His glory in His presence. Let melody and harmony surge up from your hearts, and let all take delight in the love that you express through that song."</p>
+        <footer class="mt-2">- Baba (Prashanti Nilayam Nov 14, 1976)</footer>
+    </blockquote>
+    <h3 class="text-xl font-bold mb-2">Bhajan Timings</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Weekly Bhajans: Every Sunday at AMH, Frisco</li>
+        <li>Special Bhajans: Celebrate festivals</li>
+        <li>Global Akhanda Bhajans for World Peace: 2nd weekend of November</li>
+    </ul>
+    
+    <h3 class="text-xl font-bold mt-6 mb-2">Format</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li><strong>Silent sitting:</strong> The first step ensures an erect body posture and control of the body and the senses.</li>
+        <li><strong>Omkar:</strong> Chanting the Omkar aims to attune the mind to one’s own inhalation and exhalation.</li>
+        <li><strong>Singing God’s names and glories:</strong> This step is intended for the emotional elevation of all. The psyche in man which is the seat of all human emotions like desire, hatred, and anger has to be purified. This purification is possible when the words with sublime meanings and beautiful thoughts are sung with devotion and love.</li>
+        <li><strong>Prayers and Shanti mantras:</strong> This step helps the devotee to rise above self-centered tendencies and develop a love for all fellow-beings. The attitude of identifying one’s own happiness with the happiness of others has to be consciously practiced and developed as an exercise in self-expansion.</li>
+        <li><strong>Silent sitting:</strong> This step is the point of turning one’s gaze within oneself. Until now, God has been invoked outside oneself, but now one must look within, Him in silence.</li>
+        <li><strong>Arathi:</strong> This is an appropriate closing prayer of homage to Sai.</li>
+        <li><strong>Vibhuti:</strong> Vibhuti is then shared among the devotees as a token of the Lord’s grace.</li>
+    </ul>
+
+    <h3 class="text-xl font-bold mt-6 mb-2">Dress Code</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Men: Full White Pants and White Shirt</li>
+        <li>Women: Saree/Salwar with Dupatta</li>
+    </ul>
+    
+    <h3 class="text-xl font-bold mt-6 mb-2">Guidelines for Bhajan Leading</h3>
+    <ol class="list-decimal pl-5 text-gray-700">
+        <li>Bhajan (singing a devotional song) is Sadhana (spiritual discipline) for all who share in it. With each Bhajan song the mind must be rendered pure, free from passion and stronger in faith. Bhajan must be a thrilling experience, leaving the participants full of pure energy and elevated enthusiasm.</li>
+        <li>Bhajans have to be sung and offered to God in an attitude of utter humility. They are not to be taken as exercises in an exhibition of talents and as competition for mastery of musical skills. They have to please the Lord, not your fans.</li>
+        <li>Sing familiar Bhajans so all can share "Anand Bliss".</li>
+        <li>Pay attention to the tune, the meaning, the variety, the voice, the raga (rhythm), the tala (beat), and other fine points of the Bhajan.</li>
+        <li>When you sing Bhajans dwell on the meaning of the song and the message of each name and form of God.</li>
+        <li>Do not monopolize the time in Bhajans by singing one for 6 or 10 minutes, or by repeating the same line often. Repeat each line only twice and no more. Have only two speeds and other fast, in this way you can have in 1 hour of bhajans, more songs on more forms, more tunes, and variety, giving more people the chance.</li>
+        <li>Bhajans must be a felt experience. Do not sing with one eye on the effect the song makes on the listeners and the other of the effect it makes on God. Let your heart pant for God then the raga and tala will automatically be pleasant and correct.</li>
+        <li>Bhajans should be sweet to the ear. If your voice is not pleasant or sweet, keep quiet that is the best service you can give.</li>
+        <li>Unless you sing Bhajans for your own joy, you cannot bring joy to others. It is only when the feeling arises in the heart that the song will appeal to the hearts of others. I am pleased only when Love is the keynote when the feeling of unity prevails when the melody comes from cleansed, God-loving hearts.</li>
+        <li>People should return from Bhajans carrying the elevated, uplifted and sublime mood created by the atmosphere at the Bhajan. Therefore, after the Bhajan people should disperse quietly, maintaining silence. Then the joy and peace derived at the bhajan will linger and abide in the heart.</li>
+        <li>Bhajan leaders should be present and seated before 3 OM's.</li>
+    </ol>
+</div>
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2024 North Dallas Sai Center. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sai Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+                <img src="https://ndsai.sailabs.us/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+		<div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sai Center</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+
+    <!-- Desktop Navigation Bar -->
+    <nav class="desktop-menu bg-blue-500 p-4">
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Fullscreen Overlay Menu -->
+    <div id="overlay" class="overlay">
+        <span class="close-btn" onclick="closeMenu()">&times;</span>
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="pics.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <div class="text-3xl font-bold text-center mb-2 mt-4">Classes</div>
+
+<!-- Classes Section -->
+<div class="container mx-auto my-2 p-4 relative">
+    <!-- Dropdown Menu -->
+    <div class="flex justify-center mb-4">
+        <select id="classDropdown" class="p-2 border rounded">
+            <option value="default-content">Select a grade</option>
+            <option value="kindergarten">Kindergarten</option>
+            <option value="1st-grade">1st Grade</option>
+            <option value="2nd-grade">2nd Grade</option>
+            <option value="3rd-grade">3rd Grade</option>
+            <option value="4th-grade">4th Grade</option>
+            <option value="5th-grade">5th Grade</option>
+            <option value="6th-grade">6th Grade</option>
+            <option value="7th-grade">7th Grade</option>
+            <option value="8th-grade">8th Grade</option>
+            <option value="9th-grade">9th Grade</option>
+            <option value="10th-grade">10th Grade</option>
+        </select>   
+    </div>
+    
+
+ <!-- Default Content -->
+ <div id="defaultContent">
+
+
+    <div class="bg-white shadow-md rounded p-6 mb-4" id="coreValues">
+
+        <h2 class="text-2xl font-bold mb-4">Core Values</h2>
+        <p>Our spiritual education program for children is based on the teachings of Sri Sathya Sai Baba. The program is designed to impart values and principles that align with his teachings, helping children grow spiritually and ethically.</p>
+
+        <ul class="list-disc pl-5 text-gray-700">
+            <li><strong>Daiva Preeti:</strong> Love for God</li>
+            <li><strong>Papa Bheeti:</strong> Fear of wrong-doing</li>
+            <li><strong>Sangha Neeti:</strong> Morality in society</li>
+        </ul>
+    </div>
+
+    <!-- General Objectives -->
+    <div class="bg-white shadow-md rounded p-6 mb-4" id="generalObjectives">
+        
+        <h2 class="text-xl font-bold mb-2">General Objectives</h2>
+        <ul class="list-disc pl-5 text-gray-700">
+            <li>To help the child discern divine providence behind every event.</li>
+            <li>To inculcate an integrated personality and to enable them to incorporate into this the five human values of Truth, Right Action, Peace, Love, and Non-Violence.</li>
+        </ul>
+        <blockquote class="mt-4 italic text-gray-600">
+            "Children’s minds are innocent and pure. Each child is a white marble for the teacher and the parents to mould into an image of God, a bud to be helped to blossom in all its Divine glory so that it becomes a worthy offering to God."
+            <br>-Sri Sathya Sai Baba
+        </blockquote>
+    </div>
+    
+    <!-- Specific Objectives -->
+    <div class="bg-white shadow-md rounded p-6 mb-4" id="specificObjectives">
+        <h2 class="text-xl font-bold mb-2">Specific Objectives</h2>
+        <ul class="list-disc pl-5 text-gray-700">
+            <li>To inculcate respect for parents and elders.</li>
+            <li>To promote obedience at home and outside.</li>
+            <li>To instill faith and devotion in God through good devotional practices.</li>
+            <li>To sow the seeds for love and honesty.</li>
+            <li>To enable students to practice kindness, compassion, and tolerance at home and outside.</li>
+            <li>To awaken intuition.</li>
+            <li>To awaken awareness of one's own consciousness.</li>
+            <li>To inculcate self-reliance and leadership.</li>
+        </ul>
+    </div>
+    
+    <!-- Admission -->
+    <div class="bg-white shadow-md rounded p-6 mb-4" id="admission">
+        <h2 class="text-xl font-bold mb-2">Admission</h2>
+        <ul class="list-disc pl-5 text-gray-700">
+            <li>Parents need to attend an orientation meeting to understand the program and their role in their child's moral & spiritual growth.</li>
+            <li>Parent commitment includes the need to participate in “parents-as-partners” once every unit.</li>
+            <li>Every unit includes a service project as a part of the program and we welcome parents to help conduct them.</li>
+        </ul>
+    </div>
+    
+    <!-- Teachers -->
+    <div class="bg-white shadow-md rounded p-6 mb-4" id="teachers">
+        <h2 class="text-xl font-bold mb-2">Teachers</h2>
+        <p class="text-gray-700">A group of dedicated volunteers serve as our teachers. They are devotees who love children and are committed to their emotional, moral & spiritual well-being.</p>
+    </div>
+    
+    <!-- Balvikas Venue and Timings -->
+    <div class="bg-white shadow-md rounded p-6 mb-4" id="balvikasTimings">
+        <h2 class="text-xl font-bold mb-2">Balvikas Venue and Timings</h2>
+        <p class="text-gray-700">All classes meet at the Alpha Montessori House (Frisco) on Sunday mornings, in two sessions.</p>
+        <ul class="list-disc pl-5 text-gray-700">
+            <li><strong>Group 1:</strong> KG - 3rd Grade</li>
+            <li><strong>Group 2:</strong> 4th - 7th Grade</li>
+            <li><strong>Group 3:</strong> 8th - 10th Grade</li>
+        </ul>
+        <p class="text-gray-700 mt-2"><strong>Timings:</strong></p>
+        <ul class="list-disc pl-5 text-gray-700">
+            <li>9:30am - 10:45am: 5th to 10th Grade</li>
+            <li>11:15am - 12:30pm: KG to 4th Grade</li>
+        </ul>
+        <p class="text-gray-700 mt-2"><strong>Balvikas calendar follows the PISD School calendar.</strong></p>
+    </div>
+</div>
+
+<!-- Grade Specific Content -->
+<div id="gradeContent" class="hidden">
+    <!-- Kindergarten Content -->
+    <div class="bg-white shadow-md rounded p-6 mb-4" id="kindergartenContent">
+        <h2 class="text-xl font-bold mb-2">Kindergarten (Group 1)</h2>
+        <ul class="list-disc pl-5 text-gray-700">
+            <li>First Steps to God</li>
+            <li>Introduction to the five human values through simple stories</li>
+            <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+            <li>Introduction to community service</li>
+            <li>Skills: recitation, Bhajan singing, and storytelling</li>
+        </ul>
+    </div>
+
+    <!-- 1st Grade (Group 1) -->
+    <div class="bg-white shadow-md rounded p-6 mb-4" id="1st-gradeContent">
+        <h2 class="text-xl font-bold mb-2">1st Grade (Group 1)</h2>
+        <h3 class="text-lg font-semibold">Living with Values</h3>
+        <ul class="list-disc pl-5 text-gray-700">
+            <li>Stories reinforce values</li>
+            <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+            <li>Introduction to community service</li>
+            <li>Skills: recitation, Bhajan singing, and storytelling</li>
+        </ul>
+    </div>
+    <!-- Add other grade-specific content here -->
+
+
+<!-- 2nd Grade (Group 1) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="2nd-gradeContent">
+    <h2 class="text-xl font-bold mb-2">2nd Grade (Group 1)</h2>
+    <h3 class="text-lg font-semibold">Living With God</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Stories reflect everyday events in a child's life and the need to seek guidance from God 'within'</li>
+        <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+        <li>Introduction to community service</li>
+        <li>Skills: recitation, Bhajan singing, and storytelling</li>
+    </ul>
+</div>
+
+<!-- 3rd Grade (Group 1) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="3rd-gradeContent">
+    <h2 class="text-xl font-bold mb-2">3rd Grade (Group 1)</h2>
+    <h3 class="text-lg font-semibold">Cradle Tales Of Hinduism</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Stories taken from the Ancient Hindu scriptures to illustrate human values and instill respect toward their spiritual heritage</li>
+        <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+        <li>Introduction to community service</li>
+        <li>Skills: recitation, Bhajan singing, and storytelling</li>
+    </ul>
+</div>
+
+<!-- 4th Grade (Group 2) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="4th-gradeContent">
+    <h2 class="text-xl font-bold mb-2">4th Grade (Group 2)</h2>
+    <h3 class="text-lg font-semibold">W.A.T.C.H</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>W A T C H (Words, Actions, Thoughts, Character, Heart)</li>
+        <li>Practical curriculum based on Sri Sathya Sai Baba's teaching...watch your words, actions, thoughts, character, heart through inspiring stories with special emphasis on practice</li>
+        <li>Memorize Sri Hanuman Chalisa</li>
+        <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+    </ul>
+</div>
+
+<!-- 5th Grade (Group 2) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="5th-gradeContent">
+    <h2 class="text-xl font-bold mb-2">5th Grade (Group 2)</h2>
+    <h3 class="text-lg font-semibold">Ramayana for Everyday Life</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Learning with devotion and reverence the story of Lord Rama's life with special emphasis on lessons to practice in one's daily life</li>
+        <li>Memorize the Nama Ramayana</li>
+        <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+    </ul>
+</div>
+
+<!-- 6th Grade (Group 2) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="6th-gradeContent">
+    <h2 class="text-xl font-bold mb-2">6th Grade (Group 2)</h2>
+    <h3 class="text-lg font-semibold">I to We (Love is Expansion)</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Curriculum-based on Sri Sathya Sai Baba's teaching that LOVE is expansion! From individual self to importance of family, service to society, love for Motherland, and love for all creation. A hands-on course to impact young minds to grow in self-confidence and embrace universal good</li>
+        <li>Memorize Guru Paduka Stotram</li>
+        <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+    </ul>
+</div>
+
+<!-- 7th Grade (Group 2) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="7th-gradeContent">
+    <h2 class="text-xl font-bold mb-2">7th Grade (Group 2)</h2>
+    <h3 class="text-lg font-semibold">Unity in Diversity (Fatherhood of God, Brotherhood of Man)</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Curriculum-based on Sri Sathya Sai Baba's teaching that ALL faith leads to the One</li>
+        <li>To instill love for one's own faith and respect and tolerance to all other faiths</li>
+        <li>Students will visit different places of worship to broaden their understanding</li>
+        <li>Memorize: Sri Sathya Sai Suprabhatam</li>
+        <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+    </ul>
+</div>
+
+<!-- 8th Grade (Group 3) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="8th-gradeContent">
+    <h2 class="text-xl font-bold mb-2">8th Grade (Group 3)</h2>
+    <h3 class="text-lg font-semibold">Ceiling On Desires</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Curriculum-based on Sri Sathya Sai Baba's teaching: Do not waste money, food, time, energy, information</li>
+        <li>Putting a ceiling on our desires and use the savings in the service of others</li>
+        <li>A practical course where teens discuss the areas of wastage in their lives and how to bring about a transformation in personal life</li>
+        <li>Memorize: Aditya Hrudayam</li>
+        <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+        <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+    </ul>
+</div>
+
+<!-- 9th Grade (Group 3) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="9th-gradeContent">
+    <h2 class="text-xl font-bold mb-2">9th Grade (Group 3)</h2>
+    <h3 class="text-lg font-semibold">Saints of India</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Saints of India (glimpses into the lives of saints and their love for God)</li>
+        <li>Continue chanting the Aditya Hrudayam</li>
+        <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+        <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+    </ul>
+</div>
+
+<!-- 10th Grade (Group 3) -->
+<div class="bg-white shadow-md rounded p-6 mb-4" id="10th-gradeContent">
+    <h2 class="text-xl font-bold mb-2">10th Grade (Group 3)</h2>
+    <h3 class="text-lg font-semibold">Bhaja Govindam</h3>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Selected verses from Adi Shankara's Bhaja Govindam</li>
+        <li>Task of maintaining the NDSAI webpage</li>
+        <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+        <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+    </ul>
+</div>
+
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2024 North Dallas Sai Center. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
