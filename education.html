@@ -8,10 +8,30 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script>
-        function switchSegment(segment) {
-            document.querySelectorAll('.segment-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(segment).classList.remove('hidden');
-        }
+        
+        function switchSegment(segment, button) {
+        // Hide all segment contents
+        document.querySelectorAll('.segment-content').forEach(el => el.classList.add('hidden'));
+        document.getElementById(segment).classList.remove('hidden');
+
+        // Remove active class from all buttons
+        document.querySelectorAll('.segment-button').forEach(btn => {
+            btn.classList.remove('bg-blue-700');
+            btn.classList.add('bg-blue-500');
+        });
+
+        // Add active class to the clicked button
+        button.classList.remove('bg-blue-500');
+        button.classList.add('bg-blue-700');
+    }
+
+    // Ensure "Classes" is shown and highlighted by default
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("classes").classList.remove("hidden");
+        document.getElementById("classes-btn").classList.add("bg-blue-700");
+    });
+
+
     </script>
 </head>
 
@@ -69,9 +89,9 @@
     <div class="container mx-auto my-4 p-4">
         <!-- Segment Controller -->
         <div class="flex justify-center space-x-4 mb-4">
-            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('classes')">Classes</button>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('unit-info')">Current Unit Info</button>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('reflection')">Student Reflection</button>
+            <button id="classes-btn" class="segment-button bg-blue-700 text-white px-4 py-2 rounded" onclick="switchSegment('classes', this)">Classes</button>
+            <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('unit-info', this)">Current Unit Info</button>
+            <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('reflection', this)">Student Reflection</button>
         </div>
 
         <!-- Segment Content -->
