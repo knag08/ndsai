@@ -12,15 +12,18 @@
 
 <body class="bg-gray-100">
 
+    <!-- Header -->
     <header class="bg-blue-500 p-4">
         <div class="container mx-auto flex items-center justify-between">
             <img src="https://ndsai.org/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
             <div class="header-title">
                 <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sai Center</h1>
             </div>
-            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
     </header>
 
+    <!-- Desktop Navigation Bar -->
     <nav class="desktop-menu bg-blue-500 p-4">
         <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
@@ -37,6 +40,7 @@
         </ul>
     </nav>
 
+    <!-- Fullscreen Overlay Menu -->
     <div id="overlay" class="overlay">
         <span class="close-btn" onclick="closeMenu()">&times;</span>
         <ul class="nav-list">
@@ -55,18 +59,13 @@
     </div>
 
 
-<div id="defaultContent" class="container mx-auto my-8 px-4 pb-20"> <div class="carousel-title">Welcome to Sri Sathya Sai Balvikas, North Dallas (NDSAI)</div>
+<!-- Main Content -->
+<div id="defaultContent" class="container mx-auto my-8 px-4 pb-20"> <!-- Added pb-20 for padding-bottom -->
 
-    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 mb-8" role="alert">
-        <div class="flex items-center">
-            <p class="font-bold text-lg">New Parent Orientation Meeting</p>
-        </div>
-        <p class="mt-2 text-md">
-            <span class="block"><strong>Where:</strong> AMH Frisco (Rolater & Independence)</span>
-            <span class="block"><strong>When:</strong> Sunday, August 3rd @ 10 AM</span>
-            <span class="block"><strong>Who:</strong> Only parents who have already contacted us</span>
-        </p>
-    </div>
+     <!-- Carousel Title -->
+    <div class="carousel-title">Welcome to Sri Sathya Sai Balvikas, North Dallas (NDSAI)</div>
+
+    <!-- Centered Image -->
     <div class="text-center mb-8">
         <h2 class="text-center mb-8"><strong>"Love as Thought is Truth. Love as Action is Right Conduct. Love as Understanding is Peace. Love as Feeling is Non-violence." ~ Sathya Sai Baba</strong></h2>
         <img src="downloaded_images/f35538_6142f88ea19a41ef84eeea52e3099dff~mv2.jpg" alt="Bhagawan Sri Sathya Sai Baba" class="mx-auto">
@@ -74,6 +73,7 @@
 
 
 
+<!-- Information Panels -->
 <section class="flex flex-wrap justify-center gap-8">
   <div class="w-full md:w-1/4 bg-white shadow-md rounded p-4 text-center">
     <h3 class="text-xl font-bold mb-2">Who We Are?</h3>
@@ -97,6 +97,7 @@
 
 <h3 class="text-xl font-bold mt-6 mb-2">Nine Point Code of Conduct</h3>
 <ol class="list-decimal pl-5 text-gray-700">
+    <li>Daily meditation and prayer.</li>
     <li>Daily meditation and prayer.</li>
     <li>Devotional singing/prayer with family members once per week.</li>
     <li>Participation in Sai Spiritual Education by children of the family.</li>
