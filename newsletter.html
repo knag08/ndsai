@@ -36,42 +36,15 @@
         </div>
     </header>
 
-    <!-- Desktop Navigation Bar -->
-    <nav class="desktop-menu bg-blue-500 p-4">
-        <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="newsletter.html">Newsletter</a></li>
-            <li><a href="education.html">Education</a></li>            
-            <li><a href="bhajans.html">Bhajans</a></li>
-            <li><a href="calendar.html">Calendar</a></li>
-            <li><a href="eswarammaday.html">Eswaramma Day</a></li>
-            <li><a href="seva.html">Seva</a></li>
-            <li><a href="narayana-seva.html">Narayana Seva</a></li>
-            <li><a href="service.html">Service Projects</a></li>
-            <li><a href="veda-class.html">Veda Classes</a></li>
-            <li><a href="contact-us.html">Contact Us</a></li>
-            <li><a href="podcast.html">Podcast</a></li>
-        </ul>
-    </nav>
-
-    <!-- Fullscreen Overlay Menu -->
-    <div id="overlay" class="overlay">
-        <span class="close-btn" onclick="closeMenu()">&times;</span>
-        <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="newsletter.html">Newsletter</a></li>
-            <li><a href="education.html">Education</a></li>            
-            <li><a href="bhajans.html">Bhajans</a></li>
-            <li><a href="calendar.html">Calendar</a></li>
-            <li><a href="eswarammaday.html">Eswaramma Day</a></li>
-            <li><a href="seva.html">Seva</a></li>
-            <li><a href="narayana-seva.html">Narayana Seva</a></li>
-            <li><a href="service.html">Service Projects</a></li>
-            <li><a href="veda-class.html">Veda Classes</a></li>
-            <li><a href="contact-us.html">Contact Us</a></li>
-            <li><a href="podcast.html">Podcast</a></li>
-        </ul>
-    </div>
+    <!-- Navigation Bar -->
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    </script>
 
 
 <iframe src="newsletter01.html"></iframe>
