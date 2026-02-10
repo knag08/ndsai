@@ -29,7 +29,7 @@
     
         function handleInitialLoad() {
             const segment = window.location.hash.substring(1); // Get hash (e.g., "#unit-info")
-            const validSegments = ["classes", "unit-info", "reflection"];
+            const validSegments = ["classes", "unit-info", "reflection", "teacher-resources"];
     
             if (validSegments.includes(segment)) {
                 document.querySelectorAll('.segment-content').forEach(el => el.classList.add('hidden'));
@@ -86,6 +86,7 @@
             <button id="classes-btn" class="segment-button bg-blue-700 text-white px-4 py-2 rounded" onclick="switchSegment('classes', this)">Classes</button>
             <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('unit-info', this)">Current Unit Info</button>
             <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('reflection', this)">Student Reflection</button>
+            <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('teacher-resources', this)">Teacher Resources</button>
         </div>
 
         <!-- Segment Content -->
@@ -464,7 +465,85 @@
                 </div>
             </div>
         </div>
-        
+
+        <div id="teacher-resources" class="segment-content bg-white shadow-md rounded p-6 hidden">
+            <!-- Acknowledgement Section -->
+             <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">
+                    Teacher Resources: SSS Media Centre Curated Content
+                </h2>
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <p class="text-gray-700">With humble pranams at Swami's Lotus Feet, this is a list of external resources from Sri Sathya Sai Media Centre website that have been curated for use by NDSai Bal Vikas teachers for inspiration. There are snippets in many of the items that may be relevant across the entire Bal Vikas program. Finally, this is primarily intended for teachers' use. If audio is used in class / during parent participation sessions, teachers are encouraged to note down timestamps and play only specific snippets.</p>
+            </div>
+
+            <!-- Human Values Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Human Values</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Truth - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7c6/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Human Values - 044</a></li>
+                    <li>Right action - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7c7/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Dharma - 045</a></li>
+                    <li>Peace - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7c9/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">What Is Shanthi - 047</a></li>
+                    <li>Love - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7ba/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Understanding Love - 032</a></li>
+                </ul>
+            </div>
+
+            <!-- Group 1 Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Group 1</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Swami and Animals - <a href="https://www.sssmediacentre.org/listen/635269470ea15c979936d41e/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Swami and animals</a></li>
+                </ul>
+            </div>
+
+            <!-- I to We Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">I to We</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Vyashti Samashti Srushti Parameshti - <a href="https://www.sssmediacentre.org/listen/5f6d82439e4c999cabb2afe3/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Episode 043 - Vyashti Samishti Srushti And Parameshti</a></li>
+                </ul>
+            </div>
+
+            <!-- Ceiling on Desires Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Ceiling on Desires</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Ceiling On Desires - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7cc/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Ceiling On Desires - 050</a></li>
+                    <li>Time 1 - <a href="https://www.sssmediacentre.org/listen/6666f25dfaacdc5b7f11ee3c/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Afternoon Satsang - 369 - Don't Waste Time - Part 1</a></li>
+                    <li>Time 2 - <a href="https://www.sssmediacentre.org/listen/666fa80dfaacdce4c311ee9b/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Afternoon Satsang - 370 - Don't Waste Time - Part 2</a></li>
+                    <li>Energy / Dealing with stress - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7f1/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Stress - 087</a></li>
+                </ul>
+            </div>
+
+            <!-- Pathways to God Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Pathways to God</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Path to God - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7cb/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">The Path To God - 049</a></li>
+                    <li>Faith 1 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7c5/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Knowing Faith And Having Faith - 043</a></li>
+                    <li>Faith 2 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7d3/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">God Exists - 057</a></li>
+                    <li>Faith 3 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7fc/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Faith Or Experience Which Comes First - 098</a></li>
+                    <li>Satsangh - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7fd/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">A Sathsang On Sathsang - 099</a></li>
+                    <li>Devotion 1 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7b7/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Sai Geetha And One Pointed Devotion - 029</a></li>
+                    <li>Devotion 2 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7bc/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Do We Love Swami Or What He Gives - 034</a></li>
+                    <li>Devotion 3 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7e3/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Best Friend - 073</a></li>
+                    <li>Prayer - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7e2/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Prayer - 072</a></li>
+                    <li>Namasmarana - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7f9/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Why What When Where Who How Of Namasmarana - 095</a></li>
+                </ul>
+            </div>
+
+            <!-- Bhaja Govindam Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Bhaja Govindam</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Practical Advaita - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7b9/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Practical Advaita - 031</a></li>
+                </ul>
+            </div>
+
+            <!-- Acknowledgement Footer -->
+            <div class="bg-gray-100 shadow-md rounded p-6">
+                <p class="text-gray-700 text-sm italic text-center">All materials linked on this page are owned by Sri Sathya Sai Media Centre and Sri Sathya Sai Central Trust.</p>
+            </div>
+        </div>
+
     </div>
 
 <!-- Classes Section -->
