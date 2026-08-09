@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+
+/** Pages that moved when the site was rebuilt, so old bookmarks still land somewhere sensible. */
+const moved = [
+  { was: 'classes.html · education.html', now: '/balvikas/', label: 'Bal Vikas programme' },
+  { was: 'calendar.html', now: '/balvikas/calendar/', label: 'Calendar' },
+  { was: 'veda-class.html', now: '/balvikas/veda-classes/', label: 'Veda classes' },
+  { was: 'seva.html', now: '/seva/', label: 'Seva' },
+  { was: 'narayana-seva.html', now: '/seva/narayana-seva/', label: 'Narayana Seva' },
+  { was: 'service.html', now: '/seva/service-projects/', label: 'Service projects' },
+  { was: 'bhajans.html', now: '/bhajans/', label: 'Bhajans' },
+  { was: 'podcast.html', now: '/podcast/', label: 'Podcast' },
+  { was: 'newsletter.html', now: '/newsletter/', label: 'Newsletter' },
+  { was: 'eswarammaday.html · pics.html', now: '/easwaramma-day/', label: 'Easwaramma Day' },
+  { was: 'contact-us.html', now: '/contact/', label: 'Contact' },
+];
+---
+
+<Base title="Page not found" description="This page could not be found. Here is where everything moved to.">
+  <section class="bg-indigo-ink-900">
+    <div class="absolute inset-x-0 h-0.5 bg-gradient-to-r from-saffron-500 via-saffron-300 to-saffron-500"></div>
+    <div class="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 lg:px-8">
+      <p class="font-display text-6xl font-semibold !text-saffron-300">404</p>
+      <h1 class="mt-4 font-display text-4xl font-semibold !text-white">We couldn’t find that page</h1>
+      <p class="mx-auto mt-5 max-w-xl text-lg text-indigo-ink-100">
+        The site was rebuilt recently, so a few addresses changed. The old site is still available in full if you need
+        it.
+      </p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <Button href="/">Go to the home page</Button>
+        <Button href="/archive/" variant="ghost">Browse the old site</Button>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h2 class="font-display text-2xl font-semibold">Where pages moved to</h2>
+    <ul class="mt-6 divide-y divide-sand-200 overflow-hidden rounded-2xl bg-white ring-1 ring-sand-200">
+      {
+        moved.map((row) => (
+          <li class="flex flex-wrap items-baseline gap-x-4 gap-y-1 px-5 py-4">
+            <code class="text-sm text-ink-700">{row.was}</code>
+            <a href={row.now} class="ml-auto text-sm font-semibold text-saffron-700 underline underline-offset-4">
+              {row.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>

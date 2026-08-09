@@ -1,0 +1,189 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Quote from '../../components/Quote.astro';
+import Card from '../../components/Card.astro';
+import Button from '../../components/Button.astro';
+import { groups } from '../../data/curriculum';
+
+const objectives = {
+  general: [
+    'To help the child discern divine providence behind every event.',
+    'To inculcate an integrated personality and to enable them to incorporate into this the five human values of Truth, Right Action, Peace, Love, and Non-Violence.',
+  ],
+  specific: [
+    'To inculcate respect for parents and elders.',
+    'To promote obedience at home and outside.',
+    'To instill faith and devotion in God through good devotional practices.',
+    'To sow the seeds for love and honesty.',
+    'To enable students to practice kindness, compassion, and tolerance at home and outside.',
+    'To awaken intuition.',
+    "To awaken awareness of one's own consciousness.",
+    'To inculcate self-reliance and leadership.',
+  ],
+};
+---
+
+<Base
+  title="The Bal Vikas Programme"
+  description="Bal Vikas is our spiritual education programme for children, from Kindergarten to 10th grade — core values, objectives, class timings, admission and the role parents play."
+>
+  <PageHero
+    eyebrow="Bal Vikas"
+    title="Spiritual education for children"
+    lede="Our programme for children is based on the teachings of Sri Sathya Sai Baba, and is dedicated to making sure that children start their journey with God."
+    image="/img/hero/ed2026-20.webp"
+  />
+
+  <Section width="narrow">
+    <div class="rich reveal">
+      <h2>Core values</h2>
+      <p>
+        The programme is designed to impart values and principles that align with Swami’s teachings, helping children
+        grow spiritually and ethically. Three ideas hold it together.
+      </p>
+    </div>
+
+    <dl class="mt-8 grid gap-4 sm:grid-cols-3">
+      {
+        [
+          { term: 'Daiva Preeti', gloss: 'Love for God' },
+          { term: 'Papa Bheeti', gloss: 'Fear of wrong-doing' },
+          { term: 'Sangha Neeti', gloss: 'Morality in society' },
+        ].map((item) => (
+          <div class="reveal rounded-2xl bg-white px-5 py-6 ring-1 ring-sand-200">
+            <dt class="font-display text-xl font-semibold text-saffron-600">{item.term}</dt>
+            <dd class="mt-1 text-sm text-ink-700">{item.gloss}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Section>
+
+  <Section tone="sand" eyebrow="What we aim for" title="Objectives">
+    <div class="grid gap-8 lg:grid-cols-2 lg:gap-14">
+      <div class="reveal rounded-2xl bg-white p-7 ring-1 ring-sand-200">
+        <h3 class="font-display text-2xl font-semibold">General</h3>
+        <ul class="rich mt-4">
+          {objectives.general.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="reveal rounded-2xl bg-white p-7 ring-1 ring-sand-200">
+        <h3 class="font-display text-2xl font-semibold">Specific</h3>
+        <ul class="rich mt-4">
+          {objectives.specific.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Practical details -->
+  <Section eyebrow="Practicalities" title="Venue, groups and timings">
+    <div class="grid gap-6 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
+      <div class="reveal rounded-2xl bg-white p-7 ring-1 ring-sand-200">
+        <p class="leading-relaxed text-ink-700">
+          All classes meet at the <strong class="font-semibold text-indigo-ink-900">Alpha Montessori House, Frisco</strong>
+          on Sunday mornings, in two sessions.
+        </p>
+
+        <ul class="mt-6 space-y-3">
+          {
+            groups.map((group) => (
+              <li class="flex items-baseline justify-between gap-4 rounded-xl bg-sand-100 px-4 py-3">
+                <span class="text-[0.7rem] font-semibold tracking-[0.14em] text-saffron-700 uppercase">{group.label}</span>
+                <span class="font-display text-lg font-semibold text-indigo-ink-900">{group.range}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <h3 class="mt-8 font-display text-xl font-semibold">Session timings</h3>
+        <dl class="mt-3 divide-y divide-sand-200 border-y border-sand-200">
+          <div class="flex items-baseline justify-between gap-4 py-3">
+            <dt class="text-ink-700">5th to 10th Grade</dt>
+            <dd class="font-semibold text-indigo-ink-900">9:30 am – 10:45 am</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 py-3">
+            <dt class="text-ink-700">KG to 4th Grade</dt>
+            <dd class="font-semibold text-indigo-ink-900">11:15 am – 12:30 pm</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 py-3">
+            <dt class="text-ink-700">Bhajans (all welcome)</dt>
+            <dd class="font-semibold text-indigo-ink-900">11:20 am – 12 noon</dd>
+          </div>
+        </dl>
+
+        <p class="mt-6 rounded-xl bg-saffron-50 px-4 py-3 text-sm text-ink-700">
+          The Bal Vikas calendar follows the <strong class="font-semibold text-indigo-ink-900">PISD school calendar</strong>.
+          <a href="/balvikas/calendar/" class="ml-1 font-semibold text-saffron-700 underline underline-offset-4">
+            See all class dates
+          </a>
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <div class="reveal rounded-2xl bg-indigo-ink-900 p-7">
+          <h3 class="font-display text-xl font-semibold !text-white">Admission</h3>
+          <ul class="mt-4 space-y-3 text-[0.95rem] leading-relaxed text-indigo-ink-200">
+            <li class="flex gap-3">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-saffron-400"></span>
+              Parents need to attend an orientation meeting to understand the programme and their role in their
+              child’s moral &amp; spiritual growth.
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-saffron-400"></span>
+              Parent commitment includes the need to participate in “parents-as-partners” once every unit.
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-saffron-400"></span>
+              Every unit includes a service project as part of the programme, and we welcome parents to help conduct
+              them.
+            </li>
+          </ul>
+          <p class="mt-6 rounded-xl bg-white/10 px-4 py-3 text-sm text-white">
+            <strong class="font-semibold">Admissions are currently closed.</strong> All classes are full for this
+            academic year — please write to us next year.
+          </p>
+        </div>
+
+        <div class="reveal rounded-2xl bg-white p-7 ring-1 ring-sand-200">
+          <h3 class="font-display text-xl font-semibold">Our teachers</h3>
+          <p class="mt-3 leading-relaxed text-ink-700">
+            A group of dedicated volunteers serve as our teachers. They are devotees who love children and are
+            committed to their emotional, moral and spiritual well-being.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section width="narrow" tone="sand">
+    <Quote>
+      Children’s minds are innocent and pure. Each child is a white marble for the teacher and the parents to mould
+      into an image of God, a bud to be helped to blossom in all its Divine glory so that it becomes a worthy offering
+      to God.
+    </Quote>
+  </Section>
+
+  <Section eyebrow="Go deeper" title="More about the programme">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <Card title="Curriculum by grade" href="/balvikas/curriculum/">
+        What each class studies, from First Steps to God in Kindergarten through Bhaja Govindam in 10th grade.
+      </Card>
+      <Card title="Class calendar" href="/balvikas/calendar/">
+        Six units across the year, with class, presentation and seva dates for 2025–26.
+      </Card>
+      <Card title="Veda classes" href="/balvikas/veda-classes/">
+        Chanting taught for over a decade by an alumni parent, open to children in 4th grade and above.
+      </Card>
+      <Card title="Student voices" href="/balvikas/student-voices/">
+        Reflections written by our own students on what they saw and learned in the field.
+      </Card>
+    </div>
+
+    <div class="mt-10 text-center">
+      <Button href="/balvikas/teacher-resources/" variant="secondary">Teacher resources</Button>
+    </div>
+  </Section>
+</Base>

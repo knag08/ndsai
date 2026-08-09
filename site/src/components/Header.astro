@@ -1,0 +1,215 @@
+---
+import { nav, site } from '../data/site';
+
+const path = Astro.url.pathname;
+
+/** A link is current when it is the exact page; a parent is current for anything beneath it. */
+const isCurrent = (href: string) => path === href;
+const isAncestor = (item: (typeof nav)[number]) =>
+  item.children?.some((child) => path === child.href || path.startsWith(child.href)) ?? false;
+---
+
+<header class="sticky top-0 z-50 border-b border-indigo-ink-800/60 bg-indigo-ink-900/95 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+    <a href="/" class="flex shrink-0 items-center gap-3 text-white">
+      <img
+        src="/img/brand/ssio-emblem.webp"
+        alt=""
+        width="44"
+        height="44"
+        class="h-10 w-10 shrink-0 sm:h-11 sm:w-11"
+        loading="eager"
+      />
+      <span class="leading-tight">
+        <span class="block font-display text-lg font-semibold tracking-tight sm:text-xl">North Dallas</span>
+        <span class="block text-[0.62rem] font-semibold tracking-[0.18em] text-saffron-300 uppercase sm:text-[0.7rem]">
+          Sathya Sai BalVikas
+        </span>
+      </span>
+    </a>
+
+    <nav class="ml-auto hidden lg:block" aria-label="Main">
+      <ul class="flex items-center gap-1">
+        {
+          nav.map((item) =>
+            item.children ? (
+              <li class="group relative">
+                <button
+                  type="button"
+                  class:list={[
+                    'flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                    isAncestor(item)
+                      ? 'text-saffron-300'
+                      : 'text-indigo-ink-100 hover:bg-white/10 hover:text-white',
+                  ]}
+                  aria-expanded="false"
+                  data-dropdown-trigger
+                >
+                  {item.label}
+                  <svg class="h-3 w-3 opacity-70 transition-transform group-has-[[aria-expanded=true]]:rotate-180" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+
+                <!--
+                  Right-anchored: these triggers all sit in the right half of the header,
+                  and a left-anchored panel would stick out past the viewport. It stays in
+                  the layout even while invisible, so that would scroll the whole page.
+                -->
+                <div
+                  class="invisible absolute top-full right-0 w-80 pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                  data-dropdown-panel
+                >
+                  <ul class="overflow-hidden rounded-xl border border-sand-200 bg-white p-2 shadow-xl shadow-indigo-ink-950/20">
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          aria-current={isCurrent(child.href) ? 'page' : undefined}
+                          class:list={[
+                            'block rounded-lg px-3 py-2.5 transition-colors',
+                            isCurrent(child.href) ? 'bg-saffron-50' : 'hover:bg-sand-100',
+                          ]}
+                        >
+                          <span class="block text-sm font-semibold text-indigo-ink-900">{child.label}</span>
+                          {child.description && (
+                            <span class="mt-0.5 block text-xs leading-snug text-ink-700">{child.description}</span>
+                          )}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ) : (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={isCurrent(item.href) ? 'page' : undefined}
+                  class:list={[
+                    'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                    isCurrent(item.href)
+                      ? 'text-saffron-300'
+                      : 'text-indigo-ink-100 hover:bg-white/10 hover:text-white',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="ml-auto inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+      Menu
+    </button>
+  </div>
+
+  <!-- Mobile navigation. Rendered inline and toggled, so it works as a plain list if JS fails. -->
+  <div id="mobile-menu" class="hidden max-h-[75dvh] overflow-y-auto border-t border-white/10 bg-indigo-ink-950 lg:hidden">
+    <nav class="px-4 py-4 sm:px-6" aria-label="Mobile">
+      <ul class="space-y-1">
+        {
+          nav.map((item) => (
+            <li>
+              {item.children ? (
+                <>
+                  <p class="px-3 pt-4 pb-1 text-[0.68rem] font-semibold tracking-[0.16em] text-saffron-300 uppercase">
+                    {item.label}
+                  </p>
+                  <ul>
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          aria-current={isCurrent(child.href) ? 'page' : undefined}
+                          class:list={[
+                            'block rounded-lg px-3 py-2.5 text-[0.95rem]',
+                            isCurrent(child.href)
+                              ? 'bg-white/10 font-semibold text-white'
+                              : 'text-indigo-ink-100 hover:bg-white/5',
+                          ]}
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <a
+                  href={item.href}
+                  aria-current={isCurrent(item.href) ? 'page' : undefined}
+                  class:list={[
+                    'block rounded-lg px-3 py-2.5 font-medium',
+                    isCurrent(item.href) ? 'bg-white/10 text-white' : 'text-indigo-ink-100 hover:bg-white/5',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-6 border-t border-white/10 px-3 pt-4 text-sm text-indigo-ink-200">
+        <a href={`mailto:${site.email.general}`} class="underline decoration-saffron-400 underline-offset-4">
+          {site.email.general}
+        </a>
+      </p>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    menu?.classList.toggle('hidden', open);
+  });
+
+  // Desktop dropdowns open on hover via CSS; these handlers add keyboard and touch support.
+  for (const trigger of document.querySelectorAll<HTMLButtonElement>('[data-dropdown-trigger]')) {
+    const panel = trigger.parentElement?.querySelector<HTMLElement>('[data-dropdown-panel]');
+    if (!panel) continue;
+
+    const setOpen = (open: boolean) => {
+      trigger.setAttribute('aria-expanded', String(open));
+      panel.style.visibility = open ? 'visible' : '';
+      panel.style.opacity = open ? '1' : '';
+    };
+
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      setOpen(trigger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    trigger.parentElement?.addEventListener('focusout', (event) => {
+      const next = (event as FocusEvent).relatedTarget as Node | null;
+      if (!next || !trigger.parentElement?.contains(next)) setOpen(false);
+    });
+
+    trigger.parentElement?.addEventListener('mouseleave', () => setOpen(false));
+
+    trigger.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        trigger.focus();
+      }
+    });
+  }
+</script>

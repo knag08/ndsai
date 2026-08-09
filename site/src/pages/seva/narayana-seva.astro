@@ -1,0 +1,166 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Button from '../../components/Button.astro';
+import { site } from '../../data/site';
+
+const contributions = [
+  { role: 'Main dish', need: '7 volunteers', note: 'The dish varies each month — check for details.' },
+  { role: 'Salad & dressing', need: '6 volunteers', note: 'Check for details on quantities.' },
+  { role: 'Bread', need: '2 volunteers', note: '15 sticks of French bread each.' },
+  { role: 'Spread', need: '1 volunteer', note: 'One large tub.' },
+  { role: 'Milk', need: '7 volunteers', note: 'Two gallons of milk each.' },
+  { role: 'Serving in person', need: 'Sign up the previous week', note: 'Places at the shelter are limited.' },
+];
+
+const dishes = ['Spaghetti & Sauce', 'Cheesy Garden Casserole', 'Macaroni Bean Bake', 'Rice & Vegetarian Chilli'];
+
+const salad = [
+  { name: 'Lettuce', src: '/downloaded_images/IMG_0207_JPG.jpg' },
+  { name: 'Cabbage', src: '/downloaded_images/IMG_0208_edited.jpg' },
+  { name: 'Cucumber', src: '/downloaded_images/IMG_0219_JPG.jpg' },
+  { name: 'Carrot', src: '/downloaded_images/IMG_0216_JPG.jpg' },
+  { name: 'Green pepper', src: '/downloaded_images/IMG_0212_JPG.jpg' },
+  { name: 'Tomatoes', src: '/downloaded_images/IMG_0225_JPG.jpg' },
+];
+---
+
+<Base
+  title="Narayana Seva"
+  description="A home-cooked vegetarian meal served at the Austin Street shelter in Dallas on the first Friday of every month, since 1985. How to cook, contribute or serve."
+>
+  <PageHero
+    eyebrow="Seva · First Friday, monthly"
+    title="Narayana Seva"
+    lede="Serving God in the form of man. It is not charity — it is a spiritual practice, and a way to teach our children by example."
+  />
+
+  <Section width="narrow">
+    <div class="rich reveal">
+      <p class="!text-lg">
+        We serve a home-cooked vegetarian meal at the Austin Street Centre for the homeless, near downtown Dallas, on
+        the first Friday of the month. With Swami’s grace, we have been doing this since 1985.
+      </p>
+      <p>
+        It is <strong>not</strong> charity — it is <em>Narayan Seva</em>, service to God in the form of man. It is a
+        spiritual practice: learning to share what God has given us. It is also a good opportunity to teach our
+        children “by example” to be grateful for all we have been blessed with, and to instil the value of service
+        from a young age.
+      </p>
+    </div>
+
+    <div class="reveal mt-10 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-2xl bg-white p-6 ring-1 ring-sand-200">
+        <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-700 uppercase">Where</p>
+        <p class="mt-2 font-display text-xl font-semibold">Austin Street Center</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700">
+          <a
+            href="https://www.google.com/maps?q=2929+Hickory+St,+Dallas,+TX+75226"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline decoration-saffron-400 underline-offset-4 hover:text-saffron-700"
+            >2929 Hickory St, Dallas, TX 75226</a
+          >
+        </p>
+        <p class="mt-2 text-sm">
+          <a
+            href="https://www.austinstreet.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-semibold text-saffron-700 underline underline-offset-4">austinstreet.org</a
+          >
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6 ring-1 ring-sand-200">
+        <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-700 uppercase">When</p>
+        <p class="mt-2 font-display text-xl font-semibold">First Friday of the month</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-700">
+          Sign-up sheets for cooking, buying food and serving in person are available at the Bal Vikas front desk the
+          previous Sunday.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="sand" eyebrow="Three ways to take part" title="How you can help" width="narrow">
+    <div class="rich reveal">
+      <p>
+        Volunteers may cook the food and drop it off at the location, cook and come to the shelter to serve, or simply
+        come and serve the food at the shelter. Since this is a regular project, if you cannot make it this month you
+        can always take part the next.
+      </p>
+      <p>
+        The number of volunteers who can physically come and serve is limited, so volunteers need to sign up. To take
+        part, or to be added to the NDSAI seva mailing list, write to
+        <a href={`mailto:${site.email.narayanSeva}`}>{site.email.narayanSeva}</a>.
+      </p>
+    </div>
+
+    <div class="reveal mt-8 overflow-hidden rounded-2xl bg-white ring-1 ring-sand-200">
+      <table class="w-full text-left text-sm">
+        <caption class="sr-only">Monthly volunteer needs for Narayana Seva</caption>
+        <thead class="bg-indigo-ink-900 text-white">
+          <tr>
+            <th scope="col" class="px-5 py-3 font-semibold">Contribution</th>
+            <th scope="col" class="px-5 py-3 font-semibold">Needed</th>
+            <th scope="col" class="hidden px-5 py-3 font-semibold sm:table-cell">Notes</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-sand-200">
+          {
+            contributions.map((row) => (
+              <tr>
+                <th scope="row" class="px-5 py-3 text-left font-semibold text-indigo-ink-900">
+                  {row.role}
+                  <span class="mt-1 block font-normal text-ink-700 sm:hidden">{row.note}</span>
+                </th>
+                <td class="px-5 py-3 whitespace-nowrap text-ink-700">{row.need}</td>
+                <td class="hidden px-5 py-3 text-ink-700 sm:table-cell">{row.note}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="reveal mt-6 rounded-2xl bg-white p-6 ring-1 ring-sand-200">
+      <h3 class="font-display text-lg font-semibold">Main dishes in rotation</h3>
+      <ul class="mt-3 flex flex-wrap gap-2">
+        {
+          dishes.map((dish) => (
+            <li class="rounded-full bg-sand-100 px-3.5 py-1.5 text-sm text-ink-700">{dish}</li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-8 text-center">
+      <Button href={`mailto:${site.email.narayanSeva}`}>Email the seva coordinators</Button>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="For volunteers"
+    title="How the salad is cut"
+    lede="A reference for anyone preparing salad for the first time — this is the size and style we use."
+  >
+    <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+      {
+        salad.map((item) => (
+          <li class="reveal overflow-hidden rounded-2xl bg-white ring-1 ring-sand-200">
+            <img
+              src={item.src}
+              alt={`${item.name}, cut to the size used for the Narayana Seva salad`}
+              loading="lazy"
+              decoding="async"
+              class="aspect-4/3 w-full object-cover"
+            />
+            <p class="px-4 py-3 text-sm font-semibold text-indigo-ink-900">{item.name}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+</Base>

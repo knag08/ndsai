@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# The archived previous site is kept for reference, not for indexing.
+Disallow: /archive/
+
+Sitemap: https://ndsai.org/sitemap-index.xml

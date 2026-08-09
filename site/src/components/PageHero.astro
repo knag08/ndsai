@@ -1,0 +1,37 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  /** Optional background photograph; without one the band uses the flat indigo. */
+  image?: string;
+  imageAlt?: string;
+}
+
+const { eyebrow, title, lede, image, imageAlt = '' } = Astro.props;
+---
+
+<section class:list={['relative overflow-hidden bg-indigo-ink-900', image && 'isolate']}>
+  {
+    image && (
+      <>
+        <img src={image} alt={imageAlt} class="absolute inset-0 -z-10 h-full w-full object-cover opacity-30" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-indigo-ink-950/85 via-indigo-ink-900/80 to-indigo-ink-900" />
+      </>
+    )
+  }
+
+  <!-- Thin saffron rule across the top of every page band. -->
+  <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-saffron-500 via-saffron-300 to-saffron-500"></div>
+
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+    <div class="max-w-3xl">
+      {eyebrow && <p class="eyebrow !text-saffron-300">{eyebrow}</p>}
+      <h1 class="mt-3 font-display text-4xl font-semibold !text-white sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
+        {title}
+      </h1>
+      {lede && <p class="mt-5 max-w-2xl text-lg leading-relaxed text-indigo-ink-100">{lede}</p>}
+      <slot />
+    </div>
+  </div>
+</section>

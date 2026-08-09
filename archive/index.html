@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sathya Sai BalVikas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+<div style="background:#3b2a12;color:#fdf3e3;padding:.75rem 1rem;text-align:center;font:500 14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif">
+  <strong>Archived page.</strong> This is the previous version of the NDSAI website, kept for reference.
+  <a href="/" style="color:#f6b352;text-decoration:underline">Go to the current site &rarr;</a>
+</div>
+
+
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+            <div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sathya Sai BalVikas</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    </script>
+
+
+<div id="defaultContent" class="container mx-auto my-8 px-4 pb-20"> <div class="carousel-title">Welcome to North Dallas Sathya Sai BalVikas</div>
+
+   <div class="bg-red-100 border-l-4 border-red-500 text-red-800 p-4 mb-8" role="alert">
+        <div class="flex items-center">
+            <p class="font-bold text-lg">Registrations Closed</p>
+        </div>
+        <p class="mt-2 text-md">
+            <span class="block">All classes are full for this academic year.</span>
+            <span class="block">We kindly request you to contact us next academic year for enrollment opportunities.</span>
+        </p>
+    </div>
+
+    <div class="text-center mb-8">
+        <h2 class="text-center mb-8"><strong>"Love as Thought is Truth. Love as Action is Right Conduct. Love as Understanding is Peace. Love as Feeling is Non-violence." ~ Sathya Sai Baba</strong></h2>
+        <img src="/downloaded_images/swamy.jpeg" alt="Bhagawan Sri Sathya Sai Baba" class="mx-auto">
+    </div>
+
+
+
+<section class="flex flex-wrap justify-center gap-8">
+  <div class="w-full md:w-1/4 bg-white shadow-md rounded p-4 text-center">
+    <h3 class="text-xl font-bold mb-2">Who We Are?</h3>
+    <p class="text-gray-700">North Dallas Sathya Sai BalVikas is a 501(c)(3) non-profit organization.
+      The center provides a forum to learn and practice the teachings of Sri Sathya Sai Baba. Learning, devotion, as well as service, are promoted through various activities.</p>
+  </div>
+  <div class="w-full md:w-1/4 bg-white shadow-md rounded p-4 text-center">
+    <h3 class="text-xl font-bold mb-2">Balvikas</h3>
+    <p class="text-gray-700">Our spiritual education program for children is based on the teachings of Sri Sathya Sai Baba. This is dedicated to making sure that children start their journey with God. All classes take place every Sunday morning lasting throughout the school year as well as presentations and service projects.  </p>
+  </div>
+  <div class="w-full md:w-1/4 bg-white shadow-md rounded p-4 text-center">
+    <h3 class="text-xl font-bold mb-2">Purpose</h3>
+    <ol class="list-decimal text-gray-700 text-left ml-4">
+      <li>Spiritual inquiry, reflection, and practice of teachings.</li>
+      <li>Spiritual education of children.</li>
+      <li>Service to community.</li>
+    </ol>
+  </div>
+</section>
+
+
+<h3 class="text-xl font-bold mt-6 mb-2">Nine Point Code of Conduct</h3>
+<ol class="list-decimal pl-5 text-gray-700">
+    <li>Daily meditation and prayer.</li>
+    <li>Devotional singing/prayer with family members once per week.</li>
+    <li>Participation in Sai Spiritual Education by children of the family.</li>
+    <li>Participation in community service and other programs of the Organization.</li>
+    <li>Regular attendance at devotional meetings conducted by the Organization.</li>
+    <li>Regular study of Sathya Sai Baba literature.</li>
+    <li>Use of soft, loving speech with everyone.</li>
+    <li>Avoidance of talking ill of others, especially in their absence.</li>
+    <li>The practice of the principles of Ceiling on Desires, consciously and continuously striving to eliminate the tendency to waste time, money, food, and energy, and utilizing any savings thereby generated for the service of mankind.</li>
+</ol>
+
+</div>
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2026 North Dallas Sathya Sai BalVikas. All Rights Reserved.</p>
+</footer>
+
+</body>
+
+</html>

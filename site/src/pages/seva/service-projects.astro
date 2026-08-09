@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import { serviceGalleries } from '../../data/galleries';
+
+const total = serviceGalleries.reduce((sum, gallery) => sum + gallery.images.length, 0);
+---
+
+<Base
+  title="Service Projects"
+  description="Photographs from Bal Vikas service projects — park cleaning, nursing home visits, packing clothes for orphans in Ghana, the Austin Street shelter and the winter care kits."
+>
+  <PageHero
+    eyebrow="Seva"
+    title="Service projects"
+    lede={`${total} photographs from projects our students have carried out — a service project closes every teaching unit, and these are some of them.`}
+  />
+
+  <Section width="wide">
+    <div class="space-y-16">
+      {
+        serviceGalleries.map((gallery) => (
+          <section class="reveal">
+            <header class="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-sand-300 pb-3">
+              <h2 class="font-display text-2xl font-semibold sm:text-3xl">{gallery.title}</h2>
+              {gallery.blurb && <p class="text-ink-700">{gallery.blurb}</p>}
+              <span class="ml-auto text-sm tabular-nums text-ink-700">{gallery.images.length} photos</span>
+            </header>
+
+            <ul class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+              {gallery.images.map((src, index) => (
+                <li>
+                  <a
+                    href={src}
+                    data-lightbox
+                    data-caption={`${gallery.title} — photograph ${index + 1}`}
+                    class="group block overflow-hidden rounded-xl bg-sand-200 ring-1 ring-sand-200 transition-shadow hover:shadow-lg hover:ring-saffron-300"
+                  >
+                    <img
+                      src={src}
+                      alt={`${gallery.title}, photograph ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      class="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Lightbox />
+</Base>

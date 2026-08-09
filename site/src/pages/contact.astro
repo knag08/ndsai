@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import { site } from '../data/site';
+
+const contacts = [
+  {
+    label: 'General enquiries',
+    email: site.email.general,
+    body: 'Admissions, Bal Vikas questions, or anything you are not sure who to ask.',
+  },
+  {
+    label: 'Narayana Seva',
+    email: site.email.narayanSeva,
+    body: 'To cook, contribute or serve at the Austin Street shelter, or to join the seva mailing list.',
+  },
+  {
+    label: 'Newsletter',
+    email: site.email.newsletter,
+    body: 'To join the mailing list, send feedback, or contribute something to the next edition.',
+  },
+];
+---
+
+<Base
+  title="Contact"
+  description="How to reach North Dallas Sathya Sai BalVikas — general enquiries, Narayana Seva and the newsletter. Admissions for the current academic year are closed."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Get in touch"
+    lede="We would be glad to hear from you. Below are the best addresses to write to, depending on what you need."
+  />
+
+  <Section width="narrow">
+    <div class="reveal rounded-2xl border-l-4 border-saffron-500 bg-saffron-50 p-6 sm:p-7">
+      <h2 class="font-display text-xl font-semibold">Bal Vikas admissions are closed</h2>
+      <p class="mt-2 leading-relaxed text-ink-700">
+        All classes are full for the current academic year, and no new registrations are being taken. We kindly request
+        that you contact us next academic year for enrolment opportunities — and we will be glad to answer any question
+        in the meantime.
+      </p>
+    </div>
+
+    <ul class="mt-10 space-y-4">
+      {
+        contacts.map((contact) => (
+          <li class="reveal rounded-2xl bg-white p-6 ring-1 ring-sand-200 sm:p-7">
+            <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-700 uppercase">{contact.label}</p>
+            <p class="mt-2">
+              <a
+                href={`mailto:${contact.email}`}
+                class="font-display text-2xl font-semibold text-indigo-ink-900 underline decoration-saffron-300 decoration-2 underline-offset-4 hover:text-saffron-700"
+              >
+                {contact.email}
+              </a>
+            </p>
+            <p class="mt-3 leading-relaxed text-ink-700">{contact.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="reveal mt-10 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-2xl bg-indigo-ink-900 p-7">
+        <h2 class="font-display text-xl font-semibold !text-white">Where we meet</h2>
+        <address class="mt-3 space-y-1 text-indigo-ink-100 not-italic">
+          <p>Alpha Montessori House</p>
+          <p>Frisco, Texas</p>
+        </address>
+        <p class="mt-4 text-sm leading-relaxed text-indigo-ink-200">
+          Bal Vikas classes are held on Sunday mornings in two sessions, and bhajans run from 11:20 am to 12 noon on
+          class days. Visitors are welcome at bhajans.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-sand-100 p-7">
+        <h2 class="font-display text-xl font-semibold">Mailing address</h2>
+        <address class="mt-3 leading-relaxed text-ink-700 not-italic">
+          {site.name}<br />
+          14275 Rolater Rd<br />
+          Frisco, TX 75035-5163<br />
+          United States
+        </address>
+        <p class="mt-4 text-sm text-ink-700">
+          A 501(c)(3) non-profit organisation.
+        </p>
+      </div>
+    </div>
+  </Section>
+</Base>

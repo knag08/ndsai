@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sathya Sai BalVikas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+<div style="background:#3b2a12;color:#fdf3e3;padding:.75rem 1rem;text-align:center;font:500 14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif">
+  <strong>Archived page.</strong> This is the previous version of the NDSAI website, kept for reference.
+  <a href="/" style="color:#f6b352;text-decoration:underline">Go to the current site &rarr;</a>
+</div>
+
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+	    <div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sathya Sai BalVikas</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    </script>
+
+<div class="container mx-auto my-8 p-4">
+<h1 class="text-3xl font-bold text-center mb-2">Balvikas Calendar</h1>
+<p class="text-lg text-center text-gray-600 mb-6">(2025-26)</p>
+
+  <!-- Units Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Unit 1 -->
+    <div class="bg-white shadow-md rounded p-6">
+      <h2 class="text-xl font-semibold text-blue-600 mb-4">Unit 1</h2>
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full text-sm text-left text-gray-700">
+          <thead class="bg-blue-100">
+            <tr>
+              <th class="px-2 py-1">Class 1</th>
+              <th class="px-2 py-1">Class 2</th>
+              <th class="px-2 py-1">Class 3</th>
+              <th class="px-2 py-1">Parent Participation</th>
+              <th class="px-2 py-1">Presentation</th>
+              <th class="px-2 py-1">Seva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-2 py-1">Aug 17, 2025</td>
+              <td class="px-2 py-1">Aug 24, 2025</td>
+              <td class="px-2 py-1">Aug 31, 2025</td>
+              <td class="px-2 py-1">Sep 7, 2025</td>
+              <td class="px-2 py-1">Sep 14, 2025</td>
+              <td class="px-2 py-1">Sep 21, 2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Unit 2 -->
+    <div class="bg-white shadow-md rounded p-6">
+      <h2 class="text-xl font-semibold text-blue-600 mb-4">Unit 2</h2>
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full text-sm text-left text-gray-700">
+          <thead class="bg-blue-100">
+            <tr>
+              <th class="px-2 py-1">Class 1</th>
+              <th class="px-2 py-1">Class 2</th>
+              <th class="px-2 py-1">Class 3</th>
+              <th class="px-2 py-1">Parent Participation</th>
+              <th class="px-2 py-1">Presentation</th>
+              <th class="px-2 py-1">Seva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-2 py-1">Sep 28, 2025</td>
+              <td class="px-2 py-1">Oct 5, 2025</td>
+              <td class="px-2 py-1">Oct 12, 2025</td>
+              <td class="px-2 py-1">Oct 19, 2025</td>
+              <td class="px-2 py-1">Oct 26, 2025</td>
+              <td class="px-2 py-1">Nov 2, 2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Unit 3 -->
+    <div class="bg-white shadow-md rounded p-6">
+      <h2 class="text-xl font-semibold text-blue-600 mb-4">Unit 3</h2>
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full text-sm text-left text-gray-700">
+          <thead class="bg-blue-100">
+            <tr>
+              <th class="px-2 py-1">Class 1</th>
+              <th class="px-2 py-1">Class 2</th>
+              <th class="px-2 py-1">Class 3</th>
+              <th class="px-2 py-1">Parent Participation</th>
+              <th class="px-2 py-1">Presentation</th>
+              <th class="px-2 py-1">Seva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-2 py-1">Nov 9, 2025</td>
+              <td class="px-2 py-1">Nov 16, 2025</td>
+              <td class="px-2 py-1">Nov 30, 2025</td>
+              <td class="px-2 py-1">Dec 7, 2025</td>
+              <td class="px-2 py-1">Dec 14, 2025</td>
+              <td class="px-2 py-1">Dec 21, 2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Unit 4 -->
+    <div class="bg-white shadow-md rounded p-6">
+      <h2 class="text-xl font-semibold text-blue-600 mb-4">Unit 4</h2>
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full text-sm text-left text-gray-700">
+          <thead class="bg-blue-100">
+            <tr>
+              <th class="px-2 py-1">Class 1</th>
+              <th class="px-2 py-1">Class 2</th>
+              <th class="px-2 py-1">Class 3</th>
+              <th class="px-2 py-1">Parent Participation</th>
+              <th class="px-2 py-1">Presentation</th>
+              <th class="px-2 py-1">Seva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-2 py-1">Jan 4, 2026</td>
+              <td class="px-2 py-1">Jan 11, 2026</td>
+              <td class="px-2 py-1">Jan 18, 2026</td>
+              <td class="px-2 py-1">Jan 25, 2026</td>
+              <td class="px-2 py-1">Feb 1, 2026</td>
+              <td class="px-2 py-1">Feb 8, 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Unit 5 -->
+    <div class="bg-white shadow-md rounded p-6">
+      <h2 class="text-xl font-semibold text-blue-600 mb-4">Unit 5</h2>
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full text-sm text-left text-gray-700">
+          <thead class="bg-blue-100">
+            <tr>
+              <th class="px-2 py-1">Class 1</th>
+              <th class="px-2 py-1">Class 2</th>
+              <th class="px-2 py-1">Class 3</th>
+              <th class="px-2 py-1">Parent Participation</th>
+              <th class="px-2 py-1">Presentation</th>
+              <th class="px-2 py-1">Seva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-2 py-1">Feb 15, 2026</td>
+              <td class="px-2 py-1">Feb 22, 2026</td>
+              <td class="px-2 py-1">Mar 1, 2026</td>
+              <td class="px-2 py-1">Mar 8, 2026</td>
+              <td class="px-2 py-1">Mar 22, 2026</td>
+              <td class="px-2 py-1">Mar 29, 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Unit 6 -->
+    <div class="bg-white shadow-md rounded p-6">
+      <h2 class="text-xl font-semibold text-blue-600 mb-4">Unit 6</h2>
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full text-sm text-left text-gray-700">
+          <thead class="bg-blue-100">
+            <tr>
+              <th class="px-2 py-1">Class 1</th>
+              <th class="px-2 py-1">Class 2</th>
+              <th class="px-2 py-1">Class 3</th>
+              <th class="px-2 py-1">Parent Participation</th>
+              <th class="px-2 py-1">Presentation</th>
+              <th class="px-2 py-1">Seva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-2 py-1">Apr 5, 2026</td>
+              <td class="px-2 py-1">Apr 12, 2026</td>
+              <td class="px-2 py-1">Apr 19, 2026</td>
+              <td class="px-2 py-1">Apr 26, 2026</td>
+              <td class="px-2 py-1">May 3, 2026</td>
+              <td class="px-2 py-1">May 10, 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="bg-white shadow-md rounded p-6 mt-6">
+    <h2 class="text-xl font-semibold text-blue-600 mb-4">Additional Notes</h2>
+    <p class="mb-2"><strong>Mandatory Center Events:</strong></p>
+    <ul class="list-disc list-inside text-gray-700">
+      <li>Nov 23, 2025 – Swami Birthday Celebrations</li>
+      <li>May 10, 2026 – Easwaramma Day</li>
+    </ul>
+  </div>
+</div>
+
+
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2026 North Dallas Sathya Sai BalVikas. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

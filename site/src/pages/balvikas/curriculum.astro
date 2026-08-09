@@ -1,0 +1,137 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import { grades, groups } from '../../data/curriculum';
+---
+
+<Base
+  title="Curriculum by Grade"
+  description="What each Bal Vikas class studies, from First Steps to God in Kindergarten through Adi Shankara's Bhaja Govindam in 10th grade, plus the focus of the current unit."
+>
+  <PageHero
+    eyebrow="Bal Vikas"
+    title="Curriculum, grade by grade"
+    lede="Each year has its own text and its own theme, and every class carries the same thread of the five human values through it. Open a grade to see what it covers."
+  />
+
+  <Section width="wide">
+    <!-- Group filter. Without JS every grade is simply shown. -->
+    <div class="reveal flex flex-wrap items-center gap-2" role="group" aria-label="Filter by group">
+      <button
+        type="button"
+        data-filter="all"
+        aria-pressed="true"
+        class="filter-chip rounded-full bg-indigo-ink-900 px-4 py-2 text-sm font-semibold text-white transition-colors"
+      >
+        All grades
+      </button>
+      {
+        groups.map((group) => (
+          <button
+            type="button"
+            data-filter={String(group.id)}
+            aria-pressed="false"
+            class="filter-chip rounded-full bg-white px-4 py-2 text-sm font-semibold text-indigo-ink-900 ring-1 ring-sand-300 transition-colors hover:bg-sand-100"
+          >
+            {group.label}{' '}
+            <span class="font-normal text-ink-700">{group.range}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="mt-8 grid gap-4 lg:grid-cols-2" id="grade-list">
+      {
+        grades.map((grade, index) => (
+          <details
+            class="reveal group h-fit overflow-hidden rounded-2xl bg-white ring-1 ring-sand-200 transition-shadow open:shadow-lg open:shadow-indigo-ink-900/5 open:ring-saffron-300"
+            data-group={String(grade.group)}
+            open={index === 0}
+          >
+            <summary class="flex cursor-pointer list-none items-start gap-4 p-6 [&::-webkit-details-marker]:hidden">
+              <span class="mt-0.5 inline-flex shrink-0 items-center rounded-full bg-saffron-100 px-2.5 py-1 text-[0.65rem] font-bold tracking-[0.1em] text-saffron-700 uppercase">
+                Group {grade.group}
+              </span>
+              <span class="flex-1">
+                <!-- A heading inside the summary keeps each grade in the document outline. -->
+                <h2 class="font-display text-xl font-semibold text-indigo-ink-900">{grade.grade}</h2>
+                {grade.title && <span class="mt-0.5 block text-sm font-medium text-saffron-700">{grade.title}</span>}
+              </span>
+              <svg
+                class="mt-1 h-4 w-4 shrink-0 text-ink-700 transition-transform group-open:rotate-180"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+
+            <div class="border-t border-sand-200 px-6 pt-5 pb-6">
+              <h3 class="text-[0.68rem] font-semibold tracking-[0.14em] text-ink-700 uppercase">Through the year</h3>
+              <ul class="rich mt-2">
+                {grade.points.map((point) => (
+                  <li>{point}</li>
+                ))}
+              </ul>
+
+              {grade.currentUnit && (
+                <div class="mt-6 rounded-xl bg-sand-100 p-5">
+                  <h3 class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-700 uppercase">
+                    In the current unit
+                  </h3>
+                  <p class="mt-2 leading-relaxed text-ink-700">{grade.currentUnit.intro}</p>
+                  {grade.currentUnit.lead && (
+                    <p class="mt-3 text-[0.95rem] font-semibold text-indigo-ink-900">{grade.currentUnit.lead}</p>
+                  )}
+                  {grade.currentUnit.points && (
+                    <ul class="rich !mt-2">
+                      {grade.currentUnit.points.map((point) => (
+                        <li>{point}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {grade.currentUnit.quote && (
+                    <blockquote class="mt-4 border-l-3 border-saffron-300 pl-4 font-display text-lg italic text-indigo-ink-800">
+                      {grade.currentUnit.quote}
+                    </blockquote>
+                  )}
+                </div>
+              )}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <p class="reveal mt-8 rounded-xl bg-sand-100 px-5 py-4 text-sm leading-relaxed text-ink-700">
+      Current-unit notes are shared by the teachers and change through the year. Where a grade has no note yet, its
+      teacher will add one shortly.
+    </p>
+  </Section>
+</Base>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chip');
+  const cards = document.querySelectorAll<HTMLDetailsElement>('#grade-list details');
+
+  const active = 'bg-indigo-ink-900 text-white';
+  const inactive = 'bg-white text-indigo-ink-900 ring-1 ring-sand-300 hover:bg-sand-100';
+
+  for (const chip of chips) {
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter!;
+
+      for (const other of chips) {
+        const isActive = other === chip;
+        other.setAttribute('aria-pressed', String(isActive));
+        other.className = `filter-chip rounded-full px-4 py-2 text-sm font-semibold transition-colors ${isActive ? active : inactive}`;
+      }
+
+      for (const card of cards) {
+        card.hidden = filter !== 'all' && card.dataset.group !== filter;
+      }
+    });
+  }
+</script>

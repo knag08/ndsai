@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Quote from '../components/Quote.astro';
+import Button from '../components/Button.astro';
+import { humanValues, ninePointCode } from '../data/site';
+---
+
+<Base
+  title="About"
+  description="North Dallas Sathya Sai BalVikas is a 501(c)(3) non-profit in Frisco, Texas, offering a forum to learn and practise the teachings of Sri Sathya Sai Baba."
+>
+  <PageHero
+    eyebrow="About us"
+    title="A forum to learn, and a place to practise"
+    lede="North Dallas Sathya Sai BalVikas is a 501(c)(3) non-profit organisation. Learning, devotion and service are promoted here through activities open to children, parents and devotees alike."
+    image="/img/hero/ed2026-15.webp"
+  />
+
+  <Section width="narrow">
+    <div class="rich reveal">
+      <h2>Who we are</h2>
+      <p>
+        The center provides a forum to learn and practise the teachings of Sri Sathya Sai Baba. Learning, devotion, as
+        well as service, are promoted through various activities — Sunday morning classes for children, weekly
+        devotional singing, Veda chanting, and a rhythm of service projects that runs through the whole year.
+      </p>
+      <p>
+        We meet at the Alpha Montessori House in Frisco. Bhajans are held from 11:20 am to 12 noon on Bal Vikas class
+        days, and every student, parent and visitor is warmly encouraged to take part.
+      </p>
+
+      <h2>Our purpose</h2>
+      <ol>
+        <li>Spiritual inquiry, reflection, and practice of teachings.</li>
+        <li>Spiritual education of children.</li>
+        <li>Service to community.</li>
+      </ol>
+    </div>
+  </Section>
+
+  <Section
+    tone="sand"
+    eyebrow="The foundation"
+    title="Five human values"
+    lede="Every part of the programme — every story told, every song sung, every project undertaken — is an attempt to draw out one of these five."
+    align="center"
+  >
+    <ul class="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      {
+        humanValues.map((value) => (
+          <li class="reveal rounded-2xl bg-white px-4 py-8 text-center ring-1 ring-sand-200">
+            <p class="font-display text-2xl font-semibold text-saffron-600">{value.name}</p>
+            <p class="mt-2 text-[0.7rem] font-semibold tracking-[0.14em] text-ink-700 uppercase">{value.english}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="reveal mt-10 grid gap-4 sm:grid-cols-3">
+      {
+        [
+          { term: 'Daiva Preeti', gloss: 'Love for God' },
+          { term: 'Papa Bheeti', gloss: 'Fear of wrong-doing' },
+          { term: 'Sangha Neeti', gloss: 'Morality in society' },
+        ].map((item) => (
+          <div class="rounded-2xl border border-dashed border-saffron-300 bg-saffron-50/60 px-5 py-6">
+            <p class="font-display text-xl font-semibold text-indigo-ink-900">{item.term}</p>
+            <p class="mt-1 text-sm text-ink-700">{item.gloss}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section width="narrow">
+    <Quote size="large">
+      Children’s minds are innocent and pure. Each child is a white marble for the teacher and the parents to mould
+      into an image of God, a bud to be helped to blossom in all its Divine glory so that it becomes a worthy offering
+      to God.
+    </Quote>
+  </Section>
+
+  <Section
+    tone="sand"
+    eyebrow="For members"
+    title="The Nine Point Code of Conduct"
+    lede="The discipline undertaken by members of the Sri Sathya Sai Organization — nine practices that turn belief into a daily habit."
+  >
+    <ol class="grid gap-x-10 gap-y-6 lg:grid-cols-2">
+      {
+        ninePointCode.map((point, index) => (
+          <li class="reveal flex gap-4">
+            <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white font-display text-lg font-bold text-saffron-700 ring-1 ring-sand-300">
+              {index + 1}
+            </span>
+            <p class="leading-relaxed text-ink-700">{point}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <Section width="narrow" class="!pt-0">
+    <div class="reveal rounded-2xl bg-indigo-ink-900 px-6 py-12 text-center sm:px-12">
+      <h2 class="font-display text-3xl font-semibold !text-white">Would you like to take part?</h2>
+      <p class="mx-auto mt-4 max-w-xl leading-relaxed text-indigo-ink-200">
+        There is room in almost every seva we run, and bhajans are open to all. Write to us and we will point you to
+        the right person.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/contact/">Contact us</Button>
+        <Button href="/seva/" variant="ghost">See our seva</Button>
+      </div>
+    </div>
+  </Section>
+</Base>

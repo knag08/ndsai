@@ -1,0 +1,111 @@
+---
+/**
+ * Full-screen image viewer. Any `<a data-lightbox href="{full size}">` on the page
+ * opens here; without JavaScript those links simply open the image directly, which
+ * is a perfectly reasonable fallback.
+ */
+---
+
+<dialog
+  id="lightbox"
+  class="m-0 h-dvh max-h-none w-dvw max-w-none bg-indigo-ink-950 p-0 backdrop:bg-indigo-ink-950"
+  aria-label="Photograph viewer"
+>
+  <div class="relative flex h-full w-full flex-col">
+    <div class="flex items-center justify-between gap-4 px-4 py-3 text-white sm:px-6">
+      <p id="lightbox-count" class="text-sm tabular-nums text-indigo-ink-200"></p>
+      <button
+        type="button"
+        id="lightbox-close"
+        class="rounded-full p-2 text-white transition-colors hover:bg-white/10"
+        aria-label="Close viewer"
+      >
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="relative flex min-h-0 flex-1 items-center justify-center px-2 sm:px-16">
+      <button
+        type="button"
+        id="lightbox-prev"
+        class="absolute left-1 z-10 rounded-full bg-black/40 p-3 text-white transition-colors hover:bg-black/70 sm:left-4"
+        aria-label="Previous photograph"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12.5 4 6.5 10l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <img id="lightbox-image" src="" alt="" class="max-h-full max-w-full object-contain" />
+
+      <button
+        type="button"
+        id="lightbox-next"
+        class="absolute right-1 z-10 rounded-full bg-black/40 p-3 text-white transition-colors hover:bg-black/70 sm:right-4"
+        aria-label="Next photograph"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M7.5 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+
+    <p id="lightbox-caption" class="px-4 py-4 text-center text-sm text-indigo-ink-100 sm:px-16"></p>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const image = document.getElementById('lightbox-image') as HTMLImageElement | null;
+  const caption = document.getElementById('lightbox-caption');
+  const count = document.getElementById('lightbox-count');
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-lightbox]'));
+
+  if (dialog && image && links.length) {
+    let index = 0;
+
+    const show = (next: number) => {
+      index = (next + links.length) % links.length;
+      const link = links[index];
+      image.src = link.href;
+      image.alt = link.dataset.caption || link.querySelector('img')?.alt || '';
+      if (caption) caption.textContent = link.dataset.caption || '';
+      if (count) count.textContent = `${index + 1} / ${links.length}`;
+    };
+
+    links.forEach((link, i) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        show(i);
+        dialog.showModal();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    const close = () => {
+      dialog.close();
+      document.body.style.overflow = '';
+    };
+
+    document.getElementById('lightbox-close')?.addEventListener('click', close);
+    document.getElementById('lightbox-prev')?.addEventListener('click', () => show(index - 1));
+    document.getElementById('lightbox-next')?.addEventListener('click', () => show(index + 1));
+
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = '';
+    });
+
+    // Clicking the backdrop (anywhere that is not a control or the image) closes.
+    dialog.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      if (target === dialog || target.tagName === 'DIV' || target.tagName === 'P') close();
+    });
+
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') show(index - 1);
+      if (event.key === 'ArrowRight') show(index + 1);
+    });
+  }
+</script>

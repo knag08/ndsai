@@ -1,0 +1,159 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import Quote from '../components/Quote.astro';
+
+const format = [
+  { step: 'Silent sitting', body: 'The first step ensures an erect body posture and control of the body and the senses.' },
+  { step: 'Omkar', body: 'Chanting the Omkar aims to attune the mind to one’s own inhalation and exhalation.' },
+  {
+    step: 'Singing God’s names and glories',
+    body: 'This step is intended for the emotional elevation of all. The psyche in man, which is the seat of all human emotions like desire, hatred and anger, has to be purified. This purification is possible when words with sublime meanings and beautiful thoughts are sung with devotion and love.',
+  },
+  {
+    step: 'Prayers and Shanti mantras',
+    body: 'This helps the devotee rise above self-centred tendencies and develop a love for all fellow-beings. The attitude of identifying one’s own happiness with the happiness of others has to be consciously practised and developed as an exercise in self-expansion.',
+  },
+  {
+    step: 'Silent sitting',
+    body: 'The point of turning one’s gaze within oneself. Until now, God has been invoked outside oneself; now one must look within, in silence.',
+  },
+  { step: 'Arathi', body: 'An appropriate closing prayer of homage to Sai.' },
+  { step: 'Vibhuti', body: 'Vibhuti is then shared among the devotees as a token of the Lord’s grace.' },
+];
+
+const guidelines = [
+  'Bhajan (singing a devotional song) is Sadhana (spiritual discipline) for all who share in it. With each Bhajan song the mind must be rendered pure, free from passion and stronger in faith. Bhajan must be a thrilling experience, leaving the participants full of pure energy and elevated enthusiasm.',
+  'Bhajans have to be sung and offered to God in an attitude of utter humility. They are not to be taken as exercises in an exhibition of talents and as competition for mastery of musical skills. They have to please the Lord, not your fans.',
+  'Sing familiar Bhajans so all can share "Anand Bliss".',
+  'Pay attention to the tune, the meaning, the variety, the voice, the raga (rhythm), the tala (beat), and other fine points of the Bhajan.',
+  'When you sing Bhajans dwell on the meaning of the song and the message of each name and form of God.',
+  'Do not monopolize the time in Bhajans by singing one for 6 or 10 minutes, or by repeating the same line often. Repeat each line only twice and no more. Have only two speeds; in this way you can have in 1 hour of bhajans more songs on more forms, more tunes, and variety, giving more people the chance.',
+  'Bhajans must be a felt experience. Do not sing with one eye on the effect the song makes on the listeners and the other on the effect it makes on God. Let your heart pant for God; then the raga and tala will automatically be pleasant and correct.',
+  'Bhajans should be sweet to the ear. If your voice is not pleasant or sweet, keep quiet — that is the best service you can give.',
+  'Unless you sing Bhajans for your own joy, you cannot bring joy to others. It is only when the feeling arises in the heart that the song will appeal to the hearts of others. I am pleased only when Love is the keynote, when the feeling of unity prevails, when the melody comes from cleansed, God-loving hearts.',
+  'People should return from Bhajans carrying the elevated, uplifted and sublime mood created by the atmosphere at the Bhajan. Therefore, after the Bhajan people should disperse quietly, maintaining silence. Then the joy and peace derived at the bhajan will linger and abide in the heart.',
+  "Bhajan leaders should be present and seated before 3 OM's.",
+];
+---
+
+<Base
+  title="Bhajans"
+  description="Devotional singing at the center — timings, the format of a bhajan session, dress code, and Swami's guidelines for those who lead."
+>
+  <PageHero
+    eyebrow="Devotion"
+    title="Bhajans"
+    lede="Group devotional singing is held from 11:20 am to 12 noon on Bal Vikas class days. All students, parents and visitors are warmly encouraged to take part."
+    image="/img/bhajans/akhanda-bhajan-history.webp"
+  />
+
+  <Section width="narrow">
+    <Quote source="Prashanti Nilayam, November 14, 1976" size="large">
+      Life is a song — sing it. You too must pass your days in song. Let your whole life be a spiritual song. Believe
+      that God is everywhere at all times, and derive strength, comfort and joy by singing His glory in His presence.
+      Let melody and harmony surge up from your hearts, and let all take delight in the love that you express through
+      that song.
+    </Quote>
+  </Section>
+
+  <Section eyebrow="When we sing" title="Bhajan timings" width="narrow" class="!pt-0">
+    <ul class="grid gap-4 sm:grid-cols-3">
+      {
+        [
+          { when: 'Every Sunday', what: 'Weekly bhajans at AMH, Frisco — 11:20 am to 12 noon' },
+          { when: 'Festivals', what: 'Special bhajans marking the festivals through the year' },
+          { when: '2nd weekend of November', what: 'Global Akhanda Bhajans for World Peace' },
+        ].map((item) => (
+          <li class="reveal rounded-2xl bg-white p-6 ring-1 ring-sand-200">
+            <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-700 uppercase">{item.when}</p>
+            <p class="mt-2 leading-relaxed text-ink-700">{item.what}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <!-- Akhanda Bhajan history -->
+  <Section tone="sand" width="narrow" eyebrow="History" title="The origin of Akhanda Bhajans">
+    <div class="grid gap-8 sm:grid-cols-[1.3fr_1fr] sm:items-start">
+      <div class="rich reveal !mt-0">
+        <p>
+          During the Second World War, a small group of Sai Baba’s early devotees from Bangalore began holding weekly
+          bhajans to stay connected with Him. In <strong>1946</strong> they organised the first 24-hour Akhanda Bhajan,
+          which Swami personally attended, blessing the food so that it miraculously never ran out.
+        </p>
+        <p>
+          The event’s success led to it becoming an annual tradition, one Swami supported for twenty-eight years. In
+          <strong>1974</strong> He proclaimed that the Akhanda Bhajan should spread globally — turning a humble village
+          gathering into a worldwide movement of love and devotion.
+        </p>
+      </div>
+      <figure class="reveal">
+        <img
+          src="/img/bhajans/akhanda-bhajan-history.webp"
+          alt="A historic photograph of Bhagawan Sri Sathya Sai Baba walking among devotees carrying offerings"
+          width="1200"
+          height="900"
+          loading="lazy"
+          decoding="async"
+          class="w-full rounded-2xl shadow-lg shadow-indigo-ink-900/10"
+        />
+      </figure>
+    </div>
+
+    <div class="reveal mt-10 rounded-2xl bg-white p-7 ring-1 ring-sand-200">
+      <h3 class="font-display text-xl font-semibold">Why we sing together</h3>
+      <blockquote class="rich mt-3">
+        <p class="!text-ink-700">
+          You must sing the names aloud, full-throated, as far as the voice can reach. Only then will the Divine
+          respond in full measure and shower His grace. No one will go to the rescue of a drowning man if his cries are
+          feeble. Only when he cries aloud at the top of his voice will the cries be heard and people will rush to save
+          him.
+        </p>
+      </blockquote>
+      <p class="mt-2 text-sm font-semibold text-saffron-700">
+        — Sri Sathya Sai Baba <span class="font-normal text-ink-700">Sathya Sai Speaks Vol. 25 / Ch. 08, March 3, 1992</span>
+      </p>
+    </div>
+  </Section>
+
+  <Section eyebrow="What happens" title="The format of a session" width="narrow">
+    <ol class="space-y-4">
+      {
+        format.map((item, index) => (
+          <li class="reveal flex gap-5 rounded-2xl bg-white p-6 ring-1 ring-sand-200">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-saffron-100 font-display text-lg font-bold text-saffron-700">
+              {index + 1}
+            </span>
+            <div>
+              <h3 class="font-display text-lg font-semibold text-indigo-ink-900">{item.step}</h3>
+              <p class="mt-1.5 leading-relaxed text-ink-700">{item.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="reveal mt-10 rounded-2xl bg-indigo-ink-900 p-7">
+      <h3 class="font-display text-xl font-semibold !text-white">Dress code</h3>
+      <dl class="mt-4 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-xl bg-white/5 px-5 py-4">
+          <dt class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-300 uppercase">Men</dt>
+          <dd class="mt-1 text-indigo-ink-100">Full white pants and white shirt</dd>
+        </div>
+        <div class="rounded-xl bg-white/5 px-5 py-4">
+          <dt class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-300 uppercase">Women</dt>
+          <dd class="mt-1 text-indigo-ink-100">Saree or salwar with dupatta</dd>
+        </div>
+      </dl>
+    </div>
+  </Section>
+
+  <Section tone="sand" eyebrow="For those who lead" title="Guidelines for bhajan leading" width="narrow">
+    <ol class="rich reveal !mt-0">
+      {guidelines.map((item) => <li>{item}</li>)}
+    </ol>
+  </Section>
+</Base>

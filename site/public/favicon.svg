@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NDSAI">
+  <rect width="64" height="64" rx="14" fill="#1e2a5a"/>
+  <!-- Five petals for the five human values, arranged around the lamp. -->
+  <g fill="#e07a28" opacity="0.9">
+    <ellipse cx="32" cy="15" rx="6.5" ry="8.5"/>
+    <ellipse cx="48.2" cy="26.8" rx="6.5" ry="8.5" transform="rotate(72 48.2 26.8)"/>
+    <ellipse cx="42" cy="45.9" rx="6.5" ry="8.5" transform="rotate(144 42 45.9)"/>
+    <ellipse cx="22" cy="45.9" rx="6.5" ry="8.5" transform="rotate(216 22 45.9)"/>
+    <ellipse cx="15.8" cy="26.8" rx="6.5" ry="8.5" transform="rotate(288 15.8 26.8)"/>
+  </g>
+  <!-- Lamp flame at the centre. -->
+  <path d="M32 20c3.6 4.2 5.4 7.4 5.4 10.2A5.4 5.4 0 0 1 32 35.6a5.4 5.4 0 0 1-5.4-5.4c0-2.8 1.8-6 5.4-10.2Z" fill="#fdfaf5"/>
+  <rect x="26" y="37" width="12" height="3.4" rx="1.7" fill="#fdfaf5"/>
+</svg>

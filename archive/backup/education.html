@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sathya Sai BalVikas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        
+        function switchSegment(segment, button) {
+        // Hide all segment contents
+        document.querySelectorAll('.segment-content').forEach(el => el.classList.add('hidden'));
+        document.getElementById(segment).classList.remove('hidden');
+
+        // Remove active class from all buttons
+        document.querySelectorAll('.segment-button').forEach(btn => {
+            btn.classList.remove('bg-blue-700');
+            btn.classList.add('bg-blue-500');
+        });
+
+        // Add active class to the clicked button
+        button.classList.remove('bg-blue-500');
+        button.classList.add('bg-blue-700');
+    }
+
+    // Ensure "Classes" is shown and highlighted by default
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("classes").classList.remove("hidden");
+        document.getElementById("classes-btn").classList.add("bg-blue-700");
+    });
+
+
+    </script>
+</head>
+
+<body class="bg-gray-100">
+<div style="background:#3b2a12;color:#fdf3e3;padding:.75rem 1rem;text-align:center;font:500 14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif">
+  <strong>Archived page.</strong> This is the previous version of the NDSAI website, kept for reference.
+  <a href="/" style="color:#f6b352;text-decoration:underline">Go to the current site &rarr;</a>
+</div>
+
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+                <img src="/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+		<div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sathya Sai BalVikas</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+
+    <!-- Desktop Navigation Bar -->
+    <nav class="desktop-menu bg-blue-500 p-4">
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="eswarammaday.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="podcast.html">Podcast</a></li>
+        </ul>
+    </nav>
+
+    <!-- Fullscreen Overlay Menu -->
+    <div id="overlay" class="overlay">
+        <span class="close-btn" onclick="closeMenu()">&times;</span>
+        <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="bhajans.html">Bhajans</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="eswarammaday.html">Eswaramma Day</a></li>
+            <li><a href="seva.html">Seva</a></li>
+            <li><a href="narayana-seva.html">Narayana Seva</a></li>
+            <li><a href="service.html">Service Projects</a></li>
+            <li><a href="veda-class.html">Veda Classes</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="podcast.html">Podcast</a></li>
+        </ul>
+    </div>
+
+    <div class="text-3xl font-bold text-center mb-2 mt-4">Education</div>
+
+
+    <div class="container mx-auto my-4 p-4">
+        <!-- Segment Controller -->
+        <div class="flex justify-center space-x-4 mb-4">
+            <button id="classes-btn" class="segment-button bg-blue-700 text-white px-4 py-2 rounded" onclick="switchSegment('classes', this)">Classes</button>
+            <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('unit-info', this)">Current Unit Info</button>
+            <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('reflection', this)">Student Reflection</button>
+        </div>
+
+        <!-- Segment Content -->
+        <div id="classes" class="segment-content bg-white shadow-md rounded p-6">
+            <div class="container mx-auto my-2 p-4 relative">
+                <!-- Dropdown Menu -->
+                <div class="flex justify-center mb-4">
+                    <select id="classDropdown" class="p-2 border rounded">
+                        <option value="default-content">Select a grade</option>
+                        <option value="kindergarten">Kindergarten</option>
+                        <option value="1st-grade">1st Grade</option>
+                        <option value="2nd-grade">2nd Grade</option>
+                        <option value="3rd-grade">3rd Grade</option>
+                        <option value="4th-grade">4th Grade</option>
+                        <option value="5th-grade">5th Grade</option>
+                        <option value="6th-grade">6th Grade</option>
+                        <option value="7th-grade">7th Grade</option>
+                        <option value="8th-grade">8th Grade</option>
+                        <option value="9th-grade">9th Grade</option>
+                        <option value="10th-grade">10th Grade</option>
+                    </select>   
+                </div>
+                
+            
+             <!-- Default Content -->
+             <div id="defaultContent">
+            
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="coreValues">
+            
+                    <h2 class="text-2xl font-bold mb-4">Core Values</h2>
+                    <p>Our spiritual education program for children is based on the teachings of Sri Sathya Sai Baba. The program is designed to impart values and principles that align with his teachings, helping children grow spiritually and ethically.</p>
+            
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li><strong>Daiva Preeti:</strong> Love for God</li>
+                        <li><strong>Papa Bheeti:</strong> Fear of wrong-doing</li>
+                        <li><strong>Sangha Neeti:</strong> Morality in society</li>
+                    </ul>
+                </div>
+            
+                <!-- General Objectives -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="generalObjectives">
+                    
+                    <h2 class="text-xl font-bold mb-2">General Objectives</h2>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>To help the child discern divine providence behind every event.</li>
+                        <li>To inculcate an integrated personality and to enable them to incorporate into this the five human values of Truth, Right Action, Peace, Love, and Non-Violence.</li>
+                    </ul>
+                    <blockquote class="mt-4 italic text-gray-600">
+                        "Children’s minds are innocent and pure. Each child is a white marble for the teacher and the parents to mould into an image of God, a bud to be helped to blossom in all its Divine glory so that it becomes a worthy offering to God."
+                        <br>-Sri Sathya Sai Baba
+                    </blockquote>
+                </div>
+                
+                <!-- Specific Objectives -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="specificObjectives">
+                    <h2 class="text-xl font-bold mb-2">Specific Objectives</h2>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>To inculcate respect for parents and elders.</li>
+                        <li>To promote obedience at home and outside.</li>
+                        <li>To instill faith and devotion in God through good devotional practices.</li>
+                        <li>To sow the seeds for love and honesty.</li>
+                        <li>To enable students to practice kindness, compassion, and tolerance at home and outside.</li>
+                        <li>To awaken intuition.</li>
+                        <li>To awaken awareness of one's own consciousness.</li>
+                        <li>To inculcate self-reliance and leadership.</li>
+                    </ul>
+                </div>
+                
+                <!-- Admission -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="admission">
+                    <h2 class="text-xl font-bold mb-2">Admission</h2>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Parents need to attend an orientation meeting to understand the program and their role in their child's moral & spiritual growth.</li>
+                        <li>Parent commitment includes the need to participate in “parents-as-partners” once every unit.</li>
+                        <li>Every unit includes a service project as a part of the program and we welcome parents to help conduct them.</li>
+                    </ul>
+                </div>
+                
+                <!-- Teachers -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="teachers">
+                    <h2 class="text-xl font-bold mb-2">Teachers</h2>
+                    <p class="text-gray-700">A group of dedicated volunteers serve as our teachers. They are devotees who love children and are committed to their emotional, moral & spiritual well-being.</p>
+                </div>
+                
+                <!-- Balvikas Venue and Timings -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="balvikasTimings">
+                    <h2 class="text-xl font-bold mb-2">Balvikas Venue and Timings</h2>
+                    <p class="text-gray-700">All classes meet at the Alpha Montessori House (Frisco) on Sunday mornings, in two sessions.</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li><strong>Group 1:</strong> KG - 3rd Grade</li>
+                        <li><strong>Group 2:</strong> 4th - 7th Grade</li>
+                        <li><strong>Group 3:</strong> 8th - 10th Grade</li>
+                    </ul>
+                    <p class="text-gray-700 mt-2"><strong>Timings:</strong></p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>9:30am - 10:45am: 5th to 10th Grade</li>
+                        <li>11:15am - 12:30pm: KG to 4th Grade</li>
+                    </ul>
+                    <p class="text-gray-700 mt-2"><strong>Balvikas calendar follows the PISD School calendar.</strong></p>
+                </div>
+            </div>
+            
+            <!-- Grade Specific Content -->
+            <div id="gradeContent" class="hidden">
+                <!-- Kindergarten Content -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="kindergartenContent">
+                    <h2 class="text-xl font-bold mb-2">Kindergarten (Group 1)</h2>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>First Steps to God</li>
+                        <li>Introduction to the five human values through simple stories</li>
+                        <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+                        <li>Introduction to community service</li>
+                        <li>Skills: recitation, Bhajan singing, and storytelling</li>
+                    </ul>
+                </div>
+            
+                <!-- 1st Grade (Group 1) -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="1st-gradeContent">
+                    <h2 class="text-xl font-bold mb-2">1st Grade (Group 1)</h2>
+                    <h3 class="text-lg font-semibold">Living with Values</h3>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Stories reinforce values</li>
+                        <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+                        <li>Introduction to community service</li>
+                        <li>Skills: recitation, Bhajan singing, and storytelling</li>
+                    </ul>
+                </div>
+                <!-- Add other grade-specific content here -->
+            
+            
+            <!-- 2nd Grade (Group 1) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="2nd-gradeContent">
+                <h2 class="text-xl font-bold mb-2">2nd Grade (Group 1)</h2>
+                <h3 class="text-lg font-semibold">Living With God</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Stories reflect everyday events in a child's life and the need to seek guidance from God 'within'</li>
+                    <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+                    <li>Introduction to community service</li>
+                    <li>Skills: recitation, Bhajan singing, and storytelling</li>
+                </ul>
+            </div>
+            
+            <!-- 3rd Grade (Group 1) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="3rd-gradeContent">
+                <h2 class="text-xl font-bold mb-2">3rd Grade (Group 1)</h2>
+                <h3 class="text-lg font-semibold">Cradle Tales Of Hinduism</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Stories taken from the Ancient Hindu scriptures to illustrate human values and instill respect toward their spiritual heritage</li>
+                    <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+                    <li>Introduction to community service</li>
+                    <li>Skills: recitation, Bhajan singing, and storytelling</li>
+                </ul>
+            </div>
+            
+            <!-- 4th Grade (Group 2) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="4th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">4th Grade (Group 2)</h2>
+                <h3 class="text-lg font-semibold">W.A.T.C.H</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>W A T C H (Words, Actions, Thoughts, Character, Heart)</li>
+                    <li>Practical curriculum based on Sri Sathya Sai Baba's teaching...watch your words, actions, thoughts, character, heart through inspiring stories with special emphasis on practice</li>
+                    <li>Memorize Sri Hanuman Chalisa</li>
+                    <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+                </ul>
+            </div>
+            
+            <!-- 5th Grade (Group 2) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="5th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">5th Grade (Group 2)</h2>
+                <h3 class="text-lg font-semibold">Ramayana for Everyday Life</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Learning with devotion and reverence the story of Lord Rama's life with special emphasis on lessons to practice in one's daily life</li>
+                    <li>Memorize the Nama Ramayana</li>
+                    <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+                </ul>
+            </div>
+            
+            <!-- 6th Grade (Group 2) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="6th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">6th Grade (Group 2)</h2>
+                <h3 class="text-lg font-semibold">I to We (Love is Expansion)</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Curriculum-based on Sri Sathya Sai Baba's teaching that LOVE is expansion! From individual self to importance of family, service to society, love for Motherland, and love for all creation. A hands-on course to impact young minds to grow in self-confidence and embrace universal good</li>
+                    <li>Memorize Guru Paduka Stotram</li>
+                    <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+                </ul>
+            </div>
+            
+            <!-- 7th Grade (Group 2) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="7th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">7th Grade (Group 2)</h2>
+                <h3 class="text-lg font-semibold">Unity in Diversity (Fatherhood of God, Brotherhood of Man)</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Curriculum-based on Sri Sathya Sai Baba's teaching that ALL faith leads to the One</li>
+                    <li>To instill love for one's own faith and respect and tolerance to all other faiths</li>
+                    <li>Students will visit different places of worship to broaden their understanding</li>
+                    <li>Memorize: Sri Sathya Sai Suprabhatam</li>
+                    <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+                </ul>
+            </div>
+            
+            <!-- 8th Grade (Group 3) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="8th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">8th Grade (Group 3)</h2>
+                <h3 class="text-lg font-semibold">Ceiling On Desires</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Curriculum-based on Sri Sathya Sai Baba's teaching: Do not waste money, food, time, energy, information</li>
+                    <li>Putting a ceiling on our desires and use the savings in the service of others</li>
+                    <li>A practical course where teens discuss the areas of wastage in their lives and how to bring about a transformation in personal life</li>
+                    <li>Memorize: Aditya Hrudayam</li>
+                    <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+                    <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+                </ul>
+            </div>
+            
+            <!-- 9th Grade (Group 3) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="9th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">9th Grade (Group 3)</h2>
+                <h3 class="text-lg font-semibold">Saints of India</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Saints of India (glimpses into the lives of saints and their love for God)</li>
+                    <li>Continue chanting the Aditya Hrudayam</li>
+                    <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+                    <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+                </ul>
+            </div>
+            
+            <!-- 10th Grade (Group 3) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="10th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">10th Grade (Group 3)</h2>
+                <h3 class="text-lg font-semibold">Bhaja Govindam</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Selected verses from Adi Shankara's Bhaja Govindam</li>
+                    <li>Task of maintaining the NDSAI webpage</li>
+                    <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+                    <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+                </ul>
+            </div>
+            
+            
+            </div>
+            
+            </div>
+        </div>
+
+        <div id="unit-info" class="segment-content bg-white shadow-md rounded p-6 hidden">
+            
+            <div id="currentUnitContent" >
+                <!-- Kindergarten Content -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="kgtothirdGrade">
+                    <h2 class="text-xl font-bold mb-2">Grades KG - 3</h2>
+                        <h2>Non-violence is the value covered through stories.</h2>
+                        <h3>They will understand the broader meaning of practicing non-violence by following Swamy’s teachings:</h3>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Non-violence means not causing pain to others in any form,people, animals or nature. </li>
+                        <li>Not wasting food, water or money. </li>
+                        <li>Speaking  only good words. </li>
+                        <li>Choosing only good books or T.V. shows. </li>
+                        <li>Being agreeable and friendly.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="fourthGrade">
+                    <h2 class="text-xl font-bold mb-2">4th Grade</h2>
+                        <h2>This unit in WATCH class the focus is on students  to watch their heart. Through small stories children learn to pray for the welfare of everyone, kindness, compassion and forgiveness. During this unit children will learn and reflect the quote from Swami, 
+                            <br><br>"One who cultivates the crop of Love in the field of his Heart is a true Christian, a true Hindu, a true Sikh, a true Muslim, and he alone is a true Human Being."
+                        </h2>
+                </div>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="fifthGrade">
+                    <h2 class="text-xl font-bold mb-2">5th Grade</h2>
+                        <h2>The 5th grade class has been learning about Ramayana throughout the year and in this unit the students will be learning about Hanuman’s leap across the ocean to carry Rama’s message to Sita Mata.
+                            <br>They will learn how he overcame various obstacles with his strength, devotion and intelligence.
+                            <br>They will learn about Hanuman’s encounter with Ravana, burning of Sri Lanka,Lord SriRama’s battle with Ravana and Vibhishana’s coronation as Sri Lanka’s king. The unit ends with Sri Rama Pattabhishekam.</h2>
+                </div>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="sixthGrade">
+                    <h2 class="text-xl font-bold mb-2">6th Grade</h2>
+                        <h2>The theme for I to We class is about expansion of one’s love from "I" to "We".  Children explore the love which encompasses themselves,their Families, Community, Nation and the Universe.  
+                            <br>In Unit 5, we discuss the importance of taking care of our World and the Universe.  
+                            <br>We discuss Sustainability (5 R's), the beauty of God's creations, and how to take care of our Universe to preserve it for our future generations.  
+                            <br>We also learn lessons from nature like Mountains, Rivers, Trees, etc..</h2>
+                </div>
+
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="seventhGrade">
+                    <h2 class="text-xl font-bold mb-2">7th Grade</h2>
+                        <h2></h2>
+                </div>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="eighthGrade">
+                    <h2 class="text-xl font-bold mb-2">8th Grade</h2>
+                        <h2>Swami’s original Ceiling On Desires program consisted of practicing limits on our desire for food, money, time, and energy. Swami added a fifth area - information - with the guidance for devotees to limit their thirst for information that was not useful in their lives. With the explosion of social media and the insatiable curiosity it fosters in the public about the lives of others, this topic is so relevant for discussion with teens today. The class will explore what it means to limit one’s desire for information, techniques one can adopt, and how this can lead to inner peace in this fifth unit.</h2>
+                </div>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="ninthGrade">
+                    <h2 class="text-xl font-bold mb-2">9th Grade</h2>
+                        <h2>Our students have been studying pathways to God such as Faith, Namasmarana, Satsang and Service. In this unit we are going to be studying a compilation of Swami's discourses of how students should mould themselves into being living examples of humility, charity and character.
+                          It will follow a study circle model with Swami’s lectures, videos and personal experiences of senior students with Swamy.
+                        </h2>
+                </div>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="tenthGrade">
+                    <h2 class="text-xl font-bold mb-2">10th Grade</h2>
+                        <h2></h2>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="reflection" class="segment-content bg-white shadow-md rounded p-6 hidden">
+            <div id="voiceOfOurStudents" >
+                <!-- Kindergarten Content -->
+                <h2 class="text-xl font-bold mb-2 text-center">Healing Rhythms: Understanding Music's Power in Memory Care Service</h2> <br>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="voiceStudents">
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <h1 class="font-bold">What power does music have on the human mind? Does it just help people with dementia?</h1> <br>
+                        Music has an immense effect on the human mind; its fascinating ability to soothe the human entity in its profound and transformative powers is shown to be especially helpful for those suffering from dementia and Alzheimer's disease. Music helps individuals reconnect with emotions that otherwise may be inaccessible. It can bring out feelings of joy, nostalgia, or comfort which may be difficult to elicit in regular conversation. Music can also improve cognitive functions such as focus, attention, and problem-solving by stimulating natural connections in the brain. Additionally, music has therapeutic potential, often used to reduce stress, anxiety, and pain as well as to overall improve well-being. Although music is a very profound tool for dementia patients, it is also applicable to other people. As stated before, music can stimulate cognitive functions and reduce stress, as well as promote social interactivity, lift spirits, inspire creativity, and improve sleep. For example, yesterday I was practicing the 8th stanza of the Guru Paduka Stotram in order to memorize it. At first, it was simply an activity of memorization; it felt similar to memorizing terms for schoolwork. But, after some time, I felt myself sinking fully into the music and then only was I able to understand the music through the tune and words. My previous stresses about upcoming events were lost in the soothing lilt of the words and calming instrumentation. So, no, music does not only affect people with dementia; it is pertinent to all.
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="voiceStudents">
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <h1 class="font-bold">What opinion does the doctor in the video (Alive Inside Documentary) have about American Culture? </h1> <br>
+                        In the documentary "Alive Inside", Dr. Oliver Sacks expresses a critical view of American culture in relation to how it treats to elderly. He states that this society tends to marginalize and neglect older adults especially those with impairments to their cognitive abilities. He suggests that modern culture often views dementia as a “silent death”, treating elderly individuals as if they are no longer valuable or capable of meaningful experiences. Dr. Sacks criticizes the tendency to treat dementia patients with a one-size-fits-all approach which lacks the personalized attention that these patients desperately need. He underlines the importance of seeing older individuals as whole people, not just as their conditions and the value of approaches such as music therapy that have the ability to restore dignity, connections, and memories.
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="voiceStudents">
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <h1 class="font-bold">Will you do anything differently at your next visit to the memory care center?</h1> <br>
+                        At my previous visits to the memory care center, I noticed that many of the patients were silently sitting in their seats not speaking to anyone unless spoken to. However when music was turned on the record player, I noticed many of the patients slowly tapping along with the beat nodding their heads. This was the first time I truly realized how much music affects the mind and body. When speaking with one patient, she told me that when she was little she remembered loving country music and she mentioned a few songs that were her favorites. It was quite simple to find out each patient's personal preference in music and their old favorites. An idea that comes to mind is to create personalized playlists for each person with their favorite genres and songs. This will help in fostering a sense of identity. Another idea I have is to play rhythmic music that encourages tapping, clapping, or gentle dancing. This can help stimulate motor skills and physical movement as well as improve coordination and motor functions. All in all, I believe that as humans, we should not only physically support these elderly patients, but we should also aid them emotionally. They are humans as well and should not be seen as their condition, but as people.    
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- Classes Section -->
+
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2025 North Dallas Sathya Sai BalVikas. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

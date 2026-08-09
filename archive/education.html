@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sathya Sai BalVikas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function switchSegment(segment, button) {
+            // Hide all segment contents
+            document.querySelectorAll('.segment-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(segment).classList.remove('hidden');
+    
+            // Remove active class from all buttons
+            document.querySelectorAll('.segment-button').forEach(btn => {
+                btn.classList.remove('bg-blue-700');
+                btn.classList.add('bg-blue-500');
+            });
+    
+            // Add active class to the clicked button
+            button.classList.remove('bg-blue-500');
+            button.classList.add('bg-blue-700');
+    
+            // Update URL without reloading the page
+            history.pushState(null, null, `#${segment}`);
+        }
+    
+        function handleInitialLoad() {
+            const segment = window.location.hash.substring(1); // Get hash (e.g., "#unit-info")
+            const validSegments = ["classes", "unit-info", "reflection", "teacher-resources"];
+    
+            if (validSegments.includes(segment)) {
+                document.querySelectorAll('.segment-content').forEach(el => el.classList.add('hidden'));
+                document.getElementById(segment).classList.remove('hidden');
+    
+                // Update active button
+                document.querySelectorAll('.segment-button').forEach(btn => {
+                    btn.classList.remove('bg-blue-700');
+                    btn.classList.add('bg-blue-500');
+                });
+    
+                document.querySelector(`[onclick="switchSegment('${segment}', this)"]`).classList.add('bg-blue-700');
+            } else {
+                // Default to "classes"
+                document.getElementById("classes").classList.remove("hidden");
+                document.getElementById("classes-btn").classList.add("bg-blue-700");
+            }
+        }
+    
+        document.addEventListener("DOMContentLoaded", handleInitialLoad);
+    </script>
+    
+</head>
+
+<body class="bg-gray-100">
+<div style="background:#3b2a12;color:#fdf3e3;padding:.75rem 1rem;text-align:center;font:500 14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif">
+  <strong>Archived page.</strong> This is the previous version of the NDSAI website, kept for reference.
+  <a href="/" style="color:#f6b352;text-decoration:underline">Go to the current site &rarr;</a>
+</div>
+
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+                <img src="/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+		<div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sathya Sai BalVikas</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    </script>
+
+    <div class="text-3xl font-bold text-center mb-2 mt-4">Education</div>
+
+
+    <div class="container mx-auto my-4 p-4">
+        <!-- Segment Controller -->
+        <div class="flex justify-center space-x-4 mb-4">
+            <button id="classes-btn" class="segment-button bg-blue-700 text-white px-4 py-2 rounded" onclick="switchSegment('classes', this)">Classes</button>
+            <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('unit-info', this)">Current Unit Info</button>
+            <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('reflection', this)">Student Reflection</button>
+            <button class="segment-button bg-blue-500 text-white px-4 py-2 rounded" onclick="switchSegment('teacher-resources', this)">Teacher Resources</button>
+        </div>
+
+        <!-- Segment Content -->
+        <div id="classes" class="segment-content bg-white shadow-md rounded p-6">
+            <div class="container mx-auto my-2 p-4 relative">
+                <!-- Dropdown Menu -->
+                <div class="flex justify-center mb-4">
+                    <select id="classDropdown" class="p-2 border rounded">
+                        <option value="default-content">Select a grade</option>
+                        <option value="kindergarten">Kindergarten</option>
+                        <option value="1st-grade">1st Grade</option>
+                        <option value="2nd-grade">2nd Grade</option>
+                        <option value="3rd-grade">3rd Grade</option>
+                        <option value="4th-grade">4th Grade</option>
+                        <option value="5th-grade">5th Grade</option>
+                        <option value="6th-grade">6th Grade</option>
+                        <option value="7th-grade">7th Grade</option>
+                        <option value="8th-grade">8th Grade</option>
+                        <option value="9th-grade">9th Grade</option>
+                        <option value="10th-grade">10th Grade</option>
+                    </select>   
+                </div>
+                
+             <!-- Default Content -->
+            <div id="defaultContent">
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="coreValues">
+                    <h2 class="text-2xl font-bold mb-4">Core Values</h2>
+                    <p>Our spiritual education program for children is based on the teachings of Sri Sathya Sai Baba. The program is designed to impart values and principles that align with his teachings, helping children grow spiritually and ethically.</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li><strong>Daiva Preeti:</strong> Love for God</li>
+                        <li><strong>Papa Bheeti:</strong> Fear of wrong-doing</li>
+                        <li><strong>Sangha Neeti:</strong> Morality in society</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="generalObjectives">
+                    <h2 class="text-xl font-bold mb-2">General Objectives</h2>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>To help the child discern divine providence behind every event.</li>
+                        <li>To inculcate an integrated personality and to enable them to incorporate into this the five human values of Truth, Right Action, Peace, Love, and Non-Violence.</li>
+                    </ul>
+                    <blockquote class="mt-4 italic text-gray-600">
+                        "Children’s minds are innocent and pure. Each child is a white marble for the teacher and the parents to mould into an image of God, a bud to be helped to blossom in all its Divine glory so that it becomes a worthy offering to God."
+                        <br>-Sri Sathya Sai Baba
+                    </blockquote>
+                </div>
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="specificObjectives">
+                    <h2 class="text-xl font-bold mb-2">Specific Objectives</h2>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>To inculcate respect for parents and elders.</li>
+                        <li>To promote obedience at home and outside.</li>
+                        <li>To instill faith and devotion in God through good devotional practices.</li>
+                        <li>To sow the seeds for love and honesty.</li>
+                        <li>To enable students to practice kindness, compassion, and tolerance at home and outside.</li>
+                        <li>To awaken intuition.</li>
+                        <li>To awaken awareness of one's own consciousness.</li>
+                        <li>To inculcate self-reliance and leadership.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="admission">
+                    <h2 class="text-xl font-bold mb-2">Admission</h2>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Parents need to attend an orientation meeting to understand the program and their role in their child's moral & spiritual growth.</li>
+                        <li>Parent commitment includes the need to participate in “parents-as-partners” once every unit.</li>
+                        <li>Every unit includes a service project as a part of the program and we welcome parents to help conduct them.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="teachers">
+                    <h2 class="text-xl font-bold mb-2">Teachers</h2>
+                    <p class="text-gray-700">A group of dedicated volunteers serve as our teachers. They are devotees who love children and are committed to their emotional, moral & spiritual well-being.</p>
+                </div>
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="balvikasTimings">
+                    <h2 class="text-xl font-bold mb-2">Balvikas Venue and Timings</h2>
+                    <p class="text-gray-700">All classes meet at the Alpha Montessori House (Frisco) on Sunday mornings, in two sessions.</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li><strong>Group 1:</strong> KG - 3rd Grade</li>
+                        <li><strong>Group 2:</strong> 4th - 7th Grade</li>
+                        <li><strong>Group 3:</strong> 8th - 10th Grade</li>
+                    </ul>
+                    <p class="text-gray-700 mt-2"><strong>Timings:</strong></p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>9:30am - 10:45am: 5th to 10th Grade</li>
+                        <li>11:15am - 12:30pm: KG to 4th Grade</li>
+                    </ul>
+                    <p class="text-gray-700 mt-2"><strong>Balvikas calendar follows the PISD School calendar.</strong></p>
+                </div>
+            </div>
+
+            <!-- Grade Specific Content -->
+            <div id="gradeContent" class="hidden">
+                <!-- Kindergarten Content -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="kindergartenContent">
+                    <h2 class="text-xl font-bold mb-2">Kindergarten (Group 1)</h2>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>First Steps to God</li>
+                        <li>Introduction to the five human values through simple stories</li>
+                        <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+                        <li>Introduction to community service</li>
+                        <li>Skills: recitation, Bhajan singing, and storytelling</li>
+                    </ul>
+                </div>
+            
+                <!-- 1st Grade (Group 1) -->
+                <div class="bg-white shadow-md rounded p-6 mb-4" id="1st-gradeContent">
+                    <h2 class="text-xl font-bold mb-2">1st Grade (Group 1)</h2>
+                    <h3 class="text-lg font-semibold">Living with Values</h3>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Stories reinforce values</li>
+                        <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+                        <li>Introduction to community service</li>
+                        <li>Skills: recitation, Bhajan singing, and storytelling</li>
+                    </ul>
+                </div>
+                <!-- Add other grade-specific content here -->
+            
+            
+            <!-- 2nd Grade (Group 1) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="2nd-gradeContent">
+                <h2 class="text-xl font-bold mb-2">2nd Grade (Group 1)</h2>
+                <h3 class="text-lg font-semibold">Living With God</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Stories reflect everyday events in a child's life and the need to seek guidance from God 'within'</li>
+                    <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+                    <li>Introduction to community service</li>
+                    <li>Skills: recitation, Bhajan singing, and storytelling</li>
+                </ul>
+            </div>
+            
+            <!-- 3rd Grade (Group 1) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="3rd-gradeContent">
+                <h2 class="text-xl font-bold mb-2">3rd Grade (Group 1)</h2>
+                <h3 class="text-lg font-semibold">Cradle Tales Of Hinduism</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Stories taken from the Ancient Hindu scriptures to illustrate human values and instill respect toward their spiritual heritage</li>
+                    <li>Memorize simple prayers, sing Bhajans, five human values: truth, right action, peace, love, and non-violence</li>
+                    <li>Introduction to community service</li>
+                    <li>Skills: recitation, Bhajan singing, and storytelling</li>
+                </ul>
+            </div>
+            
+            <!-- 4th Grade (Group 2) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="4th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">4th Grade (Group 2)</h2>
+                <h3 class="text-lg font-semibold">W.A.T.C.H</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>W A T C H (Words, Actions, Thoughts, Character, Heart)</li>
+                    <li>Practical curriculum based on Sri Sathya Sai Baba's teaching...watch your words, actions, thoughts, character, heart through inspiring stories with special emphasis on practice</li>
+                    <li>Memorize Sri Hanuman Chalisa</li>
+                    <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+                </ul>
+            </div>
+            
+            <!-- 5th Grade (Group 2) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="5th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">5th Grade (Group 2)</h2>
+                <h3 class="text-lg font-semibold">Ramayana for Everyday Life</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Learning with devotion and reverence the story of Lord Rama's life with special emphasis on lessons to practice in one's daily life</li>
+                    <li>Memorize the Nama Ramayana</li>
+                    <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+                </ul>
+            </div>
+            
+            <!-- 6th Grade (Group 2) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="6th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">6th Grade (Group 2)</h2>
+                <h3 class="text-lg font-semibold">I to We (Love is Expansion)</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Curriculum-based on Sri Sathya Sai Baba's teaching that LOVE is expansion! From individual self to importance of family, service to society, love for Motherland, and love for all creation. A hands-on course to impact young minds to grow in self-confidence and embrace universal good</li>
+                    <li>Memorize Guru Paduka Stotram</li>
+                    <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+                </ul>
+            </div>
+            
+            <!-- 7th Grade (Group 2) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="7th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">7th Grade (Group 2)</h2>
+                <h3 class="text-lg font-semibold">Unity in Diversity (Fatherhood of God, Brotherhood of Man)</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Curriculum-based on Sri Sathya Sai Baba's teaching that ALL faith leads to the One</li>
+                    <li>To instill love for one's own faith and respect and tolerance to all other faiths</li>
+                    <li>Students will visit different places of worship to broaden their understanding</li>
+                    <li>Memorize: Sri Sathya Sai Suprabhatam</li>
+                    <li>Skills: sing bhajans, community service, self-expression through art, writing, and public speaking</li>
+                </ul>
+            </div>
+            
+            <!-- 8th Grade (Group 3) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="8th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">8th Grade (Group 3)</h2>
+                <h3 class="text-lg font-semibold">Ceiling On Desires</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Curriculum-based on Sri Sathya Sai Baba's teaching: Do not waste money, food, time, energy, information</li>
+                    <li>Putting a ceiling on our desires and use the savings in the service of others</li>
+                    <li>A practical course where teens discuss the areas of wastage in their lives and how to bring about a transformation in personal life</li>
+                    <li>Memorize: Aditya Hrudayam</li>
+                    <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+                    <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+                </ul>
+            </div>
+            
+            <!-- 9th Grade (Group 3) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="9th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">9th Grade (Group 3)</h2>
+                <h3 class="text-lg font-semibold">Saints of India</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Saints of India (glimpses into the lives of saints and their love for God)</li>
+                    <li>Continue chanting the Aditya Hrudayam</li>
+                    <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+                    <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+                </ul>
+            </div>
+            
+            <!-- 10th Grade (Group 3) -->
+            <div class="bg-white shadow-md rounded p-6 mb-4" id="10th-gradeContent">
+                <h2 class="text-xl font-bold mb-2">10th Grade (Group 3)</h2>
+                <h3 class="text-lg font-semibold">Bhaja Govindam</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Selected verses from Adi Shankara's Bhaja Govindam</li>
+                    <li>Task of maintaining the NDSAI webpage</li>
+                    <li>Responsibility for one's own actions, time management, self-control (social media usage, etc), seeking guidance from within to resist negative peer pressure</li>
+                    <li>Self-expression through art, writing, discussions, and public speaking, taking initiatives and leadership roles both within the class and the larger group</li>
+                </ul>
+            </div>
+            
+            
+            </div>
+
+        </div>
+
+        </div>
+
+        <div id="unit-info" class="segment-content bg-white shadow-md rounded p-6 hidden">
+            <div id="currentUnitContent">
+                <!-- Kindergarten to 3rd Grade -->
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="kgtothirdGrade">
+                    <h2 class="text-xl font-bold mb-2">Grades KG - 3</h2>
+                    <p class="mb-2">The theme for this unit is <strong>Non-violence</strong>, taught through engaging stories.</p>
+                    <h3 class="font-semibold mb-2">Students will understand the broader meaning of non-violence through Swami’s teachings:</h3>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Non-violence means not causing harm to people, animals, or nature in any form.</li>
+                        <li>Being mindful by not wasting food, water, or money.</li>
+                        <li>Speaking only kind and uplifting words.</li>
+                        <li>Choosing only positive books and TV shows.</li>
+                        <li>Practicing friendliness and harmony with others.</li>
+                    </ul>
+                </div>
+        
+                <!-- 4th Grade -->
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="fourthGrade">
+                    <h2 class="text-xl font-bold mb-2">4th Grade</h2>
+                    <p class="mb-2">In this unit, students focus on <strong>watching their heart</strong>. Through short stories, they learn about prayer, kindness, compassion, and forgiveness.</p>
+                    <blockquote class="italic bg-gray-200 p-4 rounded">
+                        "One who cultivates the crop of Love in the field of his Heart is a true Christian, a true Hindu, a true Sikh, a true Muslim, and he alone is a true Human Being."
+                    </blockquote>
+                </div>
+        
+                <!-- 5th Grade -->
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="fifthGrade">
+                    <h2 class="text-xl font-bold mb-2">5th Grade</h2>
+                    <p class="mb-2">Throughout the year, students have been learning about the <strong>Ramayana</strong>. In this unit, they focus on Hanuman’s leap across the ocean to deliver Lord Rama’s message to Sita Mata.</p>
+                    <p>They will explore:</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Hanuman’s strength, devotion, and intelligence in overcoming obstacles.</li>
+                        <li>His encounter with Ravana and the burning of Lanka.</li>
+                        <li>The great battle between Lord Rama and Ravana.</li>
+                        <li>Vibhishana’s coronation and Sri Rama Pattabhishekam.</li>
+                    </ul>
+                </div>
+        
+                <!-- 6th Grade -->
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="sixthGrade">
+                    <h2 class="text-xl font-bold mb-2">6th Grade</h2>
+                    <p class="mb-2">The theme of this unit is <strong>"I to We"</strong>—expanding one’s love beyond oneself to include family, community, nation, and the universe.</p>
+                    <p>Key discussions include:</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>The importance of caring for the world and the universe.</li>
+                        <li>The concept of sustainability (5 R’s: Reduce, Reuse, Recycle, Refuse, Repurpose).</li>
+                        <li>Appreciating the beauty of nature and our responsibility to protect it.</li>
+                        <li>Lessons from mountains, rivers, trees, and other elements of nature.</li>
+                    </ul>
+                </div>
+        
+                <!-- 7th Grade -->
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="seventhGrade">
+                    <h2 class="text-xl font-bold mb-2">7th Grade</h2>
+                    <p class="text-gray-600 italic">Content for this grade will be added soon.</p>
+                </div>
+        
+                <!-- 8th Grade -->
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="eighthGrade">
+                    <h2 class="text-xl font-bold mb-2">8th Grade</h2>
+                    <p class="mb-2">This unit focuses on Swami’s <strong>Ceiling on Desires</strong> program, which teaches students to set limits on their desire for food, money, time, energy, and information.</p>
+                    <p>With the rise of social media, Swami emphasized limiting unnecessary information consumption to cultivate inner peace. Students will discuss:</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>The meaning of controlling information consumption.</li>
+                        <li>Practical techniques to implement self-discipline.</li>
+                        <li>How this practice leads to greater focus and inner tranquility.</li>
+                    </ul>
+                </div>
+        
+                <!-- 9th Grade -->
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="ninthGrade">
+                    <h2 class="text-xl font-bold mb-2">9th Grade</h2>
+                    <p class="mb-2">Students will explore various <strong>pathways to God</strong> such as faith, namasmarana (chanting the divine name), satsang (spiritual gatherings), and service.</p>
+                    <p>This unit follows a study circle model where students will:</p>
+                    <ul class="list-disc pl-5 text-gray-700">
+                        <li>Study Swami’s discourses on humility, charity, and character.</li>
+                        <li>Watch Swami’s lectures and videos.</li>
+                        <li>Engage in discussions based on personal experiences from senior students.</li>
+                    </ul>
+                </div>
+        
+                <!-- 10th Grade -->
+                <div class="bg-gray-100 shadow-md rounded p-6 mb-4" id="tenthGrade">
+                    <h2 class="text-xl font-bold mb-2">10th Grade</h2>
+                    <p class="text-gray-600 italic">Content for this grade will be added soon.</p>
+                </div>
+            </div>
+        </div>
+                
+
+        <div id="reflection" class="segment-content bg-white shadow-md rounded p-6 hidden">
+            <div id="voiceOfOurStudents">
+                <!-- Section Title -->
+                <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">
+                    Healing Rhythms: Understanding Music's Power in Memory Care Service
+                </h2>
+        
+                <!-- First Question -->
+                <div class="bg-gray-100 shadow-md rounded-lg p-6 mb-6">
+                    <h3 class="font-semibold text-lg text-blue-700 border-l-4 border-blue-500 pl-4 mb-2">
+                        What power does music have on the human mind? Does it just help people with dementia?
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Music has an immense effect on the human mind; its ability to soothe and transform emotions is particularly beneficial for those suffering from dementia and Alzheimer's disease. 
+                        It helps individuals reconnect with emotions that might otherwise remain inaccessible, evoking joy, nostalgia, and comfort.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mt-3">
+                        Music also enhances cognitive functions such as focus, attention, and problem-solving by stimulating neural connections. 
+                        It reduces stress, anxiety, and pain while promoting social engagement, creativity, and better sleep. 
+                        Even for those without dementia, music offers immense therapeutic benefits. 
+                        For example, while memorizing the 8th stanza of the Guru Paduka Stotram, I initially saw it as a task, but as I immersed myself in the melody, my stress faded away, replaced by the soothing rhythm of the music.
+                    </p>
+                </div>
+        
+                <!-- Second Question -->
+                <div class="bg-gray-100 shadow-md rounded-lg p-6 mb-6">
+                    <h3 class="font-semibold text-lg text-blue-700 border-l-4 border-blue-500 pl-4 mb-2">
+                        What opinion does the doctor in the video (Alive Inside Documentary) have about American Culture?
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        In the documentary <i>Alive Inside</i>, Dr. Oliver Sacks critiques American culture for neglecting the elderly, especially those with cognitive impairments. 
+                        He argues that modern society marginalizes older adults, treating dementia as a "silent death" and failing to recognize their continued capacity for meaningful experiences.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mt-3">
+                        Dr. Sacks condemns the impersonal, one-size-fits-all approach to dementia care, emphasizing the need for personalized treatment. 
+                        He highlights the power of music therapy to restore dignity, memory, and emotional connections for these individuals.
+                    </p>
+                </div>
+        
+                <!-- Third Question -->
+                <div class="bg-gray-100 shadow-md rounded-lg p-6 mb-6">
+                    <h3 class="font-semibold text-lg text-blue-700 border-l-4 border-blue-500 pl-4 mb-2">
+                        Will you do anything differently at your next visit to the memory care center?
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        On my last visit to the memory care center, I noticed that many patients sat silently, disengaged. 
+                        However, when music played, they instinctively tapped along to the beat. 
+                        One patient shared her love for country music, recalling her favorite songs from childhood.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mt-3">
+                        Next time, I plan to create personalized playlists for each resident based on their favorite genres and songs. 
+                        Additionally, I want to introduce rhythmic activities like clapping or gentle dancing to encourage movement and engagement. 
+                        Ultimately, beyond physical care, we must offer emotional support, recognizing these individuals as more than their conditions—they are human beings who deserve dignity and connection.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="teacher-resources" class="segment-content bg-white shadow-md rounded p-6 hidden">
+            <!-- Acknowledgement Section -->
+             <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">
+                    Teacher Resources: SSS Media Centre Curated Content
+                </h2>
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <p class="text-gray-700">With humble pranams at Swami's Lotus Feet, this is a list of external resources from Sri Sathya Sai Media Centre website that have been curated for use by NDSai Bal Vikas teachers for inspiration. There are snippets in many of the items that may be relevant across the entire Bal Vikas program. Finally, this is primarily intended for teachers' use. If audio is used in class / during parent participation sessions, teachers are encouraged to note down timestamps and play only specific snippets.</p>
+            </div>
+
+            <!-- Human Values Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Human Values</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Truth - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7c6/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Human Values - 044</a></li>
+                    <li>Right action - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7c7/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Dharma - 045</a></li>
+                    <li>Peace - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7c9/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">What Is Shanthi - 047</a></li>
+                    <li>Love - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7ba/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Understanding Love - 032</a></li>
+                </ul>
+            </div>
+
+            <!-- Group 1 Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Group 1</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Swami and Animals - <a href="https://www.sssmediacentre.org/listen/635269470ea15c979936d41e/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Swami and animals</a></li>
+                </ul>
+            </div>
+
+            <!-- I to We Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">I to We</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Vyashti Samashti Srushti Parameshti - <a href="https://www.sssmediacentre.org/listen/5f6d82439e4c999cabb2afe3/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Episode 043 - Vyashti Samishti Srushti And Parameshti</a></li>
+                </ul>
+            </div>
+
+            <!-- Ceiling on Desires Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Ceiling on Desires</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Ceiling On Desires - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7cc/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Ceiling On Desires - 050</a></li>
+                    <li>Time 1 - <a href="https://www.sssmediacentre.org/listen/6666f25dfaacdc5b7f11ee3c/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Afternoon Satsang - 369 - Don't Waste Time - Part 1</a></li>
+                    <li>Time 2 - <a href="https://www.sssmediacentre.org/listen/666fa80dfaacdce4c311ee9b/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Afternoon Satsang - 370 - Don't Waste Time - Part 2</a></li>
+                    <li>Energy / Dealing with stress - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7f1/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Stress - 087</a></li>
+                </ul>
+            </div>
+
+            <!-- Pathways to God Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Pathways to God</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Path to God - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7cb/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">The Path To God - 049</a></li>
+                    <li>Faith 1 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7c5/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Knowing Faith And Having Faith - 043</a></li>
+                    <li>Faith 2 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7d3/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">God Exists - 057</a></li>
+                    <li>Faith 3 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7fc/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Faith Or Experience Which Comes First - 098</a></li>
+                    <li>Satsangh - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7fd/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">A Sathsang On Sathsang - 099</a></li>
+                    <li>Devotion 1 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7b7/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Sai Geetha And One Pointed Devotion - 029</a></li>
+                    <li>Devotion 2 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7bc/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Do We Love Swami Or What He Gives - 034</a></li>
+                    <li>Devotion 3 - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7e3/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Best Friend - 073</a></li>
+                    <li>Prayer - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7e2/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Prayer - 072</a></li>
+                    <li>Namasmarana - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7f9/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Why What When Where Who How Of Namasmarana - 095</a></li>
+                </ul>
+            </div>
+
+            <!-- Bhaja Govindam Section -->
+            <div class="bg-gray-100 shadow-md rounded p-6 mb-4">
+                <h2 class="text-2xl font-bold mb-4">Bhaja Govindam</h2>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li>Practical Advaita - <a href="https://www.sssmediacentre.org/listen/5f6d81ea9e4c999cabb0c7b9/" class="text-blue-500 underline" target="_blank" rel="noopener noreferrer">Practical Advaita - 031</a></li>
+                </ul>
+            </div>
+
+            <!-- Acknowledgement Footer -->
+            <div class="bg-gray-100 shadow-md rounded p-6">
+                <p class="text-gray-700 text-sm italic text-center">All materials linked on this page are owned by Sri Sathya Sai Media Centre and Sri Sathya Sai Central Trust.</p>
+            </div>
+        </div>
+
+    </div>
+
+<!-- Classes Section -->
+
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2026 North Dallas Sathya Sai BalVikas. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

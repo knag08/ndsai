@@ -1,0 +1,297 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import Quote from '../components/Quote.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import { humanValues, ninePointCode, site } from '../data/site';
+
+const pillars = [
+  {
+    title: 'Spiritual inquiry',
+    body: 'Study circles, devotional singing and the steady practice of what the teachings ask of us — reflection first, then living it.',
+    href: '/bhajans/',
+    linkLabel: 'Bhajans at the center',
+  },
+  {
+    title: 'Education of children',
+    body: 'Bal Vikas runs every Sunday morning through the school year, from Kindergarten to 10th grade, taught by volunteers.',
+    href: '/balvikas/',
+    linkLabel: 'The Bal Vikas programme',
+  },
+  {
+    title: 'Service to community',
+    body: 'A hot meal at Austin Street on the first Friday of the month, care kits in winter, and a service project inside every teaching unit.',
+    href: '/seva/',
+    linkLabel: 'How we serve',
+  },
+];
+---
+
+<Base
+  title="North Dallas Sathya Sai BalVikas"
+  bareTitle
+  description="A 501(c)(3) non-profit in Frisco, Texas. Spiritual education for children, devotional singing, and service to the community, in the teachings of Sri Sathya Sai Baba."
+>
+  <!-- Hero -->
+  <section class="relative isolate overflow-hidden bg-indigo-ink-950">
+    <img
+      src="/img/hero/ed2026-03.webp"
+      alt=""
+      class="absolute inset-0 -z-20 h-full w-full object-cover"
+      fetchpriority="high"
+      width="2048"
+      height="860"
+    />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-ink-950/94 via-indigo-ink-950/85 to-indigo-ink-900/80"></div>
+
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
+      <div class="max-w-3xl">
+        <p class="eyebrow !text-saffron-300">Frisco, Texas &middot; Serving since 1985</p>
+        <h1 class="mt-4 font-display text-4xl font-semibold !text-white sm:text-6xl lg:text-[4.25rem] lg:leading-[1.05]">
+          Love as thought is Truth.<br class="hidden sm:block" /> Love as action is Right Conduct.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-indigo-ink-100 sm:text-xl">
+          North Dallas Sathya Sai BalVikas is a 501(c)(3) non-profit. We provide a forum to learn and practise the
+          teachings of Sri Sathya Sai Baba — through the spiritual education of children, devotional singing, and
+          service to our neighbours.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <Button href="/balvikas/">Explore Bal Vikas</Button>
+          <Button href="/seva/" variant="ghost">Serve with us</Button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Five human values strip: the spine of everything taught here. -->
+    <div class="relative border-t border-white/10 bg-indigo-ink-950/60 backdrop-blur-sm">
+      <ul class="mx-auto grid max-w-7xl grid-cols-2 gap-px px-4 sm:grid-cols-3 sm:px-6 lg:grid-cols-5 lg:px-8">
+        {
+          humanValues.map((value) => (
+            <li class="px-2 py-5 text-center sm:py-6">
+              <p class="font-display text-xl font-semibold !text-saffron-300 sm:text-2xl">{value.name}</p>
+              <p class="mt-1 text-[0.7rem] font-semibold tracking-[0.14em] text-indigo-ink-200 uppercase">
+                {value.english}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Registration notice -->
+  <div class="border-b border-sand-200 bg-saffron-50">
+    <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-5 sm:flex-row sm:items-baseline sm:gap-5 sm:px-6 lg:px-8">
+      <p class="inline-flex w-fit shrink-0 items-center rounded-full bg-saffron-500 px-3 py-1 text-[0.68rem] font-bold tracking-[0.12em] text-white uppercase">
+        Registration
+      </p>
+      <p class="text-sm leading-relaxed text-ink-700">
+        <strong class="font-semibold text-indigo-ink-900">Admissions are closed for the current year.</strong>{' '}
+        All classes are full. We warmly invite you to write to us next academic year —{' '}
+        <a href="/contact/" class="font-semibold text-saffron-700 underline underline-offset-4">get in touch</a>.
+      </p>
+    </div>
+  </div>
+
+  <!-- Three pillars -->
+  <Section
+    eyebrow="Our purpose"
+    title="Three things we set out to do"
+    lede="Everything at the center grows out of these three, and each one supports the other two."
+  >
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        pillars.map((pillar, index) => (
+          <article class="reveal group relative flex flex-col rounded-2xl bg-white p-7 ring-1 ring-sand-200 transition-shadow duration-300 hover:shadow-lg hover:shadow-indigo-ink-900/5">
+            <span class="font-display text-5xl leading-none font-semibold text-saffron-200 transition-colors group-hover:text-saffron-300">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 class="mt-4 font-display text-2xl font-semibold">{pillar.title}</h3>
+            <p class="mt-3 flex-1 leading-relaxed text-ink-700">{pillar.body}</p>
+            <a
+              href={pillar.href}
+              class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-saffron-700 hover:text-saffron-600"
+            >
+              {pillar.linkLabel}
+              <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10m0 0L8 3m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <!-- Bal Vikas overview with photograph -->
+  <Section tone="sand">
+    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Bal Vikas</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold sm:text-4xl">Children start the journey with God</h2>
+        <div class="rich mt-5">
+          <p>
+            Our spiritual education programme for children is based on the teachings of Sri Sathya Sai Baba. Classes
+            take place every Sunday morning at the Alpha Montessori House in Frisco, and run right through the school
+            year alongside unit presentations and service projects.
+          </p>
+          <p>
+            A group of dedicated volunteers serve as our teachers — devotees who love children and are committed to
+            their emotional, moral and spiritual well-being.
+          </p>
+        </div>
+
+        <dl class="mt-8 grid gap-4 sm:grid-cols-3">
+          {
+            [
+              { term: 'Group 1', detail: 'KG – 3rd Grade' },
+              { term: 'Group 2', detail: '4th – 7th Grade' },
+              { term: 'Group 3', detail: '8th – 10th Grade' },
+            ].map((group) => (
+              <div class="rounded-xl bg-white px-4 py-4 ring-1 ring-sand-200">
+                <dt class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-700 uppercase">{group.term}</dt>
+                <dd class="mt-1 font-display text-lg font-semibold text-indigo-ink-900">{group.detail}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href="/balvikas/curriculum/">Curriculum by grade</Button>
+          <Button href="/balvikas/calendar/" variant="secondary">Class calendar</Button>
+        </div>
+      </div>
+
+      <figure class="reveal">
+        <img
+          src="/img/easwaramma-2026/ed2026-18.webp"
+          alt="Bal Vikas children in costume waiting backstage before the Easwaramma Day programme"
+          width="1400"
+          height="933"
+          loading="lazy"
+          decoding="async"
+          class="w-full rounded-2xl object-cover shadow-xl shadow-indigo-ink-900/10"
+        />
+        <figcaption class="mt-3 text-sm text-ink-700">
+          Backstage at Easwaramma Day, May 2026 — the year’s largest offering, prepared over five weeks of rehearsal.
+        </figcaption>
+      </figure>
+    </div>
+  </Section>
+
+  <!-- Quote -->
+  <Section width="narrow">
+    <Quote size="large" source="February 1, 1970">
+      The dawn of peace can be brought about only by learning, practicing and teaching the art of living together in
+      peace and amity in homes. Then, peace in the world can be established, without delay and travail.
+    </Quote>
+  </Section>
+
+  <!-- Seva highlights -->
+  <Section
+    eyebrow="Seva"
+    title="Service, not charity"
+    lede="Narayan Seva means serving God in the form of man. It is a spiritual practice, and the best way we know to teach our children by example."
+    tone="sand"
+  >
+    <div class="grid gap-6 md:grid-cols-3">
+      <Card
+        title="Narayana Seva"
+        href="/seva/narayana-seva/"
+        eyebrow="First Friday, monthly"
+        image="/img/seva/paper-cranes.webp"
+        imageAlt="Folded orange paper cranes gathered in boxes"
+      >
+        A home-cooked vegetarian meal served at the Austin Street shelter in Dallas. With Swami’s grace, we have done
+        this since 1985.
+      </Card>
+      <Card
+        title="Care kits & winter warmth"
+        href="/seva/service-projects/"
+        eyebrow="Around Swami’s birthday"
+        image="/img/seva/crocheted-sets.webp"
+        imageAlt="Rows of hand-crocheted baby sweaters and hats in pastel colours"
+      >
+        Hygiene kits assembled and distributed by our 10th graders, alongside hats and scarves made by hand at the
+        center.
+      </Card>
+      <Card
+        title="Visiting our elders"
+        href="/seva/service-projects/"
+        eyebrow="Through the year"
+        image="/img/seva/nursing-home-coloring.webp"
+        imageAlt="A young child colouring at a table alongside a resident of a memory care centre"
+      >
+        Children visit nursing and memory care homes to colour, sing, play games and simply sit with residents who
+        would otherwise sit alone.
+      </Card>
+    </div>
+  </Section>
+
+  <!-- Podcast promo -->
+  <Section tone="ink">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow !text-saffron-300">Centenary year</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold !text-white sm:text-4xl">
+          A podcast, made entirely by our students
+        </h2>
+        <p class="mt-4 max-w-2xl leading-relaxed text-indigo-ink-200">
+          Five episodes, created, hosted and voiced by Bal Vikas students to mark the centenary of Bhagawan Sri Sathya
+          Sai Baba. Each one takes a single teaching, connects it to daily life, and asks families to practise it
+          together.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href="/podcast/">Listen to all five episodes</Button>
+          <Button href="/newsletter/" variant="ghost">Read the newsletter</Button>
+        </div>
+      </div>
+      <img
+        src="/img/centenary/centenary-emblem.webp"
+        alt="Centenary emblem marking one hundred years of Bhagawan Sri Sathya Sai Baba"
+        width="900"
+        height="900"
+        loading="lazy"
+        decoding="async"
+        class="reveal mx-auto w-48 sm:w-56 lg:w-64"
+      />
+    </div>
+  </Section>
+
+  <!-- Nine point code -->
+  <Section
+    eyebrow="For members"
+    title="The Nine Point Code of Conduct"
+    lede="The daily discipline that members of the Sri Sathya Sai Organization undertake."
+    width="wide"
+  >
+    <ol class="grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        ninePointCode.map((point, index) => (
+          <li class="reveal flex gap-4">
+            <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-saffron-100 font-display text-base font-bold text-saffron-700">
+              {index + 1}
+            </span>
+            <p class="text-[0.95rem] leading-relaxed text-ink-700">{point}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <!-- Contact CTA -->
+  <Section tone="sand" width="narrow" class="!pb-24">
+    <div class="reveal rounded-2xl bg-white px-6 py-12 text-center ring-1 ring-sand-200 sm:px-12">
+      <h2 class="font-display text-3xl font-semibold">Come and see us</h2>
+      <p class="mx-auto mt-4 max-w-xl leading-relaxed text-ink-700">
+        Bhajans are held from 11:20 am to 12 noon on Bal Vikas class days, and every student, parent and visitor is
+        warmly welcome. For anything else, write to us.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/contact/">Contact us</Button>
+        <Button href={`mailto:${site.email.newsletter}`} variant="secondary">Join the mailing list</Button>
+      </div>
+    </div>
+  </Section>
+</Base>

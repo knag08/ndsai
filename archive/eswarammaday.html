@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sathya Sai BalVikas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+<div style="background:#3b2a12;color:#fdf3e3;padding:.75rem 1rem;text-align:center;font:500 14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif">
+  <strong>Archived page.</strong> This is the previous version of the NDSAI website, kept for reference.
+  <a href="/" style="color:#f6b352;text-decoration:underline">Go to the current site &rarr;</a>
+</div>
+
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+            <div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sathya Sai BalVikas</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+    
+
+    <!-- Navigation Bar -->
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    </script>
+
+  <!-- Container -->
+   <!-- Header -->
+  
+    <div class="container mx-auto text-center py-10">
+        <h2 class="text-2xl font-bold mb-4">Eswaramma Day Celebration 2025</h2>
+        <p class="mb-4">Eswaramma Day is a special occasion to honor the mother of Bhagawan Sri Sathya Sai Baba. Join us in celebrating Eswaramma Day with devotion and joy. </p>
+        <img src="/downloaded_images/Easwaramma_Day_2025.jpeg" alt="Eswaramma Day" class="mx-auto mb-4">
+    </div>
+
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2026 North Dallas Sathya Sai BalVikas. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

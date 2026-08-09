@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sathya Sai BalVikas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+<div style="background:#3b2a12;color:#fdf3e3;padding:.75rem 1rem;text-align:center;font:500 14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif">
+  <strong>Archived page.</strong> This is the previous version of the NDSAI website, kept for reference.
+  <a href="/" style="color:#f6b352;text-decoration:underline">Go to the current site &rarr;</a>
+</div>
+
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+            <div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sathya Sai BalVikas</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+    
+
+    <!-- Navigation Bar -->
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    </script>
+
+
+
+
+  <!-- Container -->
+  <div class="container mx-auto text-center py-10">
+    <!-- Header -->
+    <header>
+      <h1 class="text-3xl font-regular text-gray-80 mb-8">Easwaramma Day 2023</h1>
+    </header>
+    
+    <!-- Carousel Section -->
+    <!-- Carousel Container -->
+    <div class="carousel mt-8 mb-16">
+      <div class="carousel-images">
+        <!-- Example Images -->
+        <img class="carousel-image" src="/downloaded_images/b21d0b_443b161b0ade4098a28631bda752ba4a~mv2.jpg" alt="Image 1">
+        <img class="carousel-image" src="/downloaded_images/b21d0b_ec8b47b789aa41a59b7bd1aff788ef65~mv2.jpg" alt="Image 2">
+        <img class="carousel-image" src="/downloaded_images/b21d0b_ec4f9e423c104cadad05f2afc193ec52~mv2.jpg" alt="Image 4">
+        <img class="carousel-image" src="/downloaded_images/b21d0b_da06cd5758e945448f4f8926ffab5901~mv2.jpg" alt="Image 5">
+        <img class="carousel-image" src="/downloaded_images/b21d0b_b6171f51a5294864ad190391d41c2231~mv2.jpg" alt="Image 7">
+        <img class="carousel-image" src="/downloaded_images/b21d0b_b309c6e24100480b964814200a612917~mv2.jpg" alt="Image 8">
+        <img class="carousel-image" src="/downloaded_images/b21d0b_297450491ab74f74bfc7b9b5cc84e4db~mv2.jpg" alt="Image 8">         
+    </div>
+
+      <!-- Navigation Arrows -->
+      <button class="arrow arrow-left" onclick="prevImage()"></button>
+      <button class="arrow arrow-right" onclick="nextImage()"></button>
+    </div>
+
+  </div>
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2026 North Dallas Sathya Sai BalVikas. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

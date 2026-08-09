@@ -1,0 +1,174 @@
+@import 'tailwindcss';
+
+/* Latin subsets only, and only the weights the design actually asks for:
+   400 italic for pull-quotes, 600 for headings, 700 for the numbered markers. */
+@import '@fontsource-variable/inter';
+@import '@fontsource/cormorant-garamond/latin-400-italic.css';
+@import '@fontsource/cormorant-garamond/latin-ext-400-italic.css';
+@import '@fontsource/cormorant-garamond/latin-600.css';
+@import '@fontsource/cormorant-garamond/latin-ext-600.css';
+@import '@fontsource/cormorant-garamond/latin-700.css';
+@import '@fontsource/cormorant-garamond/latin-ext-700.css';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+
+  /* Saffron — the Sai colour. Used for accents, never for long text. */
+  --color-saffron-50: #fef6ec;
+  --color-saffron-100: #fce9cf;
+  --color-saffron-200: #f8cf9c;
+  --color-saffron-300: #f3b164;
+  --color-saffron-400: #ee9438;
+  --color-saffron-500: #e07a28;
+  --color-saffron-600: #c25f1c;
+  --color-saffron-700: #9c481a;
+  --color-saffron-800: #7c3a1b;
+  --color-saffron-900: #653119;
+
+  /* Indigo — headers, footers, deep surfaces. */
+  --color-indigo-ink-50: #f2f4fb;
+  --color-indigo-ink-100: #e3e7f6;
+  --color-indigo-ink-200: #c8d1ee;
+  --color-indigo-ink-300: #9dafe0;
+  --color-indigo-ink-400: #6c85cd;
+  --color-indigo-ink-500: #4a63b6;
+  --color-indigo-ink-600: #3a4c99;
+  --color-indigo-ink-700: #313e7c;
+  --color-indigo-ink-800: #2b3667;
+  --color-indigo-ink-900: #1e2a5a;
+  --color-indigo-ink-950: #141a38;
+
+  /* Warm neutrals — page background and body copy. */
+  --color-sand-50: #fdfaf5;
+  --color-sand-100: #faf3e8;
+  --color-sand-200: #f2e7d4;
+  --color-sand-300: #e6d5ba;
+  --color-sand-400: #d3bb95;
+  --color-sand-500: #b99a6d;
+
+  --color-ink-700: #4a4238;
+  --color-ink-800: #332e27;
+  --color-ink-900: #211d18;
+}
+
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+    /* Offset anchor targets so the sticky header never covers a heading. */
+    scroll-padding-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-sand-50);
+    color: var(--color-ink-800);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* `clip` rather than `hidden`: it prevents a stray horizontal scrollbar without
+       creating a scroll container, so the sticky header keeps working. */
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-indigo-ink-900);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-saffron-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Section heading with the small saffron rule above it. */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-saffron-700);
+  }
+  .eyebrow::before {
+    content: '';
+    width: 1.75rem;
+    height: 2px;
+    background: var(--color-saffron-500);
+  }
+
+  /* Long-form article text: the prose defaults used on content pages.
+     Each selector is doubled so `.rich` works both as a wrapper around prose and
+     applied directly to a single <ul>/<ol>/<p>. */
+  .rich :is(p, ul, ol),
+  .rich:is(p, ul, ol) {
+    margin-block: 0.9em;
+    line-height: 1.75;
+    color: var(--color-ink-700);
+  }
+  .rich :is(ul, ol),
+  .rich:is(ul, ol) { padding-inline-start: 1.4em; }
+  .rich ul,
+  ul.rich { list-style: disc; }
+  .rich ol,
+  ol.rich { list-style: decimal; }
+  .rich li { margin-block: 0.35em; padding-inline-start: 0.2em; }
+  .rich li::marker { color: var(--color-saffron-500); }
+  .rich h2 { font-size: 1.75rem; margin-block: 1.6em 0.5em; }
+  .rich h3 {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-indigo-ink-800);
+    margin-block: 1.5em 0.4em;
+    letter-spacing: 0;
+  }
+  .rich strong { color: var(--color-ink-900); font-weight: 600; }
+  .rich a {
+    color: var(--color-saffron-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .rich a:hover { color: var(--color-saffron-600); }
+  .rich blockquote {
+    margin-block: 1.4em;
+    padding: 0.2em 0 0.2em 1.25rem;
+    border-inline-start: 3px solid var(--color-saffron-300);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--color-indigo-ink-800);
+  }
+}
+
+/* Fade-and-rise on scroll.
+   The hidden state is scoped to `.js`, which an inline script in <head> adds. With
+   scripting unavailable the class is never added and every .reveal stays visible,
+   so content can never be stranded at opacity 0. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .js .reveal.is-visible { opacity: 1; transform: none; }
+}

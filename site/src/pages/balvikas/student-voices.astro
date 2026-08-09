@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+
+const reflection = {
+  title: "Healing Rhythms: Understanding Music's Power in Memory Care Service",
+  questions: [
+    {
+      question: 'What power does music have on the human mind? Does it just help people with dementia?',
+      answer: [
+        "Music has an immense effect on the human mind; its ability to soothe and transform emotions is particularly beneficial for those suffering from dementia and Alzheimer's disease. It helps individuals reconnect with emotions that might otherwise remain inaccessible, evoking joy, nostalgia, and comfort.",
+        'Music also enhances cognitive functions such as focus, attention, and problem-solving by stimulating neural connections. It reduces stress, anxiety, and pain while promoting social engagement, creativity, and better sleep. Even for those without dementia, music offers immense therapeutic benefits. For example, while memorizing the 8th stanza of the Guru Paduka Stotram, I initially saw it as a task, but as I immersed myself in the melody, my stress faded away, replaced by the soothing rhythm of the music.',
+      ],
+    },
+    {
+      question: 'What opinion does the doctor in the video (Alive Inside documentary) have about American culture?',
+      answer: [
+        'In the documentary <i>Alive Inside</i>, Dr. Oliver Sacks critiques American culture for neglecting the elderly, especially those with cognitive impairments. He argues that modern society marginalizes older adults, treating dementia as a "silent death" and failing to recognize their continued capacity for meaningful experiences.',
+        'Dr. Sacks condemns the impersonal, one-size-fits-all approach to dementia care, emphasizing the need for personalized treatment. He highlights the power of music therapy to restore dignity, memory, and emotional connections for these individuals.',
+      ],
+    },
+    {
+      question: 'Will you do anything differently at your next visit to the memory care center?',
+      answer: [
+        'On my last visit to the memory care center, I noticed that many patients sat silently, disengaged. However, when music played, they instinctively tapped along to the beat. One patient shared her love for country music, recalling her favorite songs from childhood.',
+        'Next time, I plan to create personalized playlists for each resident based on their favorite genres and songs. Additionally, I want to introduce rhythmic activities like clapping or gentle dancing to encourage movement and engagement. Ultimately, beyond physical care, we must offer emotional support, recognizing these individuals as more than their conditions — they are human beings who deserve dignity and connection.',
+      ],
+    },
+  ],
+};
+---
+
+<Base
+  title="Student Voices"
+  description="Reflections written by Bal Vikas students on their service work — what they observed, what they questioned, and what they will do differently next time."
+>
+  <PageHero
+    eyebrow="Bal Vikas"
+    title="Student voices"
+    lede="Every service project ends with reflection. These are our students’ own words, published as they wrote them."
+  />
+
+  <Section width="narrow">
+    <article class="reveal">
+      <h2 class="font-display text-3xl font-semibold">{reflection.title}</h2>
+
+      <div class="mt-10 space-y-8">
+        {
+          reflection.questions.map((item) => (
+            <div class="reveal rounded-2xl bg-white p-7 ring-1 ring-sand-200">
+              <h3 class="border-l-3 border-saffron-400 pl-4 font-display text-xl font-semibold text-indigo-ink-900">
+                {item.question}
+              </h3>
+              <div class="rich mt-4">
+                {item.answer.map((paragraph) => (
+                  <p set:html={paragraph} />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </article>
+
+    <p class="reveal mt-12 rounded-xl bg-sand-100 px-5 py-4 text-sm leading-relaxed text-ink-700">
+      Students, if you would like your reflection published here, hand it to your teacher — we would love to share it.
+    </p>
+  </Section>
+</Base>

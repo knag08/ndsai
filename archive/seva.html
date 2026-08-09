@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Dallas Sathya Sai BalVikas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+
+<body class="bg-gray-100">
+<div style="background:#3b2a12;color:#fdf3e3;padding:.75rem 1rem;text-align:center;font:500 14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif">
+  <strong>Archived page.</strong> This is the previous version of the NDSAI website, kept for reference.
+  <a href="/" style="color:#f6b352;text-decoration:underline">Go to the current site &rarr;</a>
+</div>
+
+
+    <!-- Header -->
+    <header class="bg-blue-500 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+                <img src="/downloaded_images/ssio-logo-english.png" alt="Logo" class="h-16 mr-4">
+		<div class="header-title">
+                <h1 class="text-white text-3xl md:text-5xl font-bold">North Dallas Sathya Sai BalVikas</h1>
+            </div>
+            <div class="burger-menu" onclick="toggleMenu()">&#9776;</div> <!-- Moved burger menu into the header -->
+        </div>
+    </header>
+    
+
+    <!-- Navigation Bar -->
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
+    </script>
+
+
+
+
+<div class="container mx-auto my-8 p-4 bg-white shadow-md rounded">
+    <h1 class="text-3xl font-bold text-center mb-6">Seva - Service at Sai Baba Center</h1>
+
+    <h2 class="text-2xl font-bold mb-4">When</h2>
+    <p>First Friday of Every Month at 7pm</p>
+
+    <h2 class="text-2xl font-bold mb-4">What is Seva?</h2>
+    <p>Service, or Seva, at the Sai Baba Center is primarily a spiritual practice aimed at elevating us through constant practice to recognize the Divinity in all beings. As Swami says, “<span class="quote">The best way to please me is to see Me in all beings and serve them just as you would like to serve Me.</span>”</p>
+    <p>Swami also teaches that before engaging in Seva (selfless service), one must attain purity of heart. It is important to examine one's motives, skills, intentions, and qualifications, and to be aware of the desire for fame or egoism. To truly serve, one must relinquish pride, status, wealth, scholarship, and position, and instead practice humility, obedience, discipline, and compassion.</p>
+
+    <h2 class="text-2xl font-bold mb-4">How Can We Help?</h2>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li>Help as much as you can.</li>
+        <li>Help as efficiently as you can.</li>
+        <li>Help as silently as you can.</li>
+        <li>Help as lovingly as you can.</li>
+    </ul>
+    <p>Leave the rest to God, who gave you the chance to serve.</p>
+
+    <h2 class="text-2xl font-bold mb-4">Why Join a Group Service Project?</h2>
+    <p>Swami says, “<span class="quote">What a single individual cannot accomplish, a well-knit group or society can achieve. A man walking alone will feel tired and miserable at the end of five miles, but walking with a group would find the five miles a happy jaunt. He arrives refreshed and strong.</span>”</p>
+    <p>Our projects are designed to meet the diverse needs and abilities of participants. If none of these projects address your specific areas of interest, please contact the Seva coordinator to find a suitable opportunity.</p>
+    <p>Swami reminds us, “<span class="quote">God will not ask you what seva did you do? He will ask, with what motive did you do it? What was the intention that prompted it? You may weigh the Seva and boast of its quantity, but God seeks the quality and holiness of the heart and the purity of the mind.</span>”</p>
+
+    <h2 class="text-2xl font-bold mb-4">Our Special Service Projects Include:</h2>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li><strong>UNICEF Trick-or-Treat:</strong> BalVikas students trick-or-treat as UNICEF volunteers to support children's causes worldwide.</li>
+        <li><strong>Sri Sathya Sai Baba's Birthday Seva:</strong> Devotees assemble CARE KITS for the homeless in Dallas to help them through the winter. These kits, distributed by senior Bal Vikas students, include handmade hats and scarves created by Bal Vikas students.</li>
+        <li><strong>Thanksgiving Meals-on-Wheels:</strong> Families participate in delivering meals to the elderly, lonely, and homebound on this holiday. The project is organized by the local VNA (Visiting Nurses Association).</li>
+    </ul>
+
+    <h2 class="text-2xl font-bold mb-4">Regular Service Projects:</h2>
+    <ul class="list-disc pl-5 text-gray-700">
+        <li><strong>Austin Street Center:</strong> Devotees serve a wholesome, home-cooked, vegetarian meal on the first Friday of every month.</li>
+        <li><strong>Park Cleaning Project:</strong> Students clean parks and streams in Plano.</li>
+        <li><strong>FMSC:</strong> Children and their families participate in packing meals.</li>
+        <li><strong>Nursing Home:</strong> Children visit the lonely elderly to play games, sing songs, make crafts, and share their love with them. Holidays like Valentine's Day, Halloween, Thanksgiving, Christmas, are specially planned to give joy to our elderly friends. Birthdays are also a way to make our elderly friends feel special.</li>
+    </ul>
+</div>
+
+<script src="script.js"></script>
+
+<footer class="bg-blue-500 p-4 text-white text-center">
+    <p>&copy; 2026 North Dallas Sathya Sai BalVikas. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+---
+interface Props {
+  attribution?: string;
+  source?: string;
+  tone?: 'light' | 'ink';
+  size?: 'default' | 'large';
+}
+
+const { attribution = 'Sri Sathya Sai Baba', source, tone = 'light', size = 'default' } = Astro.props;
+---
+
+<figure
+  class:list={[
+    'reveal relative overflow-hidden rounded-2xl px-6 py-10 sm:px-12 sm:py-14',
+    tone === 'ink' ? 'bg-indigo-ink-900' : 'bg-sand-100 ring-1 ring-sand-200',
+  ]}
+>
+  <!-- Oversized opening quote mark, kept decorative. -->
+  <span
+    aria-hidden="true"
+    class:list={[
+      'pointer-events-none absolute -top-6 left-3 font-display text-[9rem] leading-none select-none sm:left-6',
+      tone === 'ink' ? 'text-white/8' : 'text-saffron-500/15',
+    ]}>&ldquo;</span
+  >
+
+  <blockquote
+    class:list={[
+      'relative font-display italic',
+      size === 'large' ? 'text-2xl sm:text-3xl lg:text-[2.1rem]' : 'text-xl sm:text-2xl',
+      'leading-[1.5]',
+      tone === 'ink' ? 'text-white' : 'text-indigo-ink-900',
+    ]}
+  >
+    <slot />
+  </blockquote>
+
+  <figcaption
+    class:list={[
+      'relative mt-6 text-sm font-semibold tracking-wide',
+      tone === 'ink' ? 'text-saffron-300' : 'text-saffron-700',
+    ]}
+  >
+    — {attribution}
+    {source && <span class:list={['ml-1 font-normal', tone === 'ink' ? 'text-indigo-ink-300' : 'text-ink-700']}>{source}</span>}
+  </figcaption>
+</figure>

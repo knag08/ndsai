@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+import Button from '../../components/Button.astro';
+import { newsletters } from '../../data/newsletters';
+import { site } from '../../data/site';
+
+const [latest, ...rest] = newsletters;
+---
+
+<Base
+  title="Newsletter"
+  description="Every edition of the ND Sai Bal Vikas newsletter — center activities, our children's seva stories, Swami's messages and parenting notes, published once every unit."
+>
+  <PageHero
+    eyebrow="Newsletter"
+    title="ND Sai Bal Vikas Newsletter"
+    lede="Published once every unit, to keep our families aware of center activities, to highlight our children practising Swami’s principles in daily life, and to share parenting notes that align with His teachings."
+  />
+
+  <Section width="default">
+    <!-- Latest edition, given the room it deserves -->
+    <article class="reveal overflow-hidden rounded-2xl bg-white ring-1 ring-sand-200">
+      <div class="grid lg:grid-cols-[1.15fr_1fr]">
+        <div class="flex flex-col justify-center p-7 sm:p-10">
+          <p class="eyebrow">Latest &middot; {latest.date}</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold sm:text-4xl">
+            <a href={`/newsletter/${latest.slug}/`} class="hover:text-saffron-700">{latest.title}</a>
+          </h2>
+          <p class="mt-4 leading-relaxed text-ink-700">{latest.summary}</p>
+          <ul class="mt-6 flex flex-wrap gap-2">
+            {
+              latest.topics.map((topic) => (
+                <li class="rounded-full bg-sand-100 px-3 py-1 text-xs font-medium text-ink-700">{topic}</li>
+              ))
+            }
+          </ul>
+          <div class="mt-8">
+            <Button href={`/newsletter/${latest.slug}/`}>Read this edition</Button>
+          </div>
+        </div>
+        <div class="order-first bg-sand-100 lg:order-last">
+          <img
+            src={latest.cover}
+            alt={latest.coverAlt}
+            loading="eager"
+            class="h-full w-full object-contain p-8"
+            width="900"
+            height="1200"
+          />
+        </div>
+      </div>
+    </article>
+
+    <!-- Earlier editions -->
+    <h2 class="reveal mt-16 font-display text-2xl font-semibold">Earlier editions</h2>
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      {
+        rest.map((edition) => (
+          <article class="reveal group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-sand-200 transition-all duration-300 hover:-translate-y-1 hover:ring-saffron-300 hover:shadow-xl hover:shadow-indigo-ink-900/8">
+            <a href={`/newsletter/${edition.slug}/`} class="flex flex-1 flex-col">
+              <div class="aspect-16/9 overflow-hidden bg-sand-100">
+                <img
+                  src={edition.cover}
+                  alt={edition.coverAlt}
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div class="flex flex-1 flex-col p-6">
+                <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-saffron-700 uppercase">
+                  {edition.edition} &middot; {edition.date}
+                </p>
+                <h3 class="mt-2 font-display text-2xl font-semibold">{edition.title}</h3>
+                <p class="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-700">{edition.summary}</p>
+                <p class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-saffron-700">
+                  Read this edition
+                  <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2 7h10m0 0L8 3m4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </p>
+              </div>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section tone="sand" width="narrow" class="!pt-0 !pb-24">
+    <div class="reveal rounded-2xl bg-white px-6 py-12 text-center ring-1 ring-sand-200 sm:px-12">
+      <h2 class="font-display text-3xl font-semibold">Get the next edition</h2>
+      <p class="mx-auto mt-4 max-w-xl leading-relaxed text-ink-700">
+        We would love your feedback, and your thoughts on what you would like to see included. Write to us to join the
+        mailing list, or to send us something for the next edition.
+      </p>
+      <div class="mt-8">
+        <Button href={`mailto:${site.email.newsletter}`}>{site.email.newsletter}</Button>
+      </div>
+    </div>
+  </Section>
+</Base>

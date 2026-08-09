@@ -1,0 +1,64 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  lede?: string;
+  /** Surface treatment: the page cream, a warmer sand, or the deep indigo. */
+  tone?: 'default' | 'sand' | 'ink';
+  align?: 'left' | 'center';
+  id?: string;
+  class?: string;
+  width?: 'default' | 'narrow' | 'wide';
+}
+
+const { eyebrow, title, lede, tone = 'default', align = 'left', id, class: className = '', width = 'default' } = Astro.props;
+
+const tones = {
+  default: '',
+  sand: 'bg-sand-100',
+  ink: 'bg-indigo-ink-900 text-indigo-ink-100',
+};
+
+const widths = {
+  narrow: 'max-w-3xl',
+  default: 'max-w-6xl',
+  wide: 'max-w-7xl',
+};
+---
+
+<section id={id} class:list={['py-16 sm:py-20 lg:py-24', tones[tone], className]}>
+  <div class:list={['mx-auto px-4 sm:px-6 lg:px-8', widths[width]]}>
+    {
+      (eyebrow || title || lede) && (
+        <header class:list={['reveal', align === 'center' && 'mx-auto max-w-2xl text-center']}>
+          {eyebrow && <p class:list={['eyebrow', tone === 'ink' && '!text-saffron-300']}>{eyebrow}</p>}
+          {title && (
+            <h2
+              class:list={[
+                'mt-3 font-display text-3xl font-semibold sm:text-4xl',
+                tone === 'ink' && '!text-white',
+              ]}
+            >
+              {title}
+            </h2>
+          )}
+          {lede && (
+            <p
+              class:list={[
+                'mt-4 max-w-2xl text-lg leading-relaxed',
+                align === 'center' && 'mx-auto',
+                tone === 'ink' ? 'text-indigo-ink-200' : 'text-ink-700',
+              ]}
+            >
+              {lede}
+            </p>
+          )}
+        </header>
+      )
+    }
+
+    <div class:list={[(eyebrow || title || lede) && 'mt-10 sm:mt-12']}>
+      <slot />
+    </div>
+  </div>
+</section>
