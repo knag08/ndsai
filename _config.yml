@@ -1,0 +1,12 @@
+# GitHub Pages runs Jekyll over this repository before publishing, and for
+# branch deployments it does so whether or not a .nojekyll file exists.
+#
+# Everything Pages needs to serve is already final, built output — nothing here
+# wants Liquid or Markdown processing. This file simply keeps that Jekyll pass
+# out of the way by hiding the Astro source from it: each .astro file opens with
+# a `---` fence, which Jekyll reads as YAML front matter and fails to parse.
+
+exclude:
+  - site # Astro source. Its `---` fences are not YAML.
+  - README.md # Notes for maintainers, not a page of the site.
+  - .published-manifest

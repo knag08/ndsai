@@ -38,7 +38,13 @@ function legacyMedia() {
 export default defineConfig({
   site: 'https://ndsai.org',
   trailingSlash: 'always',
-  build: { format: 'directory' },
+  build: {
+    format: 'directory',
+    // Not the default `_astro`: GitHub Pages runs Jekyll over the published branch,
+    // and Jekyll drops every underscore-prefixed directory. That would silently
+    // strip the stylesheet and fonts from an otherwise successful deploy.
+    assets: 'assets',
+  },
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss(), legacyMedia()] },
 
