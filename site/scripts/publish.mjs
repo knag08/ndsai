@@ -29,6 +29,14 @@ function walk(dir, base = dir) {
   });
 }
 
+/**
+ * Without this, GitHub Pages runs the published files through Jekyll — which drops
+ * every underscore-prefixed directory (that is all of _astro/) and fails outright
+ * trying to read the `---` fence at the top of each .astro file as YAML.
+ * It normally arrives via public/; written here too so it cannot go missing.
+ */
+fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
+
 const files = walk(distDir).sort();
 const previous = fs.existsSync(manifestPath)
   ? fs.readFileSync(manifestPath, 'utf8').split('\n').filter(Boolean)
