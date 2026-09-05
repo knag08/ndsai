@@ -10,7 +10,8 @@
     "publish": "astro build && node scripts/publish.mjs",
     "redirects": "node scripts/make-redirects.mjs",
     "images": "node scripts/prepare-images.mjs",
-    "check": "node scripts/check-pages.mjs"
+    "check": "node scripts/check-pages.mjs",
+    "favicons": "node scripts/make-favicons.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

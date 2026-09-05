@@ -2,6 +2,7 @@
 404.html
 about/index.html
 announcements.html
+apple-touch-icon.png
 assets/Base.C15q5nW-.css
 assets/cormorant-garamond-latin-400-italic.BLh7T8o8.woff
 assets/cormorant-garamond-latin-400-italic.Dc_OZ8oc.woff2
@@ -37,7 +38,11 @@ contact/index.html
 easwaramma-day/index.html
 education.html
 eswarammaday.html
-favicon.svg
+favicon-16.png
+favicon-32.png
+favicon.ico
+icon-192.png
+icon-512.png
 img/bhajans/akhanda-bhajan-history.webp
 img/brand/logo-balvikas.webp
 img/brand/logo-sai-center.webp
@@ -145,6 +150,7 @@ seva.html
 seva/index.html
 seva/narayana-seva/index.html
 seva/service-projects/index.html
+site.webmanifest
 sitemap-0.xml
 sitemap-index.xml
 veda-class.html
