@@ -6,6 +6,7 @@ import Quote from '../../components/Quote.astro';
 import Card from '../../components/Card.astro';
 import Button from '../../components/Button.astro';
 import { groups } from '../../data/curriculum';
+import { academicYear } from '../../data/calendar';
 
 const objectives = {
   general: [
@@ -172,7 +173,7 @@ const objectives = {
         What each class studies, from First Steps to God in Kindergarten through Bhaja Govindam in 10th grade.
       </Card>
       <Card title="Class calendar" href="/balvikas/calendar/">
-        Six units across the year, with class, presentation and seva dates for 2025–26.
+        Six units across the year, with class, presentation and seva dates for {academicYear}.
       </Card>
       <Card title="Veda classes" href="/balvikas/veda-classes/">
         Chanting taught for over a decade by an alumni parent, open to children in 4th grade and above.

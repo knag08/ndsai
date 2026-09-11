@@ -1,3 +1,5 @@
+import { academicYear } from './calendar';
+
 export const site = {
   name: 'North Dallas Sathya Sai BalVikas',
   shortName: 'NDSAI',
@@ -27,7 +29,7 @@ export const nav: NavLink[] = [
     children: [
       { label: 'The Programme', href: '/balvikas/', description: 'Values, objectives, timings and admission' },
       { label: 'Curriculum by Grade', href: '/balvikas/curriculum/', description: 'What each class studies, KG through 10th' },
-      { label: 'Calendar', href: '/balvikas/calendar/', description: 'Class dates for the 2025–26 year' },
+      { label: 'Calendar', href: '/balvikas/calendar/', description: `Class dates for the ${academicYear} year` },
       { label: 'Veda Classes', href: '/balvikas/veda-classes/', description: 'Chanting for 4th grade and above' },
       { label: 'Student Voices', href: '/balvikas/student-voices/', description: 'Reflections written by our students' },
       { label: 'Teacher Resources', href: '/balvikas/teacher-resources/', description: 'Curated listening for Bal Vikas teachers' },

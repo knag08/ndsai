@@ -1,71 +1,178 @@
-export const academicYear = '2025–26';
+export const academicYear = '2026–27';
 
-export type Unit = {
-  unit: number;
-  sessions: { label: string; date: string; iso: string }[];
+/**
+ * The Bal Vikas year, transcribed from the centre's 2026–2027 calendar sheet.
+ *
+ * Last year's calendar was a tidy grid — six units, each with three classes, a
+ * parent participation session, a presentation and a seva. This one is not that
+ * shape: units vary in length, holidays are called out on the sheet as their own
+ * rows, the year opens with a parent orientation, and Unit 6 is the Easwaramma
+ * Day programme rather than teaching, running on Saturdays and Sundays with a
+ * Friday stage rehearsal. So the data models what the sheet actually says rather
+ * than forcing it back into columns.
+ */
+
+export type SessionKind =
+  | 'orientation'
+  | 'class'
+  | 'presentation'
+  | 'seva'
+  | 'celebration'
+  | 'holiday'
+  | 'casting'
+  | 'practice'
+  | 'rehearsal'
+  | 'performance';
+
+export type Session = {
+  iso: string;
+  /** 'Aug 9, 2026' */
+  date: string;
+  /** 'Sunday' — derived, so it can never drift from the date. */
+  day: string;
+  kind: SessionKind;
+  label: string;
+  /** Why there is no class, where the sheet gives a reason. */
+  note?: string;
 };
 
-const columns = ['Class 1', 'Class 2', 'Class 3', 'Parent Participation', 'Presentation', 'Seva'];
+export type Block = {
+  title: string;
+  subtitle?: string;
+  sessions: Session[];
+};
 
-function unit(n: number, dates: [string, string][]): Unit {
-  return {
-    unit: n,
-    sessions: dates.map(([date, iso], i) => ({ label: columns[i], date, iso })),
-  };
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+/**
+ * Both formatters split the ISO string and rebuild the date in UTC rather than
+ * passing it to `new Date(iso)`, which is parsed as midnight UTC and then shown
+ * in the reader's zone — turning every date into the day before for anyone west
+ * of Greenwich. The centre is in Texas, so that would be every single one.
+ */
+function display(iso: string): string {
+  const [year, month, day] = iso.split('-').map(Number);
+  return `${MONTHS[month - 1]} ${day}, ${year}`;
 }
 
-export const units: Unit[] = [
-  unit(1, [
-    ['Aug 17, 2025', '2025-08-17'],
-    ['Aug 24, 2025', '2025-08-24'],
-    ['Aug 31, 2025', '2025-08-31'],
-    ['Sep 7, 2025', '2025-09-07'],
-    ['Sep 14, 2025', '2025-09-14'],
-    ['Sep 21, 2025', '2025-09-21'],
-  ]),
-  unit(2, [
-    ['Sep 28, 2025', '2025-09-28'],
-    ['Oct 5, 2025', '2025-10-05'],
-    ['Oct 12, 2025', '2025-10-12'],
-    ['Oct 19, 2025', '2025-10-19'],
-    ['Oct 26, 2025', '2025-10-26'],
-    ['Nov 2, 2025', '2025-11-02'],
-  ]),
-  unit(3, [
-    ['Nov 9, 2025', '2025-11-09'],
-    ['Nov 16, 2025', '2025-11-16'],
-    ['Nov 30, 2025', '2025-11-30'],
-    ['Dec 7, 2025', '2025-12-07'],
-    ['Dec 14, 2025', '2025-12-14'],
-    ['Dec 21, 2025', '2025-12-21'],
-  ]),
-  unit(4, [
-    ['Jan 4, 2026', '2026-01-04'],
-    ['Jan 11, 2026', '2026-01-11'],
-    ['Jan 18, 2026', '2026-01-18'],
-    ['Jan 25, 2026', '2026-01-25'],
-    ['Feb 1, 2026', '2026-02-01'],
-    ['Feb 8, 2026', '2026-02-08'],
-  ]),
-  unit(5, [
-    ['Feb 15, 2026', '2026-02-15'],
-    ['Feb 22, 2026', '2026-02-22'],
-    ['Mar 1, 2026', '2026-03-01'],
-    ['Mar 8, 2026', '2026-03-08'],
-    ['Mar 22, 2026', '2026-03-22'],
-    ['Mar 29, 2026', '2026-03-29'],
-  ]),
-  unit(6, [
-    ['Apr 5, 2026', '2026-04-05'],
-    ['Apr 12, 2026', '2026-04-12'],
-    ['Apr 19, 2026', '2026-04-19'],
-    ['Apr 26, 2026', '2026-04-26'],
-    ['May 3, 2026', '2026-05-03'],
-    ['May 10, 2026', '2026-05-10'],
-  ]),
+function weekday(iso: string): string {
+  const [year, month, day] = iso.split('-').map(Number);
+  return WEEKDAYS[new Date(Date.UTC(year, month - 1, day)).getUTCDay()];
+}
+
+function session(iso: string, kind: SessionKind, label: string, note?: string): Session {
+  return { iso, date: display(iso), day: weekday(iso), kind, label, note };
+}
+
+export const blocks: Block[] = [
+  {
+    title: 'New Parent Orientation',
+    sessions: [
+      session('2026-08-02', 'orientation', 'New Parent Orientation', 'Alpha Montessori House, 10:00 am'),
+    ],
+  },
+  {
+    title: 'Unit 1',
+    sessions: [
+      session('2026-08-09', 'class', 'Class'),
+      session('2026-08-16', 'class', 'Class'),
+      session('2026-08-23', 'class', 'Class'),
+      session('2026-08-30', 'class', 'Class'),
+      session('2026-09-06', 'holiday', 'No class', 'Labor Day'),
+      session('2026-09-13', 'presentation', 'Presentation'),
+      session('2026-09-20', 'seva', 'Seva'),
+    ],
+  },
+  {
+    title: 'Unit 2',
+    sessions: [
+      session('2026-09-27', 'class', 'Class'),
+      session('2026-10-04', 'class', 'Class'),
+      session('2026-10-11', 'class', 'Class'),
+      session('2026-10-18', 'class', 'Class'),
+      session('2026-10-25', 'presentation', 'Presentation'),
+      session('2026-11-01', 'seva', 'Seva'),
+    ],
+  },
+  {
+    title: 'Unit 3',
+    sessions: [
+      session('2026-11-08', 'celebration', 'Akhanda Bhajans / Deepavali celebration'),
+      session('2026-11-15', 'class', 'Class'),
+      session('2026-11-22', 'class', 'Class'),
+      session('2026-11-29', 'holiday', 'No class', 'Thanksgiving'),
+      session('2026-12-06', 'class', 'Class'),
+      session('2026-12-13', 'presentation', 'Presentation'),
+      session('2026-12-20', 'seva', 'Seva'),
+    ],
+  },
+  {
+    title: 'Winter Break',
+    sessions: [
+      session('2026-12-27', 'holiday', 'No class', 'Christmas break'),
+      session('2027-01-03', 'holiday', 'No class', 'Christmas break'),
+    ],
+  },
+  {
+    title: 'Unit 4',
+    sessions: [
+      session('2027-01-10', 'class', 'Class'),
+      session('2027-01-17', 'class', 'Class'),
+      session('2027-01-24', 'class', 'Class'),
+      session('2027-01-31', 'class', 'Class'),
+      session('2027-02-07', 'presentation', 'Presentation'),
+      session('2027-02-14', 'seva', 'Seva'),
+    ],
+  },
+  {
+    title: 'Unit 5',
+    sessions: [
+      session('2027-02-21', 'class', 'Class'),
+      session('2027-02-28', 'class', 'Class'),
+      session('2027-03-07', 'class', 'Class'),
+      session('2027-03-14', 'holiday', 'No class', 'Spring break'),
+      session('2027-03-21', 'class', 'Class'),
+      session('2027-03-28', 'presentation', 'Presentation'),
+      session('2027-04-04', 'seva', 'Seva'),
+    ],
+  },
+  {
+    title: 'Unit 6',
+    subtitle: 'Easwaramma Day programme',
+    sessions: [
+      session('2027-04-03', 'casting', 'Casting'),
+      session('2027-04-10', 'practice', 'Practice'),
+      session('2027-04-11', 'practice', 'Practice'),
+      session('2027-04-17', 'practice', 'Practice'),
+      session('2027-04-18', 'practice', 'Practice'),
+      session('2027-04-24', 'practice', 'Practice'),
+      session('2027-04-25', 'practice', 'Practice'),
+      session('2027-05-01', 'practice', 'Practice'),
+      session('2027-05-02', 'practice', 'Practice'),
+      session('2027-05-07', 'rehearsal', 'Stage rehearsal'),
+      session('2027-05-09', 'performance', 'Easwaramma Day programme'),
+    ],
+  },
 ];
 
-export const mandatoryEvents = [
-  { date: 'Nov 23, 2025', iso: '2025-11-23', title: 'Swami Birthday Celebrations' },
-  { date: 'May 10, 2026', iso: '2026-05-10', title: 'Easwaramma Day' },
+/** The two dates on the sheet that are not an ordinary Sunday morning. */
+export const keyDates = [
+  {
+    iso: '2026-08-02',
+    date: 'Aug 2, 2026',
+    title: 'New Parent Orientation',
+    detail: 'Alpha Montessori House, 10:00 am',
+  },
+  {
+    iso: '2027-05-09',
+    date: 'May 9, 2027',
+    title: 'Easwaramma Day programme',
+    detail: 'Preceded by casting, eight practices and a Friday stage rehearsal',
+  },
 ] as const;
+
+/** Every session in the year, in order — used to work out what comes next. */
+export const allSessions: (Session & { block: string })[] = blocks
+  .flatMap((block) => block.sessions.map((s) => ({ ...s, block: block.title })))
+  .sort((a, b) => a.iso.localeCompare(b.iso));
