@@ -1,0 +1,263 @@
+---
+/**
+ * A Chinna Katha for a child — one of the little stories Bhagawan told in His
+ * discourses to carry a teaching. Each device keeps its own story, exactly as
+ * the message page does, and a child can ask for another whenever they like.
+ */
+import Base from '../../../layouts/Base.astro';
+import CentenaryLinks from '../../../components/CentenaryLinks.astro';
+import { stories, storySource } from '../../../data/stories';
+
+const fallback = stories[0];
+---
+
+<Base
+  title="A Story for You"
+  description="One of a hundred Chinna Katha — the little stories Bhagawan Sri Sathya Sai Baba told to carry a teaching — for children at the centenary celebration."
+  image="/img/centenary/centenary-emblem.webp"
+>
+  <section class="relative isolate overflow-hidden bg-indigo-ink-900">
+    <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-saffron-500 via-saffron-300 to-saffron-500"></div>
+
+    <CentenaryLinks here="story" />
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute top-1/3 left-1/2 -z-10 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(238,148,56,0.24),rgba(238,148,56,0))]"
+    >
+    </div>
+
+    <div class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+      <div class="text-center">
+        <img
+          src="/img/centenary/centenary-emblem.webp"
+          alt="Centenary emblem marking one hundred years of Bhagawan Sri Sathya Sai Baba"
+          width="900"
+          height="900"
+          class="mx-auto w-32 sm:w-40"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <p class="mt-6 text-[0.7rem] font-semibold tracking-[0.2em] text-saffron-300 uppercase">
+          Chinna Katha &middot; a little story
+        </p>
+        <h1 class="mt-4 font-display text-4xl font-semibold !text-white sm:text-5xl" id="stage-heading">
+          A story for you
+        </h1>
+        <p class="mt-4 text-base leading-relaxed text-indigo-ink-200" id="stage-lede">
+          One of the stories Swami told, to be read aloud and talked about together.
+        </p>
+      </div>
+
+      <article
+        id="story-card"
+        data-state="own"
+        class="stage-card relative mt-10 rounded-3xl bg-white/[0.07] px-6 py-9 ring-1 ring-white/15 backdrop-blur-sm sm:px-10 sm:py-11"
+      >
+        <h2 class="font-display text-2xl font-semibold !text-white sm:text-[1.75rem]" id="story-title">
+          {fallback.title}
+        </h2>
+
+        <!-- Left-aligned and roomy: this is read aloud, not glanced at. -->
+        <p
+          class="mt-5 text-[1.05rem] leading-[1.8] text-indigo-ink-100 sm:text-[1.1rem]"
+          id="story-text"
+        >
+          {fallback.text}
+        </p>
+
+        <p class="mt-6 text-sm font-semibold tracking-wide text-saffron-300">
+          &mdash; Bhagawan Sri Sathya Sai Baba
+          <span class="ml-1 font-normal text-indigo-ink-300">{storySource}</span>
+        </p>
+
+        <div class="mt-6 flex items-center gap-2">
+          <button
+            type="button"
+            id="share-native"
+            hidden
+            title="Share this story"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full text-indigo-ink-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+          >
+            <span class="sr-only">Share this story</span>
+            <svg class="h-[1.1rem] w-[1.1rem]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M8 10.5V2m0 0L5 5m3-3 3 3M3 9v3.5A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V9"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <button
+            type="button"
+            id="share-copy"
+            title="Copy"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full text-indigo-ink-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+          >
+            <span class="sr-only" id="share-copy-label">Copy</span>
+            <svg class="h-[1.1rem] w-[1.1rem]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M5.5 5.5v-2A1 1 0 0 1 6.5 2.5h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2M3.5 5.5h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1Z"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+      </article>
+
+      <p id="share-status" role="status" aria-live="polite" class="mt-3 h-5 text-center text-sm text-saffron-200"></p>
+
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+        <button
+          type="button"
+          id="draw-another"
+          class="font-semibold text-saffron-300 underline decoration-saffron-500/50 underline-offset-4 transition-colors duration-200 hover:text-saffron-200"
+        >
+          Tell me another story
+        </button>
+        <button
+          type="button"
+          id="draw-mine"
+          hidden
+          class="font-semibold text-indigo-ink-200 underline decoration-white/30 underline-offset-4 transition-colors duration-200 hover:text-white"
+        >
+          Back to my story
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <script id="story-data" type="application/json" is:inline set:html={JSON.stringify(stories)} />
+
+  <style>
+    :global(html.js) .stage-card {
+      opacity: 0;
+      animation: stage-card-reveal 0.4s ease 1.5s forwards;
+    }
+
+    :global(html.js) .stage-card.is-ready {
+      opacity: 1;
+      animation: none;
+    }
+
+    @keyframes stage-card-reveal {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      :global(html.js) .stage-card {
+        transform: translateY(12px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      :global(html.js) .stage-card.is-ready {
+        transform: none;
+      }
+    }
+  </style>
+</Base>
+
+<script>
+  import { anotherItem, linkTo, ownItem, wireCopy, wireShare } from '../../../scripts/centenary';
+
+  type Story = { id: string; title: string; text: string };
+
+  const SOURCE = 'Chinna Katha, Part I';
+
+  const data = document.getElementById('story-data');
+  const card = document.getElementById('story-card');
+  const titleEl = document.getElementById('story-title');
+  const textEl = document.getElementById('story-text');
+  const headingEl = document.getElementById('stage-heading');
+  const ledeEl = document.getElementById('stage-lede');
+  const statusEl = document.getElementById('share-status');
+  const anotherBtn = document.getElementById('draw-another');
+  const mineBtn = document.getElementById('draw-mine') as HTMLButtonElement | null;
+
+  if (data?.textContent && card && titleEl && textEl) {
+    try {
+      const stories: Story[] = JSON.parse(data.textContent);
+      const byId = new Map(stories.map((s) => [s.id, s]));
+      const STORE_KEY = 'ndsai-centenary-story-v1';
+
+      type State = 'own' | 'another' | 'shared';
+
+      const wording: Record<State, { heading: string; lede: string }> = {
+        own: {
+          heading: 'A story for you',
+          lede: 'One of the stories Swami told, to be read aloud and talked about together.',
+        },
+        another: {
+          heading: 'Another story',
+          lede: 'There are a hundred of them. Keep going for as long as you like.',
+        },
+        shared: {
+          heading: 'A story shared with you',
+          lede: 'Someone at the centenary celebration wanted you to read this one.',
+        },
+      };
+
+      let current: Story = stories[0];
+      let own: Story | null = null;
+
+      const shareText = (s: Story) =>
+        `${s.title}\n\n${s.text}\n— Bhagawan Sri Sathya Sai Baba, ${SOURCE}`;
+
+      function show(story: Story, state: State): void {
+        current = story;
+        card!.dataset.state = state;
+        titleEl!.textContent = story.title;
+        textEl!.textContent = story.text;
+        if (headingEl) headingEl.textContent = wording[state].heading;
+        if (ledeEl) ledeEl.textContent = wording[state].lede;
+        if (mineBtn) mineBtn.hidden = state === 'own';
+        if (statusEl) statusEl.textContent = '';
+      }
+
+      wireShare(document.getElementById('share-native'), () => ({
+        title: current.title,
+        text: shareText(current),
+        url: linkTo('s', current.id),
+      }));
+
+      wireCopy(
+        document.getElementById('share-copy'),
+        document.getElementById('share-copy-label'),
+        statusEl,
+        () => `${shareText(current)}\n\n${linkTo('s', current.id)}`,
+      );
+
+      anotherBtn?.addEventListener('click', () => {
+        show(anotherItem(stories, current.id, own?.id), 'another');
+        card!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      mineBtn?.addEventListener('click', () => {
+        if (!own) own = ownItem(stories, STORE_KEY);
+        show(own, 'own');
+        history.replaceState(null, '', location.pathname);
+        card!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      const asked = new URLSearchParams(location.search).get('s');
+      if (asked && byId.has(asked)) {
+        show(byId.get(asked)!, 'shared');
+      } else {
+        own = ownItem(stories, STORE_KEY);
+        show(own, 'own');
+      }
+    } catch {
+      /* The story rendered on the server is a real one; it stands. */
+    } finally {
+      card.classList.add('is-ready');
+    }
+  }
+</script>

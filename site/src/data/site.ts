@@ -46,6 +46,15 @@ export const nav: NavLink[] = [
   },
   { label: 'Bhajans', href: '/bhajans/' },
   {
+    label: 'Centenary',
+    href: '/centenary/',
+    children: [
+      { label: 'A Message for You', href: '/centenary/', description: 'One of a hundred passages from Swami’s own books' },
+      { label: 'A Story for a Child', href: '/centenary/story/', description: 'One of a hundred Chinna Katha, to read aloud' },
+      { label: 'One Hundred Years', href: '/centenary/timeline/', description: 'The life, 1926 to now, a moment at a time' },
+    ],
+  },
+  {
     label: 'Media',
     href: '/podcast/',
     children: [

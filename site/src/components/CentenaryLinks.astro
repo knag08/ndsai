@@ -1,0 +1,119 @@
+---
+/**
+ * The tab bar that ties the centenary pages together.
+ *
+ * It sits at the TOP of each page, directly under the site header, rather than
+ * at the foot: on the deck pages the foot is well below the fold, so a guest
+ * who landed from the QR code had no way of knowing the other pages existed
+ * without scrolling past a full-height card to find out.
+ *
+ * The page you are on is a label rather than a link, so there is never a link
+ * that goes nowhere.
+ */
+interface Props {
+  here: 'message' | 'story' | 'timeline' | 'facts';
+}
+
+const { here } = Astro.props;
+
+/**
+ * `/centenary/facts/` is deliberately absent — it is built and reachable at its
+ * address but set aside, not offered. `/centenary/qr/` is absent too: it is the
+ * printable material for whoever sets up the hall, not a page for guests.
+ * Add a row here to put either back.
+ */
+const links = [
+  { key: 'message', href: '/centenary/', label: 'Your message' },
+  { key: 'story', href: '/centenary/story/', label: 'A story' },
+  { key: 'timeline', href: '/centenary/timeline/', label: '100 years' },
+] as const;
+
+/** True when the page showing this bar is not one of the tabs above. */
+const offTabs = !links.some((link) => link.key === here);
+---
+
+<nav aria-label="Centenary pages" class="centenary-tabs">
+  <ul>
+    {
+      links.map((link) =>
+        link.key === here ? (
+          <li>
+            <span class="tab is-current" aria-current="page">
+              {link.label}
+            </span>
+          </li>
+        ) : (
+          <li>
+            <a class="tab" href={link.href}>
+              {link.label}
+            </a>
+          </li>
+        ),
+      )
+    }
+    {
+      /* A page that is not itself a tab still needs a way back in. */
+      offTabs && (
+        <li>
+          <span class="tab is-current" aria-current="page">
+            {here === 'facts' ? 'Do you know?' : 'This page'}
+          </span>
+        </li>
+      )
+    }
+  </ul>
+</nav>
+
+<style>
+  .centenary-tabs {
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .centenary-tabs ul {
+    display: flex;
+    justify-content: center;
+    /* Narrow phones get a scrollable strip rather than a wrapped, ragged row. */
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .centenary-tabs ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    display: block;
+    padding: 0.85rem 0.9rem;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-indigo-ink-200);
+    /* The underline is drawn on every tab so the row does not shift by a pixel
+       when the current one gains it. */
+    border-bottom: 2px solid transparent;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  @media (min-width: 420px) {
+    .tab {
+      padding-inline: 1.25rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  a.tab:hover {
+    color: #fff;
+    border-bottom-color: rgb(255 255 255 / 0.3);
+  }
+
+  .tab.is-current {
+    color: var(--color-saffron-300);
+    border-bottom-color: var(--color-saffron-500);
+  }
+</style>

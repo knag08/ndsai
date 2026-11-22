@@ -1,0 +1,344 @@
+---
+/**
+ * The page guests reach by scanning the QR code at the centenary celebration.
+ *
+ * Each device is given one of the hundred passages and keeps it: the same words
+ * come back on every later visit from that phone. From here a guest can also
+ * draw a passage to send to somebody else, read a Chinna Katha with a child, or
+ * browse the facts.
+ */
+import Base from '../../layouts/Base.astro';
+import CentenaryLinks from '../../components/CentenaryLinks.astro';
+import { messages } from '../../data/messages';
+
+/** Served so the page says something true even if the script never runs. */
+const fallback = messages[0];
+---
+
+<Base
+  title="A Message for You"
+  description="One hundred years of the Avatar. Scan, and receive a passage from Bhagawan Sri Sathya Sai Baba's own writings — yours to keep and to share."
+  image="/img/centenary/centenary-emblem.webp"
+>
+  <section class="relative isolate overflow-hidden bg-indigo-ink-900">
+    <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-saffron-500 via-saffron-300 to-saffron-500"></div>
+
+    <CentenaryLinks here="message" />
+
+    <!-- A warm glow behind the card, so it reads as lit rather than flat. -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(238,148,56,0.28),rgba(238,148,56,0))]"
+    >
+    </div>
+
+    <div class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 sm:py-20">
+      <img
+        src="/img/centenary/centenary-emblem.webp"
+        alt="Centenary emblem marking one hundred years of Bhagawan Sri Sathya Sai Baba"
+        width="900"
+        height="900"
+        class="mx-auto w-32 sm:w-40"
+        loading="eager"
+        fetchpriority="high"
+      />
+
+      <p class="mt-6 text-[0.7rem] font-semibold tracking-[0.2em] text-saffron-300 uppercase">
+        One hundred years of the Avatar &middot; 1926&ndash;2026
+      </p>
+
+      <h1 class="mt-4 font-display text-4xl font-semibold !text-white sm:text-5xl" id="stage-heading">
+        A message for you
+      </h1>
+
+      <p class="mt-4 text-base leading-relaxed text-indigo-ink-200" id="stage-lede">
+        Swami&rsquo;s own words, from His own books &mdash; drawn for you alone.
+      </p>
+
+      <!--
+        `data-state` says whose message is on the card: `own` (the visitor's),
+        `gift` (drawn for someone else) or `shared` (opened from a link).
+      -->
+      <figure
+        id="message-card"
+        data-state="own"
+        class="stage-card relative mx-auto mt-10 max-w-2xl rounded-3xl bg-white/[0.07] px-6 py-10 ring-1 ring-white/15 backdrop-blur-sm sm:px-10 sm:py-12"
+      >
+        <span
+          aria-hidden="true"
+          class="pointer-events-none absolute -top-5 left-4 font-display text-[7rem] leading-none text-white/10 select-none sm:left-7"
+          >&ldquo;</span
+        >
+
+        <!--
+          The passages are whole thoughts and vary a good deal in length, so the
+          type scales with the viewport rather than being fixed; a long one still
+          has to sit on a phone screen without becoming a wall.
+        -->
+        <blockquote
+          id="message-text"
+          class="message-body relative font-display !text-white italic"
+        >
+          {fallback.text}
+        </blockquote>
+
+        <figcaption class="relative mt-7 text-sm leading-relaxed">
+          <span class="block font-semibold tracking-wide text-saffron-300">
+            &mdash; Bhagawan Sri Sathya Sai Baba
+          </span>
+          <span class="mt-1 block text-indigo-ink-300" id="message-source">{fallback.source}</span>
+        </figcaption>
+
+        <!-- Quiet icon controls, inside the card where the words are. -->
+        <div class="relative mt-7 flex items-center justify-center gap-2">
+          <button
+            type="button"
+            id="share-native"
+            hidden
+            title="Share this message"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full text-indigo-ink-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+          >
+            <span class="sr-only">Share this message</span>
+            <svg class="h-[1.1rem] w-[1.1rem]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M8 10.5V2m0 0L5 5m3-3 3 3M3 9v3.5A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V9"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            id="share-copy"
+            title="Copy"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full text-indigo-ink-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+          >
+            <span class="sr-only" id="share-copy-label">Copy</span>
+            <svg class="h-[1.1rem] w-[1.1rem]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M5.5 5.5v-2A1 1 0 0 1 6.5 2.5h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2M3.5 5.5h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1Z"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+      </figure>
+
+      <p id="share-status" role="status" aria-live="polite" class="mt-3 h-5 text-sm text-saffron-200"></p>
+
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+        <button
+          type="button"
+          id="draw-gift"
+          class="font-semibold text-saffron-300 underline decoration-saffron-500/50 underline-offset-4 transition-colors duration-200 hover:text-saffron-200"
+        >
+          I need a message for someone else
+        </button>
+        <button
+          type="button"
+          id="draw-mine"
+          hidden
+          class="font-semibold text-indigo-ink-200 underline decoration-white/30 underline-offset-4 transition-colors duration-200 hover:text-white"
+        >
+          Back to my message
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!--
+    All hundred passages, so the page can draw one without asking a server.
+    Small enough to ship whole, and it means the page works the moment it loads,
+    even in a hall full of phones sharing one slow connection.
+  -->
+  <script id="message-data" type="application/json" is:inline set:html={JSON.stringify(messages)} />
+
+  <style>
+    /* The passages are whole thoughts, so they run from two lines to a dozen.
+       A short one wants to be large and centred like an inscription; a long one
+       set that way becomes a wall of italic. The script adds `is-long` past the
+       point where that happens, and the type steps down and goes ragged-right,
+       which is what long italic text needs to stay readable on a phone. */
+    .message-body {
+      font-size: 1.35rem;
+      line-height: 1.55;
+    }
+
+    .message-body.is-long {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      text-align: left;
+    }
+
+    @media (min-width: 640px) {
+      .message-body {
+        font-size: 1.6rem;
+        line-height: 1.5;
+      }
+
+      .message-body.is-long {
+        font-size: 1.25rem;
+        line-height: 1.7;
+      }
+    }
+
+    /* The card is faded in once the visitor's own message is in place, so nobody
+       sees the served fallback flick over to theirs. Gated on `html.js`, which
+       Base.astro sets inline in <head>: with no scripting the rule never applies
+       and the card is simply visible. */
+    :global(html.js) .stage-card {
+      opacity: 0;
+      /* Safety net, in CSS so that it holds even if the script never arrives:
+         the card comes up by itself after a moment. The message rendered on the
+         server is a real one and must never be trapped behind opacity 0.
+         (The reduced-motion rule in global.css shortens animations but leaves
+         delays alone, so this still fires there.) */
+      animation: stage-card-reveal 0.4s ease 1.5s forwards;
+    }
+
+    :global(html.js) .stage-card.is-ready {
+      opacity: 1;
+      animation: none;
+    }
+
+    @keyframes stage-card-reveal {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      :global(html.js) .stage-card {
+        transform: translateY(12px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      :global(html.js) .stage-card.is-ready {
+        transform: none;
+      }
+    }
+  </style>
+</Base>
+
+<script>
+  import {
+    anotherItem,
+    linkTo,
+    ownItem,
+    wireCopy,
+    wireShare,
+  } from '../../scripts/centenary';
+
+  type Message = { id: string; text: string; source: string };
+
+  const data = document.getElementById('message-data');
+  const card = document.getElementById('message-card');
+  const textEl = document.getElementById('message-text');
+  const sourceEl = document.getElementById('message-source');
+  const headingEl = document.getElementById('stage-heading');
+  const ledeEl = document.getElementById('stage-lede');
+  const statusEl = document.getElementById('share-status');
+  const giftBtn = document.getElementById('draw-gift');
+  const mineBtn = document.getElementById('draw-mine') as HTMLButtonElement | null;
+
+  if (data?.textContent && card && textEl && sourceEl) {
+    try {
+      const messages: Message[] = JSON.parse(data.textContent);
+      const byId = new Map(messages.map((m) => [m.id, m]));
+
+      /** Versioned, so the pool could be replaced one day without handing
+          somebody an id that no longer exists. */
+      const STORE_KEY = 'ndsai-centenary-message-v2';
+
+      type State = 'own' | 'gift' | 'shared';
+
+      const wording: Record<State, { heading: string; lede: string }> = {
+        own: {
+          heading: 'A message for you',
+          lede: 'Swami’s own words, from His own books — drawn for you alone.',
+        },
+        gift: {
+          heading: 'A message to pass on',
+          lede: 'Drawn for someone who could not be here. Send it to them.',
+        },
+        shared: {
+          heading: 'A message shared with you',
+          lede: 'Someone at the centenary celebration wanted you to have these words.',
+        },
+      };
+
+      let current: Message = messages[0];
+      let own: Message | null = null;
+
+      const shareText = (m: Message) =>
+        `“${m.text}”\n— Bhagawan Sri Sathya Sai Baba, ${m.source}`;
+      const fullText = () => `${shareText(current)}\n\n${linkTo('m', current.id)}`;
+
+      function show(message: Message, state: State): void {
+        current = message;
+        card!.dataset.state = state;
+        textEl!.textContent = message.text;
+        // Past roughly four lines on a phone, large centred italic stops being
+        // readable; see the `is-long` rule in the stylesheet above.
+        textEl!.classList.toggle('is-long', message.text.length > 240);
+        sourceEl!.textContent = message.source;
+        if (headingEl) headingEl.textContent = wording[state].heading;
+        if (ledeEl) ledeEl.textContent = wording[state].lede;
+        if (mineBtn) mineBtn.hidden = state === 'own';
+        if (giftBtn) {
+          giftBtn.textContent =
+            state === 'own' ? 'I need a message for someone else' : 'Draw a different one';
+        }
+        if (statusEl) statusEl.textContent = '';
+      }
+
+      wireShare(document.getElementById('share-native'), () => ({
+        title: 'A message from Bhagawan Sri Sathya Sai Baba',
+        text: shareText(current),
+        url: linkTo('m', current.id),
+      }));
+
+      wireCopy(
+        document.getElementById('share-copy'),
+        document.getElementById('share-copy-label'),
+        statusEl,
+        fullText,
+      );
+
+      giftBtn?.addEventListener('click', () => {
+        show(anotherItem(messages, current.id, own?.id), 'gift');
+        card!.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      mineBtn?.addEventListener('click', () => {
+        if (!own) own = ownItem(messages, STORE_KEY);
+        show(own, 'own');
+        // Drop ?m= from the address bar, so a reload lands on their own message.
+        history.replaceState(null, '', location.pathname);
+        card!.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      const asked = new URLSearchParams(location.search).get('m');
+      if (asked && byId.has(asked)) {
+        // Opened from a link somebody sent. Their message is shown, and the
+        // visitor's own is left undrawn until they ask for it.
+        show(byId.get(asked)!, 'shared');
+      } else {
+        own = ownItem(messages, STORE_KEY);
+        show(own, 'own');
+      }
+    } catch {
+      // Whatever went wrong, the message rendered on the server is a real one.
+      // Far better that a guest reads that than an empty card.
+    } finally {
+      card.classList.add('is-ready');
+    }
+  }
+</script>

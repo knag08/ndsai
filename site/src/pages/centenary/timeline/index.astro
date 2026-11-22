@@ -1,0 +1,398 @@
+---
+/**
+ * One hundred years, one moment to a card, swiped left and right.
+ *
+ * The same deck as the facts page — see `createDeck` in scripts/centenary.ts —
+ * with one deliberate difference: these cards are never shuffled. The order is
+ * the point. Swiping left to right walks a visitor through the century, and the
+ * bar underneath fills as the years pass.
+ *
+ * Text only, by choice: the photographs available for these events are small,
+ * and a soft upscaled picture would say less than the words do.
+ */
+import Base from '../../../layouts/Base.astro';
+import CentenaryLinks from '../../../components/CentenaryLinks.astro';
+import { eras, momentCount } from '../../../data/timeline';
+
+/** Flattened in order, each moment carrying the era it belongs to. */
+const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, era: era.title })));
+---
+
+<Base
+  title="One Hundred Years"
+  description="The life of Bhagawan Sri Sathya Sai Baba, year by year — from a thatched house in Puttaparthi in 1926 to the schools, hospitals and water that followed."
+  image="/img/centenary/centenary-emblem.webp"
+>
+  <section class="relative isolate overflow-hidden bg-indigo-ink-900">
+    <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-saffron-500 via-saffron-300 to-saffron-500"></div>
+
+    <CentenaryLinks here="timeline" />
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(238,148,56,0.26),rgba(238,148,56,0))]"
+    >
+    </div>
+
+    <div class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-12">
+      <div class="text-center">
+        <img
+          src="/img/centenary/centenary-emblem.webp"
+          alt="Centenary emblem marking one hundred years of Bhagawan Sri Sathya Sai Baba"
+          width="900"
+          height="900"
+          class="mx-auto w-24 sm:w-28"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <h1 class="mt-3 font-display text-3xl font-semibold !text-white sm:text-5xl">One hundred years</h1>
+        <p class="mt-1.5 text-[0.9rem] leading-relaxed text-indigo-ink-200">
+          {momentCount} moments. Swipe through them.
+        </p>
+      </div>
+
+      <div
+        id="timeline-deck"
+        class="deck mt-6"
+        tabindex="0"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label="One hundred years, one moment to a card"
+      >
+        {
+          moments.map((moment, index) => (
+            <article
+              class:list={['deck-card', moment.major && 'is-major']}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${moment.year}, ${index + 1} of ${moments.length}`}
+            >
+              <div class:list={['deck-card-inner', moment.image && 'has-image']}>
+                {
+                  moment.image && (
+                    <img
+                      class="card-image"
+                      src={moment.image}
+                      alt={moment.alt}
+                      width="624"
+                      height="461"
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                  )
+                }
+
+                <div class="card-text">
+                  <p class="card-era">{moment.era}</p>
+
+                  <p class="card-year">
+                  <span class="card-year-number">{moment.year}</span>
+                  {moment.when && <span class="card-when">{moment.when}</span>}
+                </p>
+
+                  <h2 class="card-title">{moment.title}</h2>
+                  <p class="card-body">{moment.body}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div id="deck-controls" class="deck-controls mt-6" hidden>
+        <button type="button" id="deck-prev" class="deck-button" aria-label="Earlier">
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <p class="deck-counter" role="status" aria-live="polite">
+          <span id="deck-position">1</span><span class="text-indigo-ink-400"> / {moments.length}</span>
+        </p>
+
+        <button type="button" id="deck-next" class="deck-button" aria-label="Later">
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- The bar reads as the century: 1926 at one end, 2026 at the other. -->
+      <div class="mt-5">
+        <div class="deck-progress" aria-hidden="true">
+          <div class="deck-progress-bar" id="deck-progress-bar"></div>
+        </div>
+        <div class="mt-2 flex justify-between text-[0.7rem] font-semibold tracking-[0.12em] text-indigo-ink-400 tabular-nums">
+          <span>1926</span>
+          <span>2026</span>
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-xs leading-relaxed text-indigo-ink-300">
+        Dates and events are drawn from the life history and project records published by the
+        <a
+          href="https://www.srisathyasai.org/pages/sai-life-history-timeline.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-indigo-ink-200 underline decoration-white/30 underline-offset-2 hover:text-saffron-300"
+          >Sri Sathya Sai Central Trust</a
+        >, which tells each of them at far greater length than there is room for here.
+      </p>
+
+    </div>
+  </section>
+
+  <style>
+    /* ------------------------------------------------------------ the deck */
+
+    .deck {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      /* Room for the focus ring, which the overflow would otherwise clip. */
+      padding: 0.25rem;
+      margin-inline: -0.25rem;
+    }
+
+    .deck::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .deck {
+        scroll-behavior: auto;
+      }
+    }
+
+    .deck-card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+    }
+
+    .deck-card-inner {
+      display: flex;
+      flex-direction: column;
+      /* Centred, because the cards are a fixed height and the entries are not:
+         a two-line one would otherwise sit marooned at the top of the card. */
+      justify-content: center;
+      height: 100%;
+      /* Every card the same height, so the page does not jump as you swipe. */
+      min-height: 19rem;
+      border-radius: 1.5rem;
+      background: rgb(255 255 255 / 0.1);
+      box-shadow:
+        inset 0 0 0 1px rgb(255 255 255 / 0.2),
+        0 12px 30px rgb(10 14 36 / 0.35);
+      padding: 1.5rem 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .deck-card-inner {
+        min-height: 19rem;
+        padding: 2.5rem;
+      }
+    }
+
+    /* The twelve moments the century turns on get a saffron edge. */
+    .deck-card.is-major .deck-card-inner {
+      box-shadow:
+        inset 0 0 0 1px rgb(238 148 56 / 0.5),
+        0 12px 30px rgb(10 14 36 / 0.35);
+    }
+
+    /*
+      The paintings run at their own 624x461 — shown at the card's width, which
+      is about 300px on a phone, so the source is roughly the 2x a retina screen
+      asks for. Never set a width here larger than the file.
+    */
+    /*
+      The paintings run at their own 624x461 and are shown at that shape. An
+      earlier version capped the height and let `cover` crop the difference,
+      which on a wide card turned a 4:3 painting into a letterbox strip and cut
+      the subject's head off — a sharp picture of the wrong thing.
+
+      Height is therefore never fixed. On a phone the painting is the width of
+      the card; on anything wider the WIDTH is capped instead and the picture
+      centred, so a 900px card does not get a 660px-tall image.
+    */
+    .card-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 624 / 461;
+      margin-bottom: 1.1rem;
+      border-radius: 0.875rem;
+      background: rgb(255 255 255 / 0.06);
+    }
+
+    @media (min-width: 640px) {
+      .card-image {
+        width: auto;
+        max-width: 25rem;
+        margin-inline: auto;
+      }
+    }
+
+    /*
+      On a wide card, stacking wastes the width and makes the card taller than
+      the screen. Side by side instead: the painting holds one column at a
+      sensible size and the words sit beside it.
+    */
+    @media (min-width: 768px) {
+      .deck-card-inner.has-image {
+        display: grid;
+        grid-template-columns: 20rem 1fr;
+        align-items: center;
+        column-gap: 2rem;
+      }
+
+      .has-image .card-image {
+        max-width: none;
+        width: 100%;
+        margin: 0;
+      }
+
+      /* The text column is the grid's second cell; keep it as one flow. */
+      .has-image .card-text {
+        min-width: 0;
+      }
+    }
+
+    .card-era {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-indigo-ink-300);
+    }
+
+    .card-year {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .card-year-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--color-saffron-400);
+      /* Cormorant sets figures old-style by default, which turns a year into a
+         row of squiggles. These have to read as numbers. */
+      font-variant-numeric: lining-nums;
+    }
+
+    .card-when {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-indigo-ink-200);
+    }
+
+    .card-title {
+      margin-top: 0.75rem;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .card-body {
+      margin-top: 0.75rem;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: var(--color-indigo-ink-100);
+    }
+
+    @media (min-width: 640px) {
+      .card-title {
+        font-size: 1.9rem;
+      }
+
+      .card-body {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* ---------------------------------------------------------- the controls */
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+
+    .deck-button {
+      display: inline-flex;
+      height: 2.75rem;
+      width: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.25);
+      transition: background-color 0.2s ease;
+    }
+
+    .deck-button:hover:not(:disabled) {
+      background: rgb(255 255 255 / 0.12);
+    }
+
+    .deck-button:disabled {
+      opacity: 0.3;
+    }
+
+    .deck-counter {
+      min-width: 5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .deck-progress {
+      height: 2px;
+      border-radius: 9999px;
+      background: rgb(255 255 255 / 0.12);
+    }
+
+    .deck-progress-bar {
+      height: 100%;
+      width: 1%;
+      border-radius: 9999px;
+      background: var(--color-saffron-400);
+      transition: width 0.25s ease;
+    }
+  </style>
+
+  <script>
+    import { createDeck } from '../../../scripts/centenary';
+
+    const deck = document.getElementById('timeline-deck');
+    const controls = document.getElementById('deck-controls');
+
+    if (deck) {
+      // No shuffle here, unlike the facts deck: the order is the whole point.
+      if (controls) (controls as HTMLElement).hidden = false;
+
+      createDeck({
+        deck,
+        prev: document.getElementById('deck-prev'),
+        next: document.getElementById('deck-next'),
+        position: document.getElementById('deck-position'),
+        bar: document.getElementById('deck-progress-bar'),
+      });
+    }
+  </script>
+</Base>

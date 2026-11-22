@@ -1,0 +1,340 @@
+---
+/**
+ * "Do you know?" — a hundred published facts about Bhagawan and the work carried
+ * out in His name, one to a card, swiped through left and right.
+ *
+ * The deck is a scroll-snapping row, so the swipe is the browser's own: it works
+ * with a finger, a trackpad, the arrow keys and the buttons, and it still works
+ * if the script never runs. The script only shuffles the order, keeps the
+ * counter in step, and enables the buttons.
+ */
+import Base from '../../../layouts/Base.astro';
+import CentenaryLinks from '../../../components/CentenaryLinks.astro';
+import { facts } from '../../../data/facts';
+
+/** Named under the deck, so the reader knows whose claims these are. */
+const publishers = [...new Set(facts.map((f) => f.source))];
+---
+
+<Base
+  title="Do You Know?"
+  description="One hundred published facts about Bhagawan Sri Sathya Sai Baba and the work carried out in His name — water, hospitals, schools and relief — each with the source it is published in."
+  image="/img/centenary/centenary-emblem.webp"
+  noindex
+>
+  <section class="relative isolate overflow-hidden bg-indigo-ink-900">
+    <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-saffron-500 via-saffron-300 to-saffron-500"></div>
+
+    <CentenaryLinks here="facts" />
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(238,148,56,0.26),rgba(238,148,56,0))]"
+    >
+    </div>
+
+    <!-- The header is kept deliberately short: the card and its controls should
+         both be on screen on a phone without scrolling. -->
+    <div class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-12">
+      <div class="text-center">
+        <img
+          src="/img/centenary/centenary-emblem.webp"
+          alt="Centenary emblem marking one hundred years of Bhagawan Sri Sathya Sai Baba"
+          width="900"
+          height="900"
+          class="mx-auto w-24 sm:w-28"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <h1 class="mt-3 font-display text-3xl font-semibold !text-white sm:text-5xl">Do you know?</h1>
+        <p class="mx-auto mt-2 max-w-md text-[0.95rem] leading-relaxed text-indigo-ink-200">
+          A hundred things that were built, dug, laid and given away.
+        </p>
+      </div>
+
+      <!--
+        The deck itself. `tabindex` so the arrow keys reach it, and an aria-label
+        so it is announced as something to move through rather than a blank box.
+      -->
+      <div
+        id="facts-deck"
+        class="deck mt-6"
+        tabindex="0"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label="One hundred facts, one to a card"
+      >
+        {
+          facts.map((fact, index) => (
+            <article
+              class="deck-card"
+              data-fact-id={fact.id}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`Fact ${index + 1} of ${facts.length}`}
+            >
+              <div class="deck-card-inner">
+                <p class="deck-eyebrow" data-card-number aria-hidden="true">
+                  {index + 1}
+                </p>
+                <p class="deck-text">{fact.text}</p>
+                <p class="deck-source">
+                  <a href={fact.url} target="_blank" rel="noopener noreferrer">{fact.source}</a>
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- Controls. Hidden until the script runs, because they do nothing without it. -->
+      <div id="deck-controls" class="deck-controls mt-6" hidden>
+        <button type="button" id="deck-prev" class="deck-button" aria-label="Previous fact">
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M10 3 5 8l5 5"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <p class="deck-counter" role="status" aria-live="polite">
+          <span id="deck-position">1</span><span class="text-indigo-ink-400"> / {facts.length}</span>
+        </p>
+
+        <button type="button" id="deck-next" class="deck-button" aria-label="Next fact">
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M6 3l5 5-5 5"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="deck-progress mt-5" aria-hidden="true">
+        <div class="deck-progress-bar" id="deck-progress-bar"></div>
+      </div>
+
+      <p class="mt-6 text-center text-xs leading-relaxed text-indigo-ink-300">
+        Every card links to the page it is published on. These come from{' '}
+        {publishers.map((name, i) => (
+          <>
+            {i > 0 && (i === publishers.length - 1 ? ' and ' : ', ')}
+            <span class="text-indigo-ink-200">{name}</span>
+          </>
+        ))}{' '}
+        &mdash; the published accounts of the organisations that did the work. The figures are theirs and have not
+        been independently audited.
+      </p>
+
+    </div>
+  </section>
+
+  <style>
+    /* ------------------------------------------------------------ the deck */
+
+    .deck {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      /* The scrollbar is noise here; the counter and bar below say where you are. */
+      scrollbar-width: none;
+      /* Room for the focus ring, which would otherwise be clipped by the overflow. */
+      padding: 0.25rem;
+      margin-inline: -0.25rem;
+    }
+
+    .deck::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .deck {
+        scroll-behavior: auto;
+      }
+    }
+
+    .deck-card {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      /* Deliberately no `scroll-snap-stop: always`. It forces every scroll to
+         halt at the very next card, which also clamps the smooth scroll the
+         buttons start — so a quick double-tap went nowhere. With a hundred
+         cards, letting a flick carry across several is the better behaviour. */
+    }
+
+    .deck-card-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      /* Every card the same height, so the page does not jump as you swipe.
+         The longest fact is about 170 characters, which fits this comfortably. */
+      min-height: 19rem;
+      height: 100%;
+      border-radius: 1.5rem;
+      /* Lifted off the background rather than floating faintly on it, so the
+         card reads as a card across a crowded hall. */
+      background: rgb(255 255 255 / 0.1);
+      box-shadow:
+        inset 0 0 0 1px rgb(255 255 255 / 0.2),
+        0 12px 30px rgb(10 14 36 / 0.35);
+      padding: 2.25rem 1.5rem;
+      text-align: center;
+    }
+
+    @media (min-width: 640px) {
+      .deck-card-inner {
+        min-height: 17rem;
+        padding: 2.5rem;
+      }
+    }
+
+    .deck-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--color-saffron-400);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /*
+      Sans, not the display serif used elsewhere on the site. Almost every fact
+      here turns on a number — 1,500 cisterns, 19 January 2001, 68 TMC — and
+      Cormorant Garamond sets figures as old-style: they sit at lowercase height
+      with descenders, so "2,500 litres" reads as a row of squiggles at a glance.
+      Inter has lining figures and holds up far better at a distance.
+    */
+    .deck-text {
+      margin-top: 1.1rem;
+      font-family: var(--font-sans);
+      font-size: 1.3rem;
+      font-weight: 500;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      color: #fff;
+      text-wrap: pretty;
+    }
+
+    @media (min-width: 640px) {
+      .deck-text {
+        font-size: 1.5rem;
+      }
+    }
+
+    .deck-source {
+      margin-top: auto;
+      padding-top: 1.75rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .deck-source a {
+      color: var(--color-indigo-ink-200);
+      text-decoration: underline;
+      text-decoration-color: rgb(255 255 255 / 0.3);
+      text-underline-offset: 3px;
+    }
+
+    .deck-source a:hover {
+      color: var(--color-saffron-300);
+    }
+
+    /* ---------------------------------------------------------- the controls */
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+
+    .deck-button {
+      display: inline-flex;
+      height: 2.75rem;
+      width: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.25);
+      transition: background-color 0.2s ease;
+    }
+
+    .deck-button:hover:not(:disabled) {
+      background: rgb(255 255 255 / 0.12);
+    }
+
+    .deck-button:disabled {
+      opacity: 0.3;
+    }
+
+    .deck-counter {
+      min-width: 5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .deck-progress {
+      height: 2px;
+      border-radius: 9999px;
+      background: rgb(255 255 255 / 0.12);
+    }
+
+    .deck-progress-bar {
+      height: 100%;
+      width: 1%;
+      border-radius: 9999px;
+      background: var(--color-saffron-400);
+      transition: width 0.25s ease;
+    }
+  </style>
+
+  <script>
+    import { createDeck, shuffleSeed, stableShuffle } from '../../../scripts/centenary';
+
+    const deck = document.getElementById('facts-deck');
+    const controls = document.getElementById('deck-controls');
+
+    if (deck) {
+      const cards = Array.from(deck.children) as HTMLElement[];
+
+      try {
+        // Each device gets its own order and keeps it, so two guests standing
+        // together are reading different things, but neither has the deck
+        // reshuffled under them on a reload.
+        const ordered = stableShuffle(cards, shuffleSeed('ndsai-centenary-facts-seed-v1'));
+        const fragment = document.createDocumentFragment();
+        for (const card of ordered) fragment.appendChild(card);
+        deck.appendChild(fragment);
+        ordered.forEach((card, index) => {
+          const number = card.querySelector('[data-card-number]');
+          if (number) number.textContent = String(index + 1);
+          card.setAttribute('aria-label', `Fact ${index + 1} of ${ordered.length}`);
+        });
+      } catch {
+        /* The deck is already complete and in a sensible order; leave it be. */
+      }
+
+      if (controls) (controls as HTMLElement).hidden = false;
+
+      createDeck({
+        deck,
+        prev: document.getElementById('deck-prev'),
+        next: document.getElementById('deck-next'),
+        position: document.getElementById('deck-position'),
+        bar: document.getElementById('deck-progress-bar'),
+      });
+    }
+  </script>
+</Base>

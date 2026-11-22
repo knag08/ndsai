@@ -11,7 +11,8 @@
     "redirects": "node scripts/make-redirects.mjs",
     "images": "node scripts/prepare-images.mjs",
     "check": "node scripts/check-pages.mjs",
-    "favicons": "node scripts/make-favicons.mjs"
+    "favicons": "node scripts/make-favicons.mjs",
+    "qr": "node scripts/make-qr.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

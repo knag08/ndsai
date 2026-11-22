@@ -45,7 +45,14 @@ export default defineConfig({
     // strip the stylesheet and fonts from an otherwise successful deploy.
     assets: 'assets',
   },
-  integrations: [sitemap()],
+  // Pages that exist but are not offered to visitors: `/centenary/qr/` is the
+  // printable QR material for whoever sets up the hall, and `/centenary/facts/`
+  // is set aside for now. Both still build and still work at their addresses.
+  integrations: [
+    sitemap({
+      filter: (page) => !['/centenary/qr/', '/centenary/facts/'].some((hidden) => page.endsWith(hidden)),
+    }),
+  ],
   vite: { plugins: [tailwindcss(), legacyMedia()] },
 
   /**

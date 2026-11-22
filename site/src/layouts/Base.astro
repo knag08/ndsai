@@ -11,9 +11,17 @@ interface Props {
   image?: string;
   /** Suppress the " · North Dallas Sathya Sai BalVikas" suffix on the home page. */
   bareTitle?: boolean;
+  /** Keep the page out of search results. For utility pages that are not content. */
+  noindex?: boolean;
 }
 
-const { title, description, image = '/img/swami/swami-blessing.webp', bareTitle = false } = Astro.props;
+const {
+  title,
+  description,
+  image = '/img/swami/swami-blessing.webp',
+  bareTitle = false,
+  noindex = false,
+} = Astro.props;
 
 const pageTitle = bareTitle ? title : `${title} · ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
@@ -46,6 +54,7 @@ const organizationSchema = {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <!--
       The SSIO emblem, the same mark as in the header. favicon.ico is listed

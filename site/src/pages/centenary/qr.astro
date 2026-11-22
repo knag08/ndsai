@@ -1,0 +1,290 @@
+---
+/**
+ * The printable QR material for the centenary celebration: a poster for the
+ * entrance and a sheet of small cards for the tables.
+ *
+ * Deliberately not in the navigation and not in the sitemap — it exists so that
+ * whoever is setting up the hall can open it and press print.
+ */
+import Base from '../../layouts/Base.astro';
+
+const target = 'https://ndsai.org/centenary/';
+---
+
+<Base
+  title="Centenary QR Code"
+  description="Printable QR code linking guests to a message from Bhagawan Sri Sathya Sai Baba at the centenary celebration."
+  image="/img/centenary/centenary-emblem.webp"
+  noindex
+>
+  <!-- Everything in here is for the screen only; print starts further down. -->
+  <section class="screen-only bg-indigo-ink-900">
+    <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-saffron-500 via-saffron-300 to-saffron-500"></div>
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+      <p class="eyebrow !text-saffron-300">For the celebration</p>
+      <h1 class="mt-3 font-display text-3xl font-semibold !text-white sm:text-4xl">Printable QR code</h1>
+      <p class="mt-4 leading-relaxed text-indigo-ink-200">
+        Two pages print from here: a poster for the entrance, and a sheet of six cards to cut out for the tables.
+        Both point at <code class="rounded bg-white/10 px-1.5 py-0.5 text-sm text-white">{target}</code>
+      </p>
+      <p class="mt-4 text-sm leading-relaxed text-indigo-ink-300">
+        Print on white paper and leave the margins as they are &mdash; the pale border around the code is part of it,
+        and phones struggle without it. Do test one scan before the doors open.
+      </p>
+      <button
+        type="button"
+        id="print"
+        class="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-saffron-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-saffron-600"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path
+            d="M4.5 6V2.5h7V6m-7 5.5h7v2h-7v-2Zm-2-5.5h11a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1h-1V11h-7v.5h-1a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z"
+            stroke="currentColor"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+        Print these pages
+      </button>
+    </div>
+  </section>
+
+  <div class="sheet-wrap bg-sand-100 py-10">
+    <!-- ------------------------------------------------------------ poster -->
+    <section class="sheet poster" aria-label="Poster">
+      <img
+        src="/img/centenary/centenary-emblem.webp"
+        alt="Centenary emblem marking one hundred years of Bhagawan Sri Sathya Sai Baba"
+        width="900"
+        height="900"
+        class="poster-emblem"
+      />
+      <p class="poster-eyebrow">One hundred years of the Avatar &middot; 1926&ndash;2026</p>
+      <h2 class="poster-title">A message for you</h2>
+      <p class="poster-lede">
+        Scan, and receive one of a hundred passages from Bhagawan Sri Sathya Sai Baba&rsquo;s own books.
+      </p>
+      <p class="poster-sub">
+        A story for the children, and a hundred things you may not know, are waiting there too.
+      </p>
+      <img
+        src="/img/centenary/centenary-qr.svg"
+        alt={`QR code linking to ${target}`}
+        width="330"
+        height="330"
+        class="poster-qr"
+      />
+      <p class="poster-url">{target}</p>
+      <p class="poster-foot">North Dallas Sathya Sai BalVikas</p>
+    </section>
+
+    <!-- ------------------------------------------------------------- cards -->
+    <section class="sheet cards" aria-label="Table cards">
+      {
+        Array.from({ length: 6 }).map(() => (
+          <article class="card">
+            <img
+              src="/img/centenary/centenary-emblem.webp"
+              alt=""
+              width="900"
+              height="900"
+              class="card-emblem"
+            />
+            <p class="card-title">A message for you</p>
+            <img src="/img/centenary/centenary-qr.svg" alt="" width="190" height="190" class="card-qr" />
+            <p class="card-url">ndsai.org/centenary/</p>
+          </article>
+        ))
+      }
+    </section>
+  </div>
+
+  <style>
+    /* ------------------------------------------------------------ on screen */
+
+    .screen-only {
+      position: relative;
+    }
+
+    .sheet {
+      background: #fff;
+      margin-inline: auto;
+      margin-block-end: 2rem;
+      box-shadow: 0 10px 40px rgb(30 42 90 / 0.12);
+      /* 8.5 x 11in at a readable on-screen scale; print overrides this. */
+      width: min(100% - 2rem, 48rem);
+    }
+
+    .poster {
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+    }
+
+    .poster-emblem {
+      width: 5.5rem;
+      margin-inline: auto;
+    }
+
+    .poster-eyebrow {
+      margin-block-start: 1.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-saffron-700);
+    }
+
+    .poster-title {
+      margin-block-start: 0.75rem;
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 600;
+      color: var(--color-indigo-ink-900);
+    }
+
+    .poster-lede {
+      margin: 1rem auto 0;
+      max-width: 26rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--color-ink-700);
+    }
+
+    .poster-sub {
+      margin: 0.6rem auto 0;
+      max-width: 24rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--color-sand-500);
+    }
+
+    .poster-qr {
+      display: block;
+      width: 15rem;
+      height: auto;
+      margin: 2rem auto 0;
+    }
+
+    .poster-url {
+      margin-block-start: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--color-indigo-ink-800);
+    }
+
+    .poster-foot {
+      margin-block-start: 2.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-sand-500);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      padding: 1.5rem;
+    }
+
+    .card {
+      /* The dashed rule is the cutting line, and prints with the card. */
+      border: 1px dashed var(--color-sand-400);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .card-emblem {
+      width: 2.25rem;
+      margin-inline: auto;
+    }
+
+    .card-title {
+      margin-block-start: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--color-indigo-ink-900);
+    }
+
+    .card-qr {
+      display: block;
+      width: 8rem;
+      height: auto;
+      margin: 0.5rem auto 0;
+    }
+
+    .card-url {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--color-ink-700);
+    }
+
+    /* --------------------------------------------------------------- print */
+
+    @media print {
+      /* Only the two sheets should reach the paper. */
+      :global(body > header),
+      :global(body > footer),
+      .screen-only {
+        display: none !important;
+      }
+
+      :global(body),
+      .sheet-wrap {
+        background: #fff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .sheet {
+        width: auto;
+        margin: 0;
+        box-shadow: none;
+        break-after: page;
+      }
+
+      .sheet:last-child {
+        break-after: auto;
+      }
+
+      .poster {
+        padding: 0;
+        /* Centred on the page rather than crowded against the top margin. */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 9in;
+      }
+
+      .poster-qr {
+        width: 3.4in;
+      }
+
+      .cards {
+        padding: 0;
+        grid-template-rows: repeat(3, 3.2in);
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .card-qr {
+        width: 1.8in;
+      }
+    }
+
+    @page {
+      margin: 0.5in;
+    }
+  </style>
+
+  <script>
+    document.getElementById('print')?.addEventListener('click', () => window.print());
+  </script>
+</Base>
