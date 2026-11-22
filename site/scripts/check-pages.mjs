@@ -78,6 +78,52 @@ for (const file of htmlFiles) {
 }
 
 console.log(`Checked ${htmlFiles.length} pages.`);
+const centenaryTabs = new Map([
+  ['/centenary/timeline/', ['100 Years', '/centenary/timeline/']],
+  ['/centenary/messages/', ['100 Messages', '/centenary/messages/']],
+  ['/centenary/story/', ['100 Stories', '/centenary/story/']],
+]);
+for (const [page, [label, href]] of centenaryTabs) {
+  const file = path.join(dist, page.replace(/^\//, ''), 'index.html');
+  if (!fs.existsSync(file)) {
+    problems.push(`${page} — missing Centenary tab page`);
+    continue;
+  }
+  const html = fs.readFileSync(file, 'utf8');
+  const tabs = html.match(/<nav aria-label="Centenary pages"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
+  if (!tabs) {
+    problems.push(`${page} — missing Centenary tabs`);
+    continue;
+  }
+  const expectedOrder = ['100 Years', '100 Messages', '100 Stories'];
+  const rows = [...tabs.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)].map(([, row]) => {
+    const link = row.match(/<a\b[^>]*class="tab"[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/);
+    const currentTab = row.match(/<span\b[^>]*class="tab is-current"[^>]*>([^<]+)<\/span>/);
+    return link ? { label: link[2], href: link[1], current: false } : {
+      label: currentTab?.[1],
+      href: null,
+      current: true,
+    };
+  });
+  const current = rows.filter((row) => row.current).map((row) => row.label);
+  const links = rows.filter((row) => !row.current).map((row) => [row.label, row.href]);
+  const labels = rows.map((row) => row.label);
+  if (labels.join('|') !== expectedOrder.join('|')) {
+    problems.push(`${page} — Centenary tabs must be ordered: ${expectedOrder.join(', ')}`);
+  }
+  if (current.length !== 1 || current[0] !== label) {
+    problems.push(`${page} — expected ${label} to be the active tab`);
+  }
+  if (page !== '/centenary/story/' && !links.some(([tabLabel, tabHref]) => tabLabel === '100 Stories' && tabHref === '/centenary/story/')) {
+    problems.push(`${page} — 100 Stories tab does not link to /centenary/story/`);
+  }
+  if (page !== '/centenary/messages/' && !links.some(([tabLabel, tabHref]) => tabLabel === '100 Messages' && tabHref === '/centenary/messages/')) {
+    problems.push(`${page} — 100 Messages tab does not link to /centenary/messages/`);
+  }
+  if (page !== '/centenary/timeline/' && !links.some(([tabLabel, tabHref]) => tabLabel === '100 Years' && tabHref === '/centenary/timeline/')) {
+    problems.push(`${page} — 100 Years tab does not link to /centenary/timeline/`);
+  }
+}
 if (problems.length) {
   console.error(`\n${problems.length} problem(s):`);
   for (const problem of [...new Set(problems)]) console.error(`  • ${problem}`);

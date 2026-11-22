@@ -1,6 +1,6 @@
 /**
  * One hundred passages from Bhagawan Sri Sathya Sai Baba, one for each year of
- * the Avatar, shown to guests of the centenary celebration at /centenary/.
+ * the Avatar, shown to guests of the centenary celebration at /centenary/messages/.
  *
  * Each is a COMPLETE passage as it stands in the book — a whole thought, not a
  * sentence cut out of one — which is why they vary in length. Every word is
@@ -8,7 +8,7 @@
  * Books & Publications Trust, as rendered at https://saispeaks.sathyasai.org/.
  * Nothing here is paraphrased, shortened or rewritten.
  *
- * The `id` is what a shared link carries (/centenary/?m=…), so it is written out
+ * The `id` is what a shared link carries (/centenary/messages/?m=…), so it is written out
  * explicitly and must never be reassigned. Reorder the array freely; change an
  * id only if you are willing to break links already in people's hands.
  */

@@ -17,7 +17,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const OUTPUT = [
-  { url: 'https://ndsai.org/centenary/', file: 'public/img/centenary/centenary-qr.svg' },
+  { url: 'https://ndsai.org/centenary/messages/', file: 'public/img/centenary/centenary-qr.svg' },
 ];
 
 // ---------------------------------------------------------------- GF(256)
