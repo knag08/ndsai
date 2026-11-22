@@ -73,8 +73,8 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
                       class="card-image"
                       src={moment.image}
                       alt={moment.alt}
-                      width="624"
-                      height="461"
+                      width={moment.imageWidth}
+                      height={moment.imageHeight}
                       loading={index < 2 ? 'eager' : 'lazy'}
                       decoding="async"
                     />
@@ -205,42 +205,35 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
     }
 
     /*
-      The paintings run at their own 624x461 — shown at the card's width, which
-      is about 300px on a phone, so the source is roughly the 2x a retina screen
-      asks for. Never set a width here larger than the file.
-    */
-    /*
-      The paintings run at their own 624x461 and are shown at that shape. An
-      earlier version capped the height and let `cover` crop the difference,
-      which on a wide card turned a 4:3 painting into a letterbox strip and cut
-      the subject's head off — a sharp picture of the wrong thing.
-
-      Height is therefore never fixed. On a phone the painting is the width of
-      the card; on anything wider the WIDTH is capped instead and the picture
-      centred, so a 900px card does not get a 660px-tall image.
+      The pictures are shown whole: never cropped, never scaled up, never forced
+      to a shape. They arrive in everything from 0.66 (a portrait magazine
+      cover) to 2.16 (a panorama), so bounding BOTH sides and letting the
+      browser work out the rest is the only thing that holds for all of them.
+      An earlier version fixed the height and let `cover` take up the slack,
+      which turned a 4:3 painting into a letterbox strip and cut the subject's
+      head off.
     */
     .card-image {
       display: block;
-      width: 100%;
+      margin: 0 auto 1.1rem;
+      max-width: 100%;
+      max-height: 13.5rem;
+      width: auto;
       height: auto;
-      aspect-ratio: 624 / 461;
-      margin-bottom: 1.1rem;
       border-radius: 0.875rem;
       background: rgb(255 255 255 / 0.06);
     }
 
     @media (min-width: 640px) {
       .card-image {
-        width: auto;
-        max-width: 25rem;
-        margin-inline: auto;
+        max-height: 15rem;
       }
     }
 
     /*
       On a wide card, stacking wastes the width and makes the card taller than
-      the screen. Side by side instead: the painting holds one column at a
-      sensible size and the words sit beside it.
+      the screen. Side by side instead: the picture holds one column and the
+      words sit beside it.
     */
     @media (min-width: 768px) {
       .deck-card-inner.has-image {
@@ -251,12 +244,10 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
       }
 
       .has-image .card-image {
-        max-width: none;
-        width: 100%;
-        margin: 0;
+        max-height: 16rem;
+        margin: 0 auto;
       }
 
-      /* The text column is the grid's second cell; keep it as one flow. */
       .has-image .card-text {
         min-width: 0;
       }
