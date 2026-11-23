@@ -17,11 +17,11 @@ assets/cormorant-garamond-latin-ext-600-normal.DaBc-lu7.woff2
 assets/cormorant-garamond-latin-ext-600-normal.Dk3-quAP.woff
 assets/cormorant-garamond-latin-ext-700-normal.CNjt5vTB.woff2
 assets/cormorant-garamond-latin-ext-700-normal.qRbaVVD7.woff
-assets/index.BF--eAzs.css
 assets/index.astro_astro_type_script_index_0_lang.5tt0afJh.js
 assets/index.astro_astro_type_script_index_0_lang.CyO3V4vH.js
 assets/index.astro_astro_type_script_index_0_lang.DMXoG0SP.js
 assets/index.astro_astro_type_script_index_0_lang.d2gZyguq.js
+assets/index.xc5PthIg.css
 assets/inter-cyrillic-ext-wght-normal.BOeWTOD4.woff2
 assets/inter-cyrillic-wght-normal.DqGufNeO.woff2
 assets/inter-greek-ext-wght-normal.DlzME5K_.woff2
@@ -82,9 +82,11 @@ img/centenary/timeline/east-africa.webp
 img/centenary/timeline/eighty-fifth-year.webp
 img/centenary/timeline/first-discourse.webp
 img/centenary/timeline/first-mandir.webp
+img/centenary/timeline/first-samithi.webp
 img/centenary/timeline/foundation-prasanthi.webp
 img/centenary/timeline/gates-open.webp
 img/centenary/timeline/general-hospital.webp
+img/centenary/timeline/godavari-tanks.webp
 img/centenary/timeline/hanuman-statue.webp
 img/centenary/timeline/indoor-stadium.webp
 img/centenary/timeline/kamalapuram.webp
@@ -92,6 +94,7 @@ img/centenary/timeline/maha-samadhi.webp
 img/centenary/timeline/medak-water.webp
 img/centenary/timeline/meditation-tree.webp
 img/centenary/timeline/odisha-housing.webp
+img/centenary/timeline/pipe-laying.webp
 img/centenary/timeline/planetarium.webp
 img/centenary/timeline/poornachandra.webp
 img/centenary/timeline/postage-stamp.webp
@@ -104,6 +107,7 @@ img/centenary/timeline/schools.webp
 img/centenary/timeline/sugar-candy.webp
 img/centenary/timeline/summer-course.webp
 img/centenary/timeline/super-speciality-hospital.webp
+img/centenary/timeline/the-letter.webp
 img/centenary/timeline/three-sais.webp
 img/centenary/timeline/unity-cup.webp
 img/centenary/timeline/university.webp

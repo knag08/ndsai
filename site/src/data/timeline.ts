@@ -24,11 +24,11 @@ export type Moment = {
   /** Marks the handful of moments the page should dwell on. */
   major?: boolean;
   /**
-   * A painting, for the early years only. The Trust illustrated Bhagawan's
-   * childhood in watercolour and photographed everything after it; the
-   * paintings are warm and carry well at card size, the archival photographs
-   * are small and grainy, so only the paintings are used. File lives in
-   * /img/centenary/timeline/ at its source resolution — do not upscale it.
+   * The picture for this moment: a watercolour for the childhood, which the
+   * Trust illustrated rather than photographed, and a photograph after that.
+   * Files live in /img/centenary/timeline/ at their source resolution — do
+   * not upscale one to match the others. Where the only published photograph
+   * of an event is too small to hold a card, the card goes without.
    */
   image?: string;
   /** What the picture shows. Required whenever `image` is set. */
@@ -140,6 +140,10 @@ export const eras: Era[] = [
         year: '1947',
         when: '25 May',
         title: 'The letter',
+        image: '/img/centenary/timeline/the-letter.webp',
+        alt: 'Bhagawan Sri Sathya Sai Baba as a young man, writing.',
+        imageWidth: 300,
+        imageHeight: 400,
         body: 'At twenty-one he writes to his brother Seshama Raju setting out, in full, the mission he has come for.',
         major: true,
       },
@@ -224,6 +228,10 @@ export const eras: Era[] = [
       {
         year: '1960',
         title: 'The Seva Organisations',
+        image: '/img/centenary/timeline/first-samithi.webp',
+        alt: 'Bhagawan Sri Sathya Sai Baba seated with the members of the first Sri Sathya Sai Seva Samithi.',
+        imageWidth: 800,
+        imageHeight: 600,
         body: 'He begins the Sri Sathya Sai Seva Organisations in India, so that people of every religion, class and caste can serve together. In time they reach more than 126 countries.',
       },
       {
@@ -443,6 +451,10 @@ export const eras: Era[] = [
         year: '1995',
         when: 'March',
         title: 'Anantapur begins',
+        image: '/img/centenary/timeline/pipe-laying.webp',
+        alt: 'A pipeline being laid in a trench through red earth for the water supply project.',
+        imageWidth: 350,
+        imageHeight: 205,
         body: 'Work starts on bringing drinking water to a district whose rivers run dry and whose groundwater carried enough fluoride to deform bone.',
         major: true,
       },
@@ -551,6 +563,10 @@ export const eras: Era[] = [
         year: '2007',
         when: '15 September',
         title: 'The Godavari districts',
+        image: '/img/centenary/timeline/godavari-tanks.webp',
+        alt: 'Construction work on the water supply project in an upland village of the Godavari districts.',
+        imageWidth: 330,
+        imageHeight: 226,
         body: 'Water projects serving some 452 upland and tribal habitations are handed to the state. That year, 6,000 young people from 85 countries come to Prasanthi Nilayam.',
       },
     ],
@@ -595,7 +611,16 @@ export const eras: Era[] = [
         year: '2026',
         when: '23 November',
         title: '“My life is My message”',
-        body: 'Bhagawan said it at the first World Conference, on 17 May 1968, to people who had asked Him for a message to carry home. A hundred years from the morning in the thatched house, that is still the whole of it.',
+        /*
+          Not in a column of its own like the others: the stylesheet tucks this
+          one into the top corner, because on the last card the words are what
+          the room is here for.
+        */
+        image: '/img/swami/swami-abhayahasta.webp',
+        alt: 'Bhagawan Sri Sathya Sai Baba, both hands raised in blessing.',
+        imageWidth: 345,
+        imageHeight: 445,
+        body: 'Bhagawan said it at the first World Conference, on 17 May 1968, to people who had asked Him for a message to carry home.',
         major: true,
       },
     ],
