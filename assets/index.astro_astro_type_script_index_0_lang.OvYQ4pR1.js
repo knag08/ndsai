@@ -1,1 +1,0 @@
-import{n as e}from"./centenary.AiwjuWT9.js";var t=document.getElementById(`timeline-deck`),n=document.getElementById(`deck-controls`);t&&(n&&(n.hidden=!1),e({deck:t,prev:document.getElementById(`deck-prev`),next:document.getElementById(`deck-next`),position:document.getElementById(`deck-position`),bar:document.getElementById(`deck-progress-bar`)}));

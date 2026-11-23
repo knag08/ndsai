@@ -191,8 +191,18 @@ export function createDeck(refs: {
   bar?: HTMLElement | null;
   /** Called whenever the card in view changes, with its index. */
   onChange?: (index: number) => void;
-}): void {
-  const { deck, prev, next, position, bar, onChange } = refs;
+  /** Past the last card, step back to the first instead of stopping. */
+  loop?: boolean;
+  /**
+   * Advance on its own. Given a card's index it returns how long to rest on it,
+   * in milliseconds; return 0 to leave the deck still. Any touch of the deck
+   * stops it for good — see `playing` below.
+   */
+  dwell?: (index: number) => number;
+  /** Told whether the deck is currently advancing by itself. */
+  onPlayState?: (playing: boolean) => void;
+}): { pause: () => void; resume: () => void; isPlaying: () => boolean } | void {
+  const { deck, prev, next, position, bar, onChange, loop = false, dwell, onPlayState } = refs;
   const count = deck.children.length;
   if (!count) return;
 
@@ -222,8 +232,9 @@ export function createDeck(refs: {
     const index = currentIndex();
     if (position) position.textContent = String(index + 1);
     if (bar) bar.style.width = `${((index + 1) / count) * 100}%`;
-    if (prev) (prev as HTMLButtonElement).disabled = index === 0;
-    if (next) (next as HTMLButtonElement).disabled = index === count - 1;
+    // With looping there is no end to run into, so the buttons always work.
+    if (prev) (prev as HTMLButtonElement).disabled = !loop && index === 0;
+    if (next) (next as HTMLButtonElement).disabled = !loop && index === count - 1;
     if (index !== shown) {
       shown = index;
       onChange?.(index);
@@ -248,17 +259,25 @@ export function createDeck(refs: {
   let settle: ReturnType<typeof setTimeout>;
 
   function move(by: number): void {
-    target = Math.min(count - 1, Math.max(0, target + by));
+    const to = target + by;
+    target = loop ? (to + count) % count : Math.min(count - 1, Math.max(0, to));
     go(target);
   }
 
-  prev?.addEventListener('click', () => move(-1));
-  next?.addEventListener('click', () => move(1));
+  prev?.addEventListener('click', () => {
+    stop();
+    move(-1);
+  });
+  next?.addEventListener('click', () => {
+    stop();
+    move(1);
+  });
 
   deck.addEventListener('keydown', (event) => {
     const key = (event as KeyboardEvent).key;
     if (key !== 'ArrowLeft' && key !== 'ArrowRight') return;
     event.preventDefault();
+    stop();
     move(key === 'ArrowRight' ? 1 : -1);
   });
 
@@ -289,8 +308,100 @@ export function createDeck(refs: {
     paint();
   });
 
+  // ------------------------------------------------------- advancing itself
+
+  /*
+    The deck can walk through itself, resting on each card long enough to read
+    it. Three things stop it, and they all matter:
+
+      - a reader touching the deck, by any means. Having a card move while
+        somebody is reading it is worse than no autoplay at all, so a touch
+        stops it until they ask for it back.
+      - the page being hidden, so a deck in a background tab is not racing
+        through a hundred years nobody is watching.
+      - the deck being scrolled out of view.
+
+    Anyone who has asked not to see motion never gets it at all.
+  */
+  const stillPreferred =
+    typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let playing = false;
+
+  function clearTimer(): void {
+    if (timer !== undefined) clearTimeout(timer);
+    timer = undefined;
+  }
+
+  function schedule(): void {
+    clearTimer();
+    if (!playing || !dwell) return;
+    const rest = dwell(currentIndex());
+    if (rest <= 0) return;
+    timer = setTimeout(() => {
+      if (!playing) return;
+      move(1);
+      schedule();
+    }, rest);
+  }
+
+  function start(): void {
+    if (!dwell || stillPreferred || playing) return;
+    playing = true;
+    onPlayState?.(true);
+    target = currentIndex();
+    schedule();
+  }
+
+  /** Stops for good, until the reader asks for it back. */
+  function stop(): void {
+    if (!playing) {
+      clearTimer();
+      return;
+    }
+    playing = false;
+    clearTimer();
+    onPlayState?.(false);
+  }
+
+  if (dwell && !stillPreferred) {
+    // A hand on the deck means a reader is in charge now.
+    for (const event of ['pointerdown', 'wheel', 'touchstart'] as const) {
+      deck.addEventListener(event, stop, { passive: true });
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) clearTimer();
+      else if (playing) schedule();
+    });
+
+    // Only run while the deck is actually on screen.
+    if ('IntersectionObserver' in window) {
+      const seen = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              if (playing) schedule();
+            } else {
+              clearTimer();
+            }
+          }
+        },
+        { threshold: 0.35 },
+      );
+      seen.observe(deck);
+    }
+  }
+
   measure();
   paint();
+
+  return {
+    pause: stop,
+    resume: start,
+    isPlaying: () => playing,
+  };
 }
 
 /**
