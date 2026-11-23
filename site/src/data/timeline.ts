@@ -602,5 +602,24 @@ export const eras: Era[] = [
   },
 ];
 
+/**
+ * An instrumental to play behind the presentation view, for a screen in the
+ * hall. Left empty on purpose: the page renders no player until a file is put
+ * here, so the build does not go looking for audio that is not there.
+ *
+ * To turn it on, drop the file in `site/public/audio/` and set `src` to its
+ * path. Only add a recording the centre is entitled to publish — a public
+ * website is distribution, and a film melody stays in copyright however it is
+ * arranged, including an instrumental played by students.
+ *
+ * It never plays on its own. A guest who scans the QR code gets silence; the
+ * speaker button appears only while presenting, and starts muted.
+ */
+export const presentationMusic: { src: string; type: string; credit: string } = {
+  src: '',
+  type: 'audio/mpeg',
+  credit: '',
+};
+
 /** Every moment, flattened — used for the count shown in the header. */
 export const momentCount = eras.reduce((total, era) => total + era.moments.length, 0);
