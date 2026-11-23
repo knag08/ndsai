@@ -241,11 +241,31 @@ export function createDeck(refs: {
     }
   }
 
-  function go(to: number): void {
+  /**
+   * `instant` is for wrapping round the ends. Animating from the last card to
+   * the first means a smooth scroll the length of the whole deck — tens of
+   * thousands of pixels — which a mandatory-snap container will not see
+   * through: it cuts the animation short and snaps to whatever card it has
+   * reached, landing nowhere in particular. A wrap is also better as a clean
+   * cut than as a rewind past every card in between.
+   */
+  function go(to: number, instant = false): void {
     const card = deck.children[Math.min(count - 1, Math.max(0, to))] as HTMLElement | undefined;
+    if (!card) return;
+    const left = card.offsetLeft - deck.offsetLeft;
     // `scrollIntoView` would also scroll the page vertically; moving the deck's
     // own scrollLeft keeps the card where the reader is already looking.
-    if (card) deck.scrollTo({ left: card.offsetLeft - deck.offsetLeft, behavior: 'smooth' });
+    if (instant) {
+      const had = deck.style.scrollBehavior;
+      deck.style.scrollBehavior = 'auto';
+      deck.scrollLeft = left;
+      // Restored on the next frame, once the jump has been taken.
+      requestAnimationFrame(() => {
+        deck.style.scrollBehavior = had;
+      });
+    } else {
+      deck.scrollTo({ left, behavior: 'smooth' });
+    }
   }
 
   /*
@@ -260,8 +280,9 @@ export function createDeck(refs: {
 
   function move(by: number): void {
     const to = target + by;
+    const wrapped = loop && (to < 0 || to > count - 1);
     target = loop ? (to + count) % count : Math.min(count - 1, Math.max(0, to));
-    go(target);
+    go(target, wrapped);
   }
 
   prev?.addEventListener('click', () => {

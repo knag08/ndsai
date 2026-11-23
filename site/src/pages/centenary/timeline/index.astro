@@ -33,7 +33,7 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
     >
     </div>
 
-    <div class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-12">
+    <div class="deck-shell mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-12">
       <div class="present-hide text-center">
         <img
           src="/img/centenary/centenary-emblem.webp"
@@ -460,9 +460,21 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
       background: var(--color-indigo-ink-950);
     }
 
+    /*
+      The shell is the page's reading column, 48rem wide. Presenting has to
+      release it: left at 48rem the card keeps that width, and with a fixed
+      image column beside it the words are squeezed into a strip barely wide
+      enough for one of them.
+    */
+    :global(html.presenting) .deck-shell {
+      max-width: none;
+      padding-inline: clamp(1rem, 4vw, 4rem);
+      padding-block: clamp(0.75rem, 2.5vh, 2rem);
+    }
+
     :global(html.presenting) .deck-card-inner {
-      min-height: min(74vh, 46rem);
-      padding: clamp(2rem, 4vw, 4rem);
+      min-height: min(72vh, 44rem);
+      padding: clamp(1.5rem, 3.5vw, 3.5rem);
     }
 
     :global(html.presenting) .card-year-number {
@@ -482,14 +494,26 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
       font-size: clamp(0.75rem, 1.1vw, 1.05rem);
     }
 
+    /*
+      `.has-image` is carried here only for weight: Astro scopes both selectors
+      with an attribute, and without it the plain `.has-image .card-image` rule
+      above wins and pins the picture to 16rem on a presentation screen.
+
+      `width: auto` rather than `100%`, so a 624px file is never stretched to
+      fill a 750px column — it simply sits at its own size.
+    */
+    :global(html.presenting) .has-image .card-image,
     :global(html.presenting) .card-image {
+      width: auto;
+      max-width: 100%;
       max-height: min(46vh, 30rem);
     }
 
     @media (min-width: 768px) {
       :global(html.presenting) .deck-card-inner.has-image {
-        grid-template-columns: minmax(0, 32rem) 1fr;
-        column-gap: 3rem;
+        /* Proportional, not fixed: a share of whatever width the screen gives. */
+        grid-template-columns: minmax(0, 45%) minmax(0, 1fr);
+        column-gap: clamp(1.5rem, 3vw, 3.5rem);
       }
     }
 
