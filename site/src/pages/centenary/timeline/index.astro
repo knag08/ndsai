@@ -163,7 +163,7 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
           `loop` keeps it going past the end of the track.
         */
         presentationMusic.src && (
-          <audio id="deck-music" loop preload="auto" aria-label="Instrumental accompaniment">
+          <audio id="deck-music" loop preload="none" aria-label="Instrumental accompaniment">
             <source src={presentationMusic.src} type={presentationMusic.type} />
           </audio>
         )
@@ -672,14 +672,21 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
       /*
         The instrumental, for a screen in the hall. Three rules:
 
-          - it never starts by itself. Somebody scanning a code at a
-            celebration should not have their phone start playing;
+          - it starts only from the Present button, never by itself. Somebody
+            scanning a code at a celebration should not have their phone begin
+            playing, and a browser will only let audio begin from a gesture
+            anyway — pressing Present is that gesture;
           - it is offered only while presenting, which is the only setting
-            where sound makes sense;
+            where sound makes sense, and leaving takes it with it;
           - nothing about changing cards touches it. The element sits outside
             the deck and is never re-rendered, so it plays straight through
             from the first card to the last and round again, and `loop` carries
             it past the end of the track.
+
+        `preload="none"` because of the first rule: the track is three
+        megabytes, and a guest reading the cards on their phone should not be
+        made to fetch audio that will never play. It loads when Present is
+        pressed, on the hall's own screen.
       */
       const music = document.getElementById('deck-music') as HTMLAudioElement | null;
       const soundBtn = document.getElementById('deck-sound');
@@ -740,17 +747,54 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
         window.dispatchEvent(new Event('resize'));
       }
 
-      presentBtn?.addEventListener('click', async () => {
+      presentBtn?.addEventListener('click', () => {
         const leaving = root.classList.contains('presenting');
-        try {
-          if (leaving) await document.exitFullscreen?.();
-          else await root.requestFullscreen?.();
-        } catch {
-          // Some browsers refuse without a stronger gesture, or on a phone.
-          // The layout is worth having either way, so carry on regardless.
+
+        /*
+          Begun here, first thing in the click and never awaited: a browser
+          allows audio to start only from a gesture, and anything asked for
+          ahead of it can put the call outside the gesture that brought us
+          here.
+        */
+        if (!leaving && music && music.paused) {
+          music.play().then(paintSound, () => {
+            // Refused anyway. The speaker button is there to start it by hand.
+          });
         }
+
+        /*
+          The layout changes first and the full screen request follows, never
+          the other way round. Presenting IS the class on <html>; going full
+          screen is a bonus on top of it, and some embedded browsers answer
+          `requestFullscreen` with a promise that never settles — awaiting it
+          first meant the presentation never arrived at all.
+        */
         setPresenting(!leaving);
         if (!leaving) player?.resume();
+
+        try {
+          const asked = leaving ? document.exitFullscreen?.() : root.requestFullscreen?.();
+          // Refused without a stronger gesture, or on a phone. The layout is
+          // worth having either way, so let it go.
+          asked?.catch(() => {});
+        } catch {
+          // Same again, for a browser that throws rather than rejecting.
+        }
+      });
+
+      /*
+        On a presentation screen the keyboard is the remote — and so is the
+        clicker in a presenter's hand, which sends the same arrow keys. The
+        deck has a handler of its own, but it only fires while the deck itself
+        holds focus, and after pressing Present the focus is on the button.
+        Caught on the document instead, and only while presenting, so an
+        ordinary reader's arrow keys still belong to the page.
+      */
+      document.addEventListener('keydown', (event) => {
+        if (!root.classList.contains('presenting')) return;
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        player?.step(event.key === 'ArrowRight' ? 1 : -1);
       });
 
       // Leaving full screen by Escape has to put the page back too.

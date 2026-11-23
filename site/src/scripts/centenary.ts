@@ -201,7 +201,13 @@ export function createDeck(refs: {
   dwell?: (index: number) => number;
   /** Told whether the deck is currently advancing by itself. */
   onPlayState?: (playing: boolean) => void;
-}): { pause: () => void; resume: () => void; isPlaying: () => boolean } | void {
+}): {
+  pause: () => void;
+  resume: () => void;
+  isPlaying: () => boolean;
+  /** Move by whole cards, as a tap on Next or Previous would. */
+  step: (by: number) => void;
+} | void {
   const { deck, prev, next, position, bar, onChange, loop = false, dwell, onPlayState } = refs;
   const count = deck.children.length;
   if (!count) return;
@@ -422,6 +428,13 @@ export function createDeck(refs: {
     pause: stop,
     resume: start,
     isPlaying: () => playing,
+    // Stops autoplay first, exactly as the buttons and the arrow keys do: a
+    // deck that moved on its own a moment after somebody steered it by hand
+    // would read as a fault.
+    step: (by: number) => {
+      stop();
+      move(by);
+    },
   };
 }
 
