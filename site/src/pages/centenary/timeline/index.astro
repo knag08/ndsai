@@ -34,7 +34,7 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
     </div>
 
     <div class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-12">
-      <div class="text-center">
+      <div class="present-hide text-center">
         <img
           src="/img/centenary/centenary-emblem.webp"
           alt="Centenary emblem marking one hundred years of Bhagawan Sri Sathya Sai Baba"
@@ -64,15 +64,11 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
               aria-label={`${moment.year}, ${index + 1} of ${moments.length}`}
             >
               <div class:list={['deck-card-inner', moment.image && 'has-image']}>
-                {
-                  index === moments.length - 1 && (
-                    <span class="sparkles" aria-hidden="true">
-                      {Array.from({ length: 14 }).map((_, n) => (
-                        <span class={`sparkle sparkle-${n + 1}`} />
-                      ))}
-                    </span>
-                  )
-                }
+                <span class="sparkles" aria-hidden="true">
+                  {Array.from({ length: index === moments.length - 1 ? 14 : 7 }).map((_, n) => (
+                    <span class={`sparkle sparkle-${n + 1}`} />
+                  ))}
+                </span>
                 {
                   moment.image && (
                     <img
@@ -123,6 +119,18 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
           <span id="deck-position">1</span><span class="text-indigo-ink-400"> / {moments.length}</span>
         </p>
 
+        <button type="button" id="deck-present" class="deck-button" title="Present full screen">
+          <span class="sr-only">Present full screen</span>
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M2.5 6V3.5a1 1 0 0 1 1-1H6m4 0h2.5a1 1 0 0 1 1 1V6m0 4v2.5a1 1 0 0 1-1 1H10m-4 0H3.5a1 1 0 0 1-1-1V10"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
         <button type="button" id="deck-next" class="deck-button" aria-label="Later">
           <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -141,7 +149,7 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
         </div>
       </div>
 
-      <p class="mt-6 text-center text-xs leading-relaxed text-indigo-ink-300">
+      <p class="present-hide mt-6 text-center text-xs leading-relaxed text-indigo-ink-300">
         Dates and events are drawn from the life history and project records published by the
         <a
           href="https://www.srisathyasai.org/pages/sai-life-history-timeline.html"
@@ -328,17 +336,11 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
       }
     }
 
-    /* ------------------------------------------------------------ the finale */
+    /* ----------------------------------------------------------- the stars */
 
-    .deck-card.is-finale .deck-card-inner {
+    .deck-card-inner {
       position: relative;
       overflow: hidden;
-      background:
-        radial-gradient(120% 90% at 50% 0%, rgb(238 148 56 / 0.22), transparent 70%),
-        rgb(255 255 255 / 0.1);
-      box-shadow:
-        inset 0 0 0 1px rgb(238 148 56 / 0.65),
-        0 12px 34px rgb(10 14 36 / 0.4);
     }
 
     .sparkles {
@@ -347,44 +349,147 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
       pointer-events: none;
     }
 
+    /*
+      A four-pointed star rather than a dot. `clip-path` cuts the shape out of
+      the box, so the glow has to come from `drop-shadow`, which follows the
+      clipped silhouette — a `box-shadow` would be clipped away with the rest.
+    */
     .sparkle {
       position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 9999px;
-      background: var(--color-saffron-300);
-      box-shadow: 0 0 8px 2px rgb(243 177 100 / 0.65);
+      width: 10px;
+      height: 10px;
+      background: var(--color-saffron-200);
+      clip-path: polygon(
+        50% 0%, 60% 40%, 100% 50%, 60% 60%,
+        50% 100%, 40% 60%, 0% 50%, 40% 40%
+      );
+      filter: drop-shadow(0 0 4px rgb(243 177 100 / 0.85));
       opacity: 0;
     }
 
-    /* Scattered by hand rather than at random, so the spread is even and the
-       same every time — nothing here should flicker differently on a reload. */
-    .sparkle-1  { top: 12%; left: 8%;  animation: twinkle 3.1s ease-in-out 0.0s infinite; }
-    .sparkle-2  { top: 26%; left: 92%; animation: twinkle 2.6s ease-in-out 0.4s infinite; }
-    .sparkle-3  { top: 68%; left: 5%;  animation: twinkle 3.4s ease-in-out 0.9s infinite; }
-    .sparkle-4  { top: 84%; left: 78%; animation: twinkle 2.9s ease-in-out 1.3s infinite; }
-    .sparkle-5  { top: 8%;  left: 54%; animation: twinkle 3.6s ease-in-out 0.2s infinite; }
-    .sparkle-6  { top: 44%; left: 96%; animation: twinkle 2.4s ease-in-out 1.7s infinite; }
-    .sparkle-7  { top: 92%; left: 34%; animation: twinkle 3.2s ease-in-out 0.7s infinite; }
-    .sparkle-8  { top: 20%; left: 24%; animation: twinkle 2.8s ease-in-out 2.1s infinite; }
-    .sparkle-9  { top: 58%; left: 88%; animation: twinkle 3.0s ease-in-out 1.1s infinite; }
-    .sparkle-10 { top: 76%; left: 16%; animation: twinkle 2.7s ease-in-out 0.5s infinite; }
-    .sparkle-11 { top: 34%; left: 2%;  animation: twinkle 3.5s ease-in-out 1.9s infinite; }
-    .sparkle-12 { top: 4%;  left: 76%; animation: twinkle 2.5s ease-in-out 1.5s infinite; }
-    .sparkle-13 { top: 52%; left: 46%; animation: twinkle 3.3s ease-in-out 2.4s infinite; }
-    .sparkle-14 { top: 88%; left: 60%; animation: twinkle 2.9s ease-in-out 0.3s infinite; }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0; transform: scale(0.4); }
-      45%      { opacity: 1; transform: scale(1); }
-      70%      { opacity: 0.25; transform: scale(0.7); }
+    /*
+      Only the card in view twinkles. Fifty-two cards' worth of animation
+      running at once is work a phone does not need to do for cards nobody can
+      see, and the deck's `onChange` moves `is-current` along as you go.
+    */
+    .deck-card.is-current .sparkle {
+      animation-name: twinkle;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
     }
 
-    /* Anyone who has asked for less motion gets a still card, lit but quiet. */
+    /* Placed by hand so the scatter is even and the same on every reload. */
+    .sparkle-1  { top: 11%; left: 7%;  animation-duration: 3.1s; animation-delay: 0.0s; }
+    .sparkle-2  { top: 27%; left: 93%; animation-duration: 2.6s; animation-delay: 0.5s; }
+    .sparkle-3  { top: 69%; left: 4%;  animation-duration: 3.4s; animation-delay: 1.0s; }
+    .sparkle-4  { top: 85%; left: 79%; animation-duration: 2.9s; animation-delay: 1.4s; }
+    .sparkle-5  { top: 7%;  left: 55%; animation-duration: 3.6s; animation-delay: 0.3s; }
+    .sparkle-6  { top: 45%; left: 96%; animation-duration: 2.4s; animation-delay: 1.8s; }
+    .sparkle-7  { top: 91%; left: 33%; animation-duration: 3.2s; animation-delay: 0.8s; }
+    .sparkle-8  { top: 20%; left: 23%; animation-duration: 2.8s; animation-delay: 2.1s; }
+    .sparkle-9  { top: 58%; left: 88%; animation-duration: 3.0s; animation-delay: 1.1s; }
+    .sparkle-10 { top: 76%; left: 15%; animation-duration: 2.7s; animation-delay: 0.6s; }
+    .sparkle-11 { top: 35%; left: 2%;  animation-duration: 3.5s; animation-delay: 1.9s; }
+    .sparkle-12 { top: 4%;  left: 77%; animation-duration: 2.5s; animation-delay: 1.5s; }
+    .sparkle-13 { top: 52%; left: 45%; animation-duration: 3.3s; animation-delay: 2.4s; }
+    .sparkle-14 { top: 88%; left: 61%; animation-duration: 2.9s; animation-delay: 0.4s; }
+
+    /* Quiet on an ordinary card, so the words stay the point. */
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.35) rotate(0deg); }
+      50%      { opacity: 0.5; transform: scale(1) rotate(45deg); }
+    }
+
+    /* ------------------------------------------------------------ the finale */
+
+    .deck-card.is-finale .deck-card-inner {
+      background:
+        radial-gradient(120% 90% at 50% 0%, rgb(238 148 56 / 0.22), transparent 70%),
+        rgb(255 255 255 / 0.1);
+      box-shadow:
+        inset 0 0 0 1px rgb(238 148 56 / 0.65),
+        0 12px 34px rgb(10 14 36 / 0.4);
+    }
+
+    /* Brighter and larger on the last card, where it is a celebration. */
+    .deck-card.is-finale .sparkle {
+      width: 13px;
+      height: 13px;
+      background: var(--color-saffron-100);
+      filter: drop-shadow(0 0 6px rgb(243 177 100 / 0.95));
+    }
+
+    .deck-card.is-finale.is-current .sparkle {
+      animation-name: twinkle-finale;
+    }
+
+    @keyframes twinkle-finale {
+      0%, 100% { opacity: 0; transform: scale(0.35) rotate(0deg); }
+      50%      { opacity: 1; transform: scale(1.15) rotate(45deg); }
+    }
+
+    /* Anyone who has asked for less motion gets still stars, lit but quiet. */
     @media (prefers-reduced-motion: reduce) {
       .sparkle {
         animation: none !important;
-        opacity: 0.55;
+        opacity: 0.4;
+        transform: rotate(45deg);
+      }
+
+      .deck-card.is-finale .sparkle {
+        opacity: 0.7;
+      }
+    }
+
+    /* -------------------------------------------------- presenting on a screen */
+
+    /*
+      For a screen in the hall: the page chrome goes, the card fills the view
+      and the type grows. Driven by a class on <html> rather than the Fullscreen
+      API alone, so it still works if a browser refuses to go full screen.
+    */
+    :global(html.presenting) :global(body > header),
+    :global(html.presenting) :global(body > footer),
+    :global(html.presenting) :global(.centenary-tabs),
+    :global(html.presenting) .present-hide {
+      display: none !important;
+    }
+
+    :global(html.presenting),
+    :global(html.presenting) :global(body) {
+      background: var(--color-indigo-ink-950);
+    }
+
+    :global(html.presenting) .deck-card-inner {
+      min-height: min(74vh, 46rem);
+      padding: clamp(2rem, 4vw, 4rem);
+    }
+
+    :global(html.presenting) .card-year-number {
+      font-size: clamp(3rem, 7vw, 6rem);
+    }
+
+    :global(html.presenting) .card-title {
+      font-size: clamp(1.9rem, 3.6vw, 3.4rem);
+    }
+
+    :global(html.presenting) .card-body {
+      font-size: clamp(1.1rem, 1.7vw, 1.7rem);
+    }
+
+    :global(html.presenting) .card-era,
+    :global(html.presenting) .card-when {
+      font-size: clamp(0.75rem, 1.1vw, 1.05rem);
+    }
+
+    :global(html.presenting) .card-image {
+      max-height: min(46vh, 30rem);
+    }
+
+    @media (min-width: 768px) {
+      :global(html.presenting) .deck-card-inner.has-image {
+        grid-template-columns: minmax(0, 32rem) 1fr;
+        column-gap: 3rem;
       }
     }
 
@@ -491,6 +596,12 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
         // Past 2026, round again to 1926.
         loop: true,
         dwell: (index) => dwellTimes[index] ?? MIN_MS,
+        // Only the card in view twinkles; see the stylesheet above.
+        onChange: (index) => {
+          for (let i = 0; i < cards.length; i++) {
+            cards[i].classList.toggle('is-current', i === index);
+          }
+        },
         onPlayState: (playing) => {
           if (playIcon) playIcon.innerHTML = playing ? PAUSE_PATH : PLAY_PATH;
           if (playLabel) playLabel.textContent = playing ? 'Pause' : 'Play';
@@ -499,6 +610,39 @@ const moments = eras.flatMap((era) => era.moments.map((moment) => ({ ...moment, 
             playBtn.title = playing ? 'Pause' : 'Play';
           }
         },
+      });
+
+      // ------------------------------------------------- presenting on a screen
+
+      const presentBtn = document.getElementById('deck-present');
+      const root = document.documentElement;
+
+      function setPresenting(on: boolean): void {
+        root.classList.toggle('presenting', on);
+        presentBtn?.setAttribute('title', on ? 'Leave full screen' : 'Present full screen');
+        // Coming back to a normal page, the card has changed size underneath
+        // the deck, so the step between cards has to be measured again.
+        window.dispatchEvent(new Event('resize'));
+      }
+
+      presentBtn?.addEventListener('click', async () => {
+        const leaving = root.classList.contains('presenting');
+        try {
+          if (leaving) await document.exitFullscreen?.();
+          else await root.requestFullscreen?.();
+        } catch {
+          // Some browsers refuse without a stronger gesture, or on a phone.
+          // The layout is worth having either way, so carry on regardless.
+        }
+        setPresenting(!leaving);
+        if (!leaving) player?.resume();
+      });
+
+      // Leaving full screen by Escape has to put the page back too.
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement && root.classList.contains('presenting')) {
+          setPresenting(false);
+        }
       });
 
       playBtn?.addEventListener('click', () => {

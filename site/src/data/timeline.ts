@@ -594,8 +594,8 @@ export const eras: Era[] = [
       {
         year: '2026',
         when: '23 November',
-        title: 'One hundred years',
-        body: 'A century since the morning in the thatched house. You are reading this because somebody in North Dallas wanted you to mark it with them.',
+        title: '“My life is My message”',
+        body: 'Bhagawan said it at the first World Conference, on 17 May 1968, to people who had asked Him for a message to carry home. A hundred years from the morning in the thatched house, that is still the whole of it.',
         major: true,
       },
     ],
